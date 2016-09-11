@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string FooDate {
@@ -84,6 +93,24 @@ namespace Resources {
         public static string FooTitle {
             get {
                 return ResourceManager.GetString("FooTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package.
+        /// </summary>
+        public static string Pack {
+            get {
+                return ResourceManager.GetString("Pack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package Name.
+        /// </summary>
+        public static string PackName {
+            get {
+                return ResourceManager.GetString("PackName", resourceCulture);
             }
         }
         

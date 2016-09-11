@@ -34,9 +34,7 @@ namespace FastBookCreator
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap-theme.min.css",
-                      "~/Content/bootstrap-select.css"
-                      ));
+                      "~/Content/bootstrap-theme.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
                      "~/Content/Gridmvc.css",

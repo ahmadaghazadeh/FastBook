@@ -1,9 +1,7 @@
 ﻿@using FastBookCreator.Core
-<a id="ul_langSelector">
-    @using (Html.BeginForm("SetCulture", "Shared", FormMethod.Post, new { id = "CultureChangePostForm" }))
-    {
-
+@using (Html.BeginForm("SetCulture", "Shared", FormMethod.Post, new { id = "CultureChangePostForm" }))
+{
+    <a class="nav navbar-nav  navbar-right" id="ul_langSelector">
         @Html.DropDownList("culture", HelperExtensions.LanguageSelectListItems(), new { @class = "selectpicker show-tick", id = "langSelector", data_width = "110px" })
-
-    }
-</a>
+    </a>
+}

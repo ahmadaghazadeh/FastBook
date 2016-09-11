@@ -7,6 +7,7 @@
 /// <reference path="ai.0.22.19-build00125.min.js" />
 /// <reference path="bootstrap.min.js" />
 /// <reference path="bootstrap-datepicker.js" />
+/// <reference path="bootstrap-select.js" />
 /// <reference path="gridmvc.lang.fa.js" />
 /// <reference path="gridmvc.lang.ru.js" />
 /// <reference path="gridmvc.min.js" />

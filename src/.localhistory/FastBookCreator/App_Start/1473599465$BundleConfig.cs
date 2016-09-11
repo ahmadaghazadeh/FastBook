@@ -23,8 +23,7 @@ namespace FastBookCreator
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/bootstrap-select.min.js"));
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Gridmvc").Include(
                      "~/Scripts/gridmvc.min.js",
@@ -34,17 +33,11 @@ namespace FastBookCreator
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap-theme.min.css",
-                      "~/Content/bootstrap-select.css"
-                      ));
+                      "~/Content/bootstrap-theme.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
                      "~/Content/Gridmvc.css",
                      "~/Content/gridmvc.datepicker.min.css"));
-
-            bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
-                    "~/Content/Gridmvc.css",
-                    "~/Content/gridmvc.datepicker.min.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

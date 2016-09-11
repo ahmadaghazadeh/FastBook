@@ -129,9 +129,6 @@
   <data name="FooTitle" xml:space="preserve">
     <value>عنوان</value>
   </data>
-  <data name="Pack" xml:space="preserve">
-    <value>بسته</value>
-  </data>
   <data name="PackName" xml:space="preserve">
     <value>نام بسته</value>
   </data>

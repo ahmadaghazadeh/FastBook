@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description" xml:space="preserve">
-    <value>توضیحات</value>
-  </data>
   <data name="FooDate" xml:space="preserve">
     <value>تاریخ</value>
   </data>
@@ -128,11 +125,5 @@
   </data>
   <data name="FooTitle" xml:space="preserve">
     <value>عنوان</value>
-  </data>
-  <data name="Pack" xml:space="preserve">
-    <value>بسته</value>
-  </data>
-  <data name="PackName" xml:space="preserve">
-    <value>نام بسته</value>
   </data>
 </root>
