@@ -1,32 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Globalization;
 using System.Web.Mvc;
+using FastBookCreator.Core;
+using FastBookCreator.Models;
 
 namespace FastBookCreator.Controllers
 {
-    public class PackController : BaseController
+    public class TestController : BaseController
     {
-        // GET: Pack
+        // GET: Test
         public ActionResult Index()
         {
-            return View();
+            var items = new List<Foo>
+            {
+                new Foo { Name = "ahmad"},
+                new Foo { Name = "ali"},
+                new Foo { Name = "mahamad"},
+                new Foo { Name = "ali"},
+                new Foo { Name = "reza"},
+                new Foo { Name = "beh"},
+                new Foo { Name = "ad"},
+                new Foo { Name = "hjgj"},
+                new Foo { Name = "xcfs"},
+
+            };
+
+
+            ViewBag.Title = "تولید سریع کتاب";
+            ViewBag.Ahmad = "تولید سریع کتاب";
+            ViewData["xx"] = "salam";
+
+            return View("Index", items);
         }
 
-        //// GET: Pack/Details/5
+        // GET: Test/Details/5
         //public ActionResult Details(int id)
         //{
         //    return View();
         //}
 
-        //// GET: Pack/Create
+        //// GET: Test/Create
         //public ActionResult Create()
         //{
         //    return View();
         //}
 
-        //// POST: Pack/Create
+        //// POST: Test/Create
         //[HttpPost]
         //public ActionResult Create(FormCollection collection)
         //{
@@ -42,13 +62,13 @@ namespace FastBookCreator.Controllers
         //    }
         //}
 
-        //// GET: Pack/Edit/5
+        // GET: Test/Edit/5
         //public ActionResult Edit(int id)
         //{
         //    return View();
         //}
 
-        //// POST: Pack/Edit/5
+        //// POST: Test/Edit/5
         //[HttpPost]
         //public ActionResult Edit(int id, FormCollection collection)
         //{
@@ -64,13 +84,13 @@ namespace FastBookCreator.Controllers
         //    }
         //}
 
-        //// GET: Pack/Delete/5
+        //// GET: Test/Delete/5
         //public ActionResult Delete(int id)
         //{
         //    return View();
         //}
 
-        //// POST: Pack/Delete/5
+        //// POST: Test/Delete/5
         //[HttpPost]
         //public ActionResult Delete(int id, FormCollection collection)
         //{

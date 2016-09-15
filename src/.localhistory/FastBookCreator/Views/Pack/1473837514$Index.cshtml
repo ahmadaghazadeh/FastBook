@@ -1,14 +1,48 @@
-﻿/* LOADER */
-jQuery(document).ready(function () {
-        // Culture Select Box
-        $("select").change(function () {
-                $("*").blur();
-        });
+﻿@model IEnumerable<FastBookCreator.Models.Foo>
+@using GridMvc.Html
 
-        $("#langSelector").change(function () {
-                $(this).parents("form").submit(); // post form
-        });
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @Styles.Render("~/Content/Gridmvc")
+    @Styles.Render("~/Content/dropzonescss")
+</head>
+<body>
+
+
+<div class="jumbotron">
+    <form action="~/Home/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm" style="width: 50px; background: none; border: none;">
+        <div class="fallback">
+            <input name="file" type="file" multiple/>
+            <input type="submit" value="Upload"/>
+        </div>
+    </form>
+</div>
+
+<div class="col-md-6">
+        <input type="text" class="form-control" placeholder=@Resources.Resource.PackName>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder=@Resources.Resource.Description>
+    </div>
+    @*<div style="padding: 100px;">
+            @Html.Grid(Model).Named("dataGrid").AutoGenerateColumns()
+        </div>*@
+
+    <br />
+</body>
+
+@Scripts.Render("~/bundles/Gridmvc")
+@Scripts.Render("~/bundles/dropzonescripts")
+</html>
+
+
+@section scripts
+{
+    <script>
         Dropzone.options.dropzoneForm = {
             acceptedFiles: "image/*",
             init: function () {
@@ -44,6 +78,5 @@ jQuery(document).ready(function () {
             }
         };
 
-    });
-
-
+    </script>
+}

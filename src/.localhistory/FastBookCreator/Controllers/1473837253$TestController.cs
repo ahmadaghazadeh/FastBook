@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using FastBookCreator.Controllers.DropZoneFileUpload.Models;
 using FastBookCreator.Core;
 using FastBookCreator.Models;
 
@@ -50,7 +46,7 @@ namespace FastBookCreator.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
 
-                    var originalDirectory = new DirectoryInfo(string.Format("{0}Images", Server.MapPath(@"\")));
+                    var originalDirectory = new DirectoryInfo(string.Format("{0}Images\\WallImages", Server.MapPath(@"\")));
 
                     string pathString = System.IO.Path.Combine(originalDirectory.ToString(), "imagepath");
 
@@ -95,16 +91,6 @@ namespace FastBookCreator.Controllers
             }.ToList();
 
             return Json(new { Data = attachmentsList }, JsonRequestBehavior.AllowGet);
-        }
-    }
-
-    namespace DropZoneFileUpload.Models
-    {
-        public class AttachmentsModel
-        {
-            public long AttachmentID { get; set; }
-            public string FileName { get; set; }
-            public string Path { get; set; }
         }
     }
 
@@ -179,5 +165,5 @@ namespace FastBookCreator.Controllers
     //        return View();
     //    }
     //}
-
+}
 }

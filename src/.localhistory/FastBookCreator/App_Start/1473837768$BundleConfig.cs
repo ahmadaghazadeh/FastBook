@@ -24,7 +24,8 @@ namespace FastBookCreator
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/bootstrap-select.min.js"));
+                      "~/Scripts/bootstrap-select.min.js",
+                      "~/Scripts/site.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Gridmvc").Include(
                      "~/Scripts/gridmvc.min.js",

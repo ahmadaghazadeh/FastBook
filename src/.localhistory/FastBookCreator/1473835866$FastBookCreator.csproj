@@ -346,14 +346,6 @@
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\dropzone\basic.css" />
-    <Content Include="Scripts\dropzone\basic.min.css" />
-    <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
-    <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
-    <Content Include="Scripts\dropzone\dropzone.css" />
-    <Content Include="Scripts\dropzone\dropzone.js" />
-    <Content Include="Scripts\dropzone\dropzone.min.css" />
-    <Content Include="Scripts\dropzone\dropzone.min.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.fa.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
@@ -494,7 +486,6 @@
     <Folder Include="Ck_Editor\samples\" />
     <Folder Include="Ck_Editor\skins\" />
     <Folder Include="Ck_Editor\tests\" />
-    <Folder Include="images\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <PropertyGroup>

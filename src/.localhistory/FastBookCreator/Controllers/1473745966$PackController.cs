@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FastBookCreator.Controllers
 {
-    public class PackController : BaseController
+    public class PackController : Controller
     {
         // GET: Pack
         public ActionResult Index()

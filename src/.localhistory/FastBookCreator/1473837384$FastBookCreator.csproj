@@ -494,7 +494,6 @@
     <Folder Include="Ck_Editor\samples\" />
     <Folder Include="Ck_Editor\skins\" />
     <Folder Include="Ck_Editor\tests\" />
-    <Folder Include="images\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <PropertyGroup>
