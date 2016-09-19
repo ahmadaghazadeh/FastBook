@@ -132,6 +132,9 @@
   <data name="Pack" xml:space="preserve">
     <value>بسته</value>
   </data>
+  <data name="PackId" xml:space="preserve">
+    <value>شماره بسته</value>
+  </data>
   <data name="PackName" xml:space="preserve">
     <value>نام بسته</value>
   </data>

@@ -132,6 +132,9 @@
   <data name="Pack" xml:space="preserve">
     <value>Package</value>
   </data>
+  <data name="PackId" xml:space="preserve">
+    <value>PackId</value>
+  </data>
   <data name="PackName" xml:space="preserve">
     <value>Package Name</value>
   </data>

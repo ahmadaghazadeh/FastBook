@@ -1,0 +1,48 @@
+﻿@model IEnumerable<FastBookCreator.Models.Foo>
+@using GridMvc.Html
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @Styles.Render("~/Content/Gridmvc")
+    @Styles.Render("~/Content/dropzonescss")
+</head>
+<body>
+
+
+
+<form action="/file-upload" class="dropzone">
+    <div class="fallback">
+        <input name="file" type="file" multiple/>
+    </div>
+</form>
+
+
+<div class="col-md-6">
+        <input type="text" class="form-control" placeholder=@Resources.Resource.PackName>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder=@Resources.Resource.Description>
+    </div>
+    @*<div style="padding: 100px;">
+            @Html.Grid(Model).Named("dataGrid").AutoGenerateColumns()
+        </div>*@
+
+    <br />
+</body>
+
+@Scripts.Render("~/bundles/Gridmvc")
+@Scripts.Render("~/bundles/dropzonescripts")
+</html>
+
+
+@section scripts
+{
+    <script>
+        
+
+    </script>
+}

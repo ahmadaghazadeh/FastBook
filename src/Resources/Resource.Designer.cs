@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PackId.
+        /// </summary>
+        public static string PackId {
+            get {
+                return ResourceManager.GetString("PackId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Package Name.
         /// </summary>
         public static string PackName {

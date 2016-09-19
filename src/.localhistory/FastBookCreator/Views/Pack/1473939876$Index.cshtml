@@ -1,0 +1,42 @@
+﻿@model IEnumerable<FastBookCreator.Models.Foo>
+@using GridMvc.Html
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @Styles.Render("~/Content/Gridmvc")
+
+</head>
+<body>
+
+
+ 
+
+     <div class="col-md-6">
+        <input type="text" class="form-control" placeholder=@Resources.Resource.PackName>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder=@Resources.Resource.Description>
+    </div>
+    @*<div style="padding: 100px;">
+            @Html.Grid(Model).Named("dataGrid").AutoGenerateColumns()
+        </div>*@
+
+    <br />
+</body>
+
+@Scripts.Render("~/bundles/Gridmvc")
+
+</html>
+
+
+@section scripts
+{
+    <script>
+        
+
+    </script>
+}
