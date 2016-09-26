@@ -11,6 +11,7 @@ namespace FastBookCreator
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/toastr.min.js",
                         "~/Scripts/site.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -31,19 +32,22 @@ namespace FastBookCreator
                      "~/Scripts/bootstrap-datepicker.js",
                      "~/Scripts/gridmvc.lang.fa.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/dropzonescripts").Include(
-                 "~/Scripts/dropzone/dropzone.js"));
+          
  
             bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
                  "~/Scripts/ckeditor/ckeditor.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
+                "~/Scripts/ckeditor/ckeditor.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-theme.min.css",
-                      "~/Content/bootstrap-select.css"
+                      "~/Content/bootstrap-select.css",
+                      "~/Content/toastr.min.css"
                       ));
-
+ 
             bundles.Add(new StyleBundle("~/Content/dropzonescss").Include(
                      "~/Scripts/dropzone/css/basic.css",
                      "~/Scripts/dropzone/css/dropzone.css"));
@@ -55,12 +59,11 @@ namespace FastBookCreator
             bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
                     "~/Content/Gridmvc.css",
                     "~/Content/gridmvc.datepicker.min.css"));
-
-        
+ 
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = !Debugger.IsAttached;
+            BundleTable.EnableOptimizations = true; //!Debugger.IsAttached;
         }
     }
 }

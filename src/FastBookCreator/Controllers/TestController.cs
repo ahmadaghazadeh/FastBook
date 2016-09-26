@@ -53,13 +53,16 @@ namespace FastBookCreator.Controllers
             var items = new List<Models.Pack>();
             using (var connection = SqliteConn.GetConnection())
             {
-                connection.Open();
-                connection.Execute(@"INSERT INTO Pack (PackName,Description) VALUES (@PackName, @Description)", new List<Pack>
+                try
                 {
-                    new Pack{Description = "xxx", PackName= "sam"}
-                });
-                items = (List<Models.Pack>)connection.Query<Models.Pack>("SELECT * FROM Pack ");
-
+                    connection.Open();
+                    items = (List<Models.Pack>)connection.Query<Models.Pack>("SELECT * FROM Pack ");
+                    connection.Dispose();
+                }
+                catch
+                {
+                }
+                
             }
            
 

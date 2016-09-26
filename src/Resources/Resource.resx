@@ -129,6 +129,9 @@
   <data name="FooTitle" xml:space="preserve">
     <value>Titile</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="Pack" xml:space="preserve">
     <value>Package</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="PackName" xml:space="preserve">
     <value>Package Name</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Page Not Found</value>
   </data>
   <data name="Phone_Number" xml:space="preserve">
     <value>Phone Number</value>

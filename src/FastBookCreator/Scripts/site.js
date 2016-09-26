@@ -1,5 +1,28 @@
 ﻿/* LOADER */
 jQuery(document).ready(function () {
+
+ 
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": true,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-bottom-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "7000",
+        "extendedTimeOut": "2000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+        "containerId": 'toast-container',
+        "rtl": 'true'
+    }
+
         // Culture Select Box
         $("select").change(function () {
                 $("*").blur();
@@ -9,7 +32,7 @@ jQuery(document).ready(function () {
                 $(this).parents("form").submit(); // post form
         });
 
-        Dropzone.options.dropzoneForm = {
+        /*Dropzone.options.dropzoneForm = {
             acceptedFiles: "image/*",
             init: function () {
                 var thisDropzone = this;
@@ -42,9 +65,8 @@ jQuery(document).ready(function () {
 
 
             }
-        };
-
-    });
+        };*/
+});
 
 
 ;
@@ -202,5 +224,7 @@ jQuery(document).ready(function () {
         input.addEventListener('blur', function () { input.classList.remove('has-focus'); });
 
     });
+
+   
 }(document, window, 0));
 

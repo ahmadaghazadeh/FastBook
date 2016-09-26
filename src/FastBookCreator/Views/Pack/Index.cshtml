@@ -31,7 +31,10 @@
             @Html.Grid(Model).Named("dataGrid").AutoGenerateColumns()
         </div>*@
 
-    <br />
+<br/>
+    <div id="other">
+        Trigger the handler
+    </div>
 </body>
 
 @Scripts.Render("~/bundles/Gridmvc")
@@ -42,7 +45,11 @@
 @section scripts
 {
     <script>
-        
+        $("#other")
+            .click(function() {
+                toastr.info('سلام خوبی ؟');
+            });
+        $(document).ready(function() { toastr.info('سلام خوبی ؟'); });
 
     </script>
 }

@@ -1,0 +1,54 @@
+﻿@model List<FastBookCreator.Models.Pack>
+@using GridMvc.Html
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @Styles.Render("~/Content/Gridmvc")
+    @Styles.Render("~/Content/dropzonescss")
+</head>
+<body>
+
+     @Html.ActionLink(@Resources.Resource.Pack, "Insert", "Pack") 
+
+<form action="/file-upload" class="dropzone">
+    <div class="fallback">
+        <input name="file" type="file" multiple/>
+    </div>
+</form>
+
+
+<div class="col-md-6">
+        <input type="text" class="form-control" placeholder=@Resources.Resource.PackName>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder=@Resources.Resource.Description>
+    </div>
+    @*<div style="padding: 100px;">
+            @Html.Grid(Model).Named("dataGrid").AutoGenerateColumns()
+        </div>*@
+
+<br/>
+    <div id="other">
+        Trigger the handler
+    </div>
+</body>
+
+@Scripts.Render("~/bundles/Gridmvc")
+@Scripts.Render("~/bundles/dropzonescripts")
+</html>
+
+
+@section scripts
+{
+    <script>
+        $("#other").click(function () {
+            toastr.info('Are you the 6 fingered man?');
+        });
+
+
+    </script>
+}

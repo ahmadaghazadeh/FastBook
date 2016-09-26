@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Dapper;
 using FastBookCreator.Core;
@@ -14,19 +15,20 @@ namespace FastBookCreator.Controllers
             var items = new List<Pack>();
             using (var connection = SqliteConn.GetConnection())
             {
-                connection.Open();
-                connection.Execute(@"INSERT INTO Pack (PackName,Description) VALUES (@PackName, @Description)", new List<Pack>
+                try
                 {
-                    new Pack{Description = "xxx", PackName= "sam"}
-                });
-                items = (List<Pack>)connection.Query<Pack>("SELECT * FROM Pack ");
-
+                    connection.Open();
+                    items = (List<Pack>) connection.Query<Pack>("SELECT * FROM Pack ");
+                    connection.Dispose();
+                }
+                catch
+                {
+                    ViewBag.Title = "تولید سریع کتاب";
+                    ViewBag.Ahmad = "تولید سریع کتاب";
+                    ViewData["xx"] = "salam";
+                    return View("Error");
+                }
             }
-
-
-            ViewBag.Title = "تولید سریع کتاب";
-            ViewBag.Ahmad = "تولید سریع کتاب";
-            ViewData["xx"] = "salam";
 
             return View("Index", items);
         }
