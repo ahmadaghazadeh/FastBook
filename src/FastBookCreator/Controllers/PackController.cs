@@ -31,7 +31,18 @@ namespace FastBookCreator.Controllers
             return View("Index", items);
         }
 
-       
+        public ActionResult Insert()
+        {
+           
+
+            ViewBag.Title = "تولید سریع کتاب";
+            ViewBag.Ahmad = "تولید سریع کتاب";
+            ViewData["xx"] = "salam";
+
+            return View();
+        }
+
+
 
         //// GET: Pack/Details/5
         //public ActionResult Details(int id)
