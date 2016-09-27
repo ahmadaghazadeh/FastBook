@@ -120,6 +120,9 @@
   <data name="Description" xml:space="preserve">
     <value>توضیحات</value>
   </data>
+  <data name="dir" xml:space="preserve">
+    <value>rtl</value>
+  </data>
   <data name="FooDate" xml:space="preserve">
     <value>تاریخ</value>
   </data>
@@ -132,8 +135,11 @@
   <data name="Home" xml:space="preserve">
     <value>خانه</value>
   </data>
+  <data name="lang" xml:space="preserve">
+    <value>fa</value>
+  </data>
   <data name="Pack" xml:space="preserve">
-    <value>بسته</value>
+    <value>بسته آموزشی </value>
   </data>
   <data name="PackId" xml:space="preserve">
     <value>شماره بسته</value>
@@ -143,5 +149,20 @@
   </data>
   <data name="PageNotFound" xml:space="preserve">
     <value>صفحه مورد نظر پیدا نشد</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Fast Book Creator</value>
+  </data>
+  <data name="method" xml:space="preserve">
+    <value>روش آموزشی</value>
+  </data>
+  <data name="PackCreate" xml:space="preserve">
+    <value>ایجاد بسته آموزشی جدید</value>
+  </data>
+  <data name="PackDescription" xml:space="preserve">
+    <value>برای ساخت یک بسته آموزشی جدید چند رسانه ای (متن، تصویر، صوتی، چهار گزینه، فلش کارت) می توانید از این قسمت استفاده کنید. مثلا آموزش ریاضی پایه یک ، آموزش آشپزی، ...</value>
+  </data>
+  <data name="PackList" xml:space="preserve">
+    <value>مشاهده لیست بسته ها</value>
   </data>
 </root>

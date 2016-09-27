@@ -4,20 +4,17 @@
 
 <h2>@ViewBag.Title</h2>
 <div>
-    <table id="jqGrid"></table>
-    <div id="jqControls"></div>
+    <div class="jumbotron">
+    <h3>@Resources.Resource.Pack</h3>
+    <h5>@Resources.Resource.PackDescription</h5>
+        <p>
+            <a class="btn btn-primary btn-lg" href="@Url.Action("Insert", "Pack")" role="button">@Resources.Resource.PackCreate</a>
+            <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Pack")" role="button">@Resources.Resource.PackList</a>
+        </p>
+</div>
 
 </div>
 
 @section scripts{
-    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
-
-    <script src="~/Scripts/jquery-ui-1.12.0.min.js"></script>
-
-    <script src="~/Scripts/i18n/grid.locale-fa.js"></script>
-
-    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
-
-    <script src="~/Scripts/script.js"></script>
+    
 }

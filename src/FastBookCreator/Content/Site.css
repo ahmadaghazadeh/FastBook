@@ -29,4 +29,10 @@ textarea {
         margin-left: 25px;
     }
 }
- 
+
+.dropdown-menu {
+   left:auto !important;
+}
+.row {
+    padding-bottom: 8px;
+}

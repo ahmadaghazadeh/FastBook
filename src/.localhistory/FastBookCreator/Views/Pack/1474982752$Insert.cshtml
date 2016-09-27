@@ -1,0 +1,65 @@
+﻿@model List<FastBookCreator.Models.Pack>
+@using GridMvc.Html
+
+    <div >
+        <div class="row" >
+            <div class="col-md-6" style="float: @Resources.Resource.Float" >
+                <input type="text" class="form-control" placeholder=@Resources.Resource.PackName>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder=@Resources.Resource.Description>
+            </div>
+
+        </div>
+
+        <div class="row" >
+            <div class="col-md-6" style="float: @Resources.Resource.Float">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    @Resources.Resource.method
+                    <span class="caret"></span>
+                </button>
+                @Html.DropDownList("dropdown-pack", Model.Select(item => new SelectListItem
+           {
+               Value = item.PackName,
+               Text = item.Description.ToString(),
+               Selected = false
+           }), "Scholarship_contactID",new {@class= "dropdown-menu", aria_labelledby = "dropdownMenu1" })
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+
+@*  <textarea cols="80" id="editor1" name="editor1" rows="10">
+        &lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;
+    </textarea>
+
+<script>
+    CKEDITOR.replace('editor1', {
+          uiColor: '#AAEAAA'
+    });
+
+    CKEDITOR.editorConfig = function (config) {
+        //Define changes to default configuration here. For example:
+        config.language = 'fa';
+        config.uiColor = '#11DC11';
+    };
+</script>*@
+
+
+@section scripts
+{
+    <script>
+
+
+    </script>
+}

@@ -120,6 +120,9 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="dir" xml:space="preserve">
+    <value>ltr</value>
+  </data>
   <data name="FooDate" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="lang" xml:space="preserve">
+    <value>en</value>
   </data>
   <data name="Pack" xml:space="preserve">
     <value>Package</value>
@@ -146,5 +152,23 @@
   </data>
   <data name="Phone_Number" xml:space="preserve">
     <value>Phone Number</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Fast Book Creator</value>
+  </data>
+  <data name="Float" xml:space="preserve">
+    <value>left</value>
+  </data>
+  <data name="method" xml:space="preserve">
+    <value>Teaching Methods</value>
+  </data>
+  <data name="PackCreate" xml:space="preserve">
+    <value>Create New Package</value>
+  </data>
+  <data name="PackDescription" xml:space="preserve">
+    <value>To create a new multimedia training package (text, image, audio, four options, flash cards) can use this field. For example, a basic math education, cooking lessons, ...</value>
+  </data>
+  <data name="PackList" xml:space="preserve">
+    <value>View Packages</value>
   </data>
 </root>

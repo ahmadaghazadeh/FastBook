@@ -59,11 +59,14 @@ namespace FastBookCreator
             bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
                     "~/Content/Gridmvc.css",
                     "~/Content/gridmvc.datepicker.min.css"));
- 
 
+            bundles.Add(new StyleBundle("~/Content/errors").Include(
+                   "~/Content/errors.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/clipboard", "https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js").Include("~/Scripts/clipboard.min.js"));
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true; //!Debugger.IsAttached;
+            BundleTable.EnableOptimizations = !Debugger.IsAttached;
         }
     }
 }

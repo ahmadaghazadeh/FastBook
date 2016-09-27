@@ -12,36 +12,24 @@ namespace FastBookCreator.Controllers
         // GET: Pack
         public ActionResult Index()
         {
-            var items = new List<Pack>();
+            List<Pack> items;
             using (var connection = SqliteConn.GetConnection())
             {
-                try
-                {
-                    connection.Open();
                     items = (List<Pack>) connection.Query<Pack>("SELECT * FROM Pack ");
-                    connection.Dispose();
-                }
-                catch
-                {
-                    ViewBag.Title = "تولید سریع کتاب";
-                    ViewBag.Ahmad = "تولید سریع کتاب";
-                    ViewData["xx"] = "salam";
-                    return View("Error");
-                }
             }
-
+            ViewBag.Title =Resources.Resource.PackList;
             return View("Index", items);
         }
 
         public ActionResult Insert()
         {
-           
-
-            ViewBag.Title = "تولید سریع کتاب";
-            ViewBag.Ahmad = "تولید سریع کتاب";
-            ViewData["xx"] = "salam";
-
-            return View();
+            List<Pack> items;
+            using (var connection = SqliteConn.GetConnection())
+            {
+                items = (List<Pack>)connection.Query<Pack>("SELECT * FROM Pack ");
+            }
+            ViewBag.Title = Resources.Resource.PackCreate;
+            return View(items);
         }
 
 

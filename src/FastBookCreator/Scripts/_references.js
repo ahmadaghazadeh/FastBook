@@ -217,6 +217,7 @@
 /// <reference path="ckeditor/plugins/wsc/dialogs/wsc.js" />
 /// <reference path="ckeditor/plugins/wsc/dialogs/wsc_ie.js" />
 /// <reference path="ckeditor/styles.js" />
+/// <reference path="clipboard.min.js" />
 /// <reference path="dropzone/dropzone.min.js" />
 /// <reference path="dropzone/dropzone-amd-module.min.js" />
 /// <reference path="gridmvc.lang.fa.js" />
