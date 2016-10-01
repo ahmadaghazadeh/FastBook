@@ -153,8 +153,8 @@
   <data name="AppName" xml:space="preserve">
     <value>Fast Book Creator</value>
   </data>
-  <data name="method" xml:space="preserve">
-    <value>روش آموزشی</value>
+  <data name="MethodSelect" xml:space="preserve">
+    <value>انتخاب روش آموزشی</value>
   </data>
   <data name="PackCreate" xml:space="preserve">
     <value>ایجاد بسته آموزشی جدید</value>
@@ -164,5 +164,23 @@
   </data>
   <data name="PackList" xml:space="preserve">
     <value>مشاهده لیست بسته ها</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
+  <data name="SubjectSelect" xml:space="preserve">
+    <value>انتخاب موضوع آموزش</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>رنگ</value>
+  </data>
+  <data name="Logo" xml:space="preserve">
+    <value>آیکن(تصویر)</value>
+  </data>
+  <data name="MethodId" xml:space="preserve">
+    <value>نوع روش آموزشی</value>
+  </data>
+  <data name="SubjectId" xml:space="preserve">
+    <value>موضوع</value>
   </data>
 </root>

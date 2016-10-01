@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        public static string Color {
+            get {
+                return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -142,11 +151,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logo.
+        /// </summary>
+        public static string Logo {
+            get {
+                return ResourceManager.GetString("Logo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Teaching Methods.
         /// </summary>
-        public static string method {
+        public static string MethodId {
             get {
-                return ResourceManager.GetString("method", resourceCulture);
+                return ResourceManager.GetString("MethodId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teaching Methods.
+        /// </summary>
+        public static string MethodSelect {
+            get {
+                return ResourceManager.GetString("MethodSelect", resourceCulture);
             }
         }
         
@@ -219,6 +246,33 @@ namespace Resources {
         public static string Phone_Number {
             get {
                 return ResourceManager.GetString("Phone_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        public static string SubjectId {
+            get {
+                return ResourceManager.GetString("SubjectId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Subject.
+        /// </summary>
+        public static string SubjectSelect {
+            get {
+                return ResourceManager.GetString("SubjectSelect", resourceCulture);
             }
         }
     }

@@ -9,7 +9,7 @@ namespace FastBookCreator.Entities
     public class Item
     {
         [Key]
-        public string id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         public string ItemTypeId { get; set; }

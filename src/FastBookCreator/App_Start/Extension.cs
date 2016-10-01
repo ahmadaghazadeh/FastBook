@@ -8,11 +8,11 @@ namespace HighlightCode.App_Start
 {
     public static class Extension
     {
-        private static readonly string highlightPath = "highlight\\";
+        private static readonly string HighlightPath = "highlight\\";
         private static readonly string Path = HttpContext.Current.Server.MapPath("~");
-        private static readonly string PathHighlight = Path + highlightPath;
+        private static readonly string PathHighlight = Path + HighlightPath;
         private static readonly string Drive = System.IO.Path.GetPathRoot(Path);
-        private static readonly string[] classHtml={"hl",
+        private static readonly string[] ClassHtml={"hl",
             "hl num",
             "hl esc",
             "hl str",
@@ -43,7 +43,7 @@ namespace HighlightCode.App_Start
             var pTags = doc.DocumentNode.Descendants("pre");
 
             var html = pTags.SingleOrDefault().OuterHtml;
-            html = classHtml.Aggregate(html, (current, tag) => current.Replace($"class=\"{tag}\"", string.Empty));
+            html = ClassHtml.Aggregate(html, (current, tag) => current.Replace($"class=\"{tag}\"", string.Empty));
             doc.LoadHtml(html);
             pTags = doc.DocumentNode.Descendants();
             foreach (var tag in pTags)
@@ -138,7 +138,7 @@ namespace HighlightCode.App_Start
         {
             try
             {
-                File.WriteAllLines(System.IO.Path.Combine(Path + highlightPath, "main" + "." + lng), str.Split('\n'));
+                File.WriteAllLines(System.IO.Path.Combine(Path + HighlightPath, "main" + "." + lng), str.Split('\n'));
             }
             catch (Exception)
             {

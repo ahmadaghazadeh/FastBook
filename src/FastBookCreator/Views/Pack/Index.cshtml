@@ -1,20 +1,10 @@
-﻿@model List<FastBookCreator.Models.Pack>
+﻿@*@model List<FastBookCreator.Models.Pack>*@
+@using FastBookCreator.Core
 @using GridMvc.Html
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@Resources.Resource.Pack</title>
-    @Styles.Render("~/Content/Gridmvc")
  
-</head>
-<body>
-
-     
-
-
+    @Styles.Render("~/Content/Gridmvc")
+  
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
        @* <div class="btn-group" role="group">
             <button type="button" class="btn btn-default"></button>
@@ -28,21 +18,18 @@
     </div>
 
 
-<div style="padding: 100px;">
-        @Html.Grid(Model).Named("dataGrid").AutoGenerateColumns()
+  <div style="padding: 100px;">
+        @Html.Grid(HelperExtensions.GetPacks()).Named("dataGrid").AutoGenerateColumns()
+  </div>
+ 
+   <div id="other">
+        Trigger the handler
     </div>
  
 
-<br/>
-    <div id="other">
-        Trigger the handler
-    </div>
-</body>
-
 @Scripts.Render("~/bundles/Gridmvc")
 
-</html>
-
+ 
 
 @section scripts
 {

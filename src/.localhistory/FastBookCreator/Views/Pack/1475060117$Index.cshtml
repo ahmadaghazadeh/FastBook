@@ -1,0 +1,58 @@
+﻿@model List<FastBookCreator.Models.Pack>
+@using FastBookCreator.Core
+@using GridMvc.Html
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.Resource.Pack</title>
+    @Styles.Render("~/Content/Gridmvc")
+ 
+</head>
+<body>
+
+     
+
+
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+       @* <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default"></button>
+        </div>*@
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default">@Html.ActionLink(@Resources.Resource.PackCreate, "Insert", "Pack")</button>
+        </div>
+        @*<div class="btn-group" role="group">
+            <button type="button" class="btn btn-default">Right</button>
+        </div>*@
+    </div>
+
+
+  <div style="padding: 100px;">
+        @Html.Grid(HelperExtensions.GetPacks()).Named("dataGrid").AutoGenerateColumns()
+    </div>
+ 
+
+<br/>
+    <div id="other">
+        Trigger the handler
+    </div>
+</body>
+
+@Scripts.Render("~/bundles/Gridmvc")
+
+</html>
+
+
+@section scripts
+{
+    <script>
+        $("#other")
+            .click(function() {
+                toastr.info('سلام خوبی ؟');
+            });
+        $(document).ready(function() { toastr.info('سلام خوبی ؟'); });
+
+    </script>
+}

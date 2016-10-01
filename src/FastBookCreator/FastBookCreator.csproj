@@ -873,7 +873,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2195</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:2195/</IISUrl>
+          <IISUrl>http://localhost:2194/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

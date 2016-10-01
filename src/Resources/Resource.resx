@@ -159,7 +159,7 @@
   <data name="Float" xml:space="preserve">
     <value>left</value>
   </data>
-  <data name="method" xml:space="preserve">
+  <data name="MethodSelect" xml:space="preserve">
     <value>Teaching Methods</value>
   </data>
   <data name="PackCreate" xml:space="preserve">
@@ -170,5 +170,23 @@
   </data>
   <data name="PackList" xml:space="preserve">
     <value>View Packages</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SubjectSelect" xml:space="preserve">
+    <value>Select Subject</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Logo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="MethodId" xml:space="preserve">
+    <value>Teaching Methods</value>
+  </data>
+  <data name="SubjectId" xml:space="preserve">
+    <value>Subject</value>
   </data>
 </root>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using Dapper;
 using FastBookCreator.Core;
@@ -9,28 +11,27 @@ namespace FastBookCreator.Controllers
 {
     public class PackController : BaseController
     {
+
+
         // GET: Pack
         public ActionResult Index()
         {
-            List<Pack> items;
-            using (var connection = SqliteConn.GetConnection())
-            {
-                    items = (List<Pack>) connection.Query<Pack>("SELECT * FROM Pack ");
-            }
             ViewBag.Title =Resources.Resource.PackList;
-            return View("Index", items);
+            return View("Index");
         }
 
         public ActionResult Insert()
         {
-            List<Pack> items;
-            using (var connection = SqliteConn.GetConnection())
-            {
-                items = (List<Pack>)connection.Query<Pack>("SELECT * FROM Pack ");
-            }
-            ViewBag.Title = Resources.Resource.PackCreate;
-            return View(items);
+  
+            return View();
         }
+
+        public ActionResult SavePack(Pack pack)
+        {
+            
+            return View("Index");
+        }
+
 
 
 
