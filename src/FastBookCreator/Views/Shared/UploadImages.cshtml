@@ -2,11 +2,16 @@
     ViewBag.Title = "Home Page";
 }
 <div class="jumbotron">
-    @using (Html.BeginForm("UploadImages", "Shared", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
+    @using (Html.BeginForm("SaveUploadedFile", "Shared", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
     {
         <div class="fallback">
             <input name="file" type="file" multiple />
-            <input type="submit" value="Upload" />
+        </div>
+
+        <div class="row center-block">
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
+            </button>
         </div>
     }
 </div>
