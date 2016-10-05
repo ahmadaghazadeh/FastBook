@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Editable.
+        /// </summary>
+        public static string AllowEdit {
+            get {
+                return ResourceManager.GetString("AllowEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fast Book Creator.
         /// </summary>
         public static string AppName {
@@ -79,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -88,11 +106,191 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel upload.
+        /// </summary>
+        public static string dictCancelUpload {
+            get {
+                return ResourceManager.GetString("dictCancelUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to cancel this upload?.
+        /// </summary>
+        public static string dictCancelUploadConfirmation {
+            get {
+                return ResourceManager.GetString("dictCancelUploadConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drop files here to upload.
+        /// </summary>
+        public static string dictDefaultMessage {
+            get {
+                return ResourceManager.GetString("dictDefaultMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your browser does not support drag&apos;n&apos;drop file uploads..
+        /// </summary>
+        public static string dictFallbackMessage {
+            get {
+                return ResourceManager.GetString("dictFallbackMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the fallback form below to upload your files like in the olden days..
+        /// </summary>
+        public static string dictFallbackText {
+            get {
+                return ResourceManager.GetString("dictFallbackText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB..
+        /// </summary>
+        public static string dictFileTooBig {
+            get {
+                return ResourceManager.GetString("dictFileTooBig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t upload files of this type..
+        /// </summary>
+        public static string dictInvalidFileType {
+            get {
+                return ResourceManager.GetString("dictInvalidFileType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can not upload any more files..
+        /// </summary>
+        public static string dictMaxFilesExceeded {
+            get {
+                return ResourceManager.GetString("dictMaxFilesExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove file.
+        /// </summary>
+        public static string dictRemoveFile {
+            get {
+                return ResourceManager.GetString("dictRemoveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server responded with {{statusCode}} code..
+        /// </summary>
+        public static string dictResponseError {
+            get {
+                return ResourceManager.GetString("dictResponseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ltr.
         /// </summary>
         public static string dir {
             get {
                 return ResourceManager.GetString("dir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color package can not be empty.
+        /// </summary>
+        public static string ErrorColor {
+            get {
+                return ResourceManager.GetString("ErrorColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description can not be empty.
+        /// </summary>
+        public static string ErrorDescription {
+            get {
+                return ResourceManager.GetString("ErrorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter language.
+        /// </summary>
+        public static string ErrorLanguage {
+            get {
+                return ResourceManager.GetString("ErrorLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the icon.
+        /// </summary>
+        public static string ErrorLogo {
+            get {
+                return ResourceManager.GetString("ErrorLogo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Training methods should be chosen.
+        /// </summary>
+        public static string ErrorMethodId {
+            get {
+                return ResourceManager.GetString("ErrorMethodId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the name of the desired method.
+        /// </summary>
+        public static string ErrorMethodName {
+            get {
+                return ResourceManager.GetString("ErrorMethodName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The package name must be entered.
+        /// </summary>
+        public static string ErrorPackName {
+            get {
+                return ResourceManager.GetString("ErrorPackName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of room to be imported.
+        /// </summary>
+        public static string ErrorRoomCount {
+            get {
+                return ResourceManager.GetString("ErrorRoomCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic must be selected.
+        /// </summary>
+        public static string ErrorSubjectId {
+            get {
+                return ResourceManager.GetString("ErrorSubjectId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the Subject.
+        /// </summary>
+        public static string ErrorSubjectName {
+            get {
+                return ResourceManager.GetString("ErrorSubjectName", resourceCulture);
             }
         }
         
@@ -147,6 +345,15 @@ namespace Resources {
         public static string lang {
             get {
                 return ResourceManager.GetString("lang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
             }
         }
         
@@ -250,6 +457,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Room count.
+        /// </summary>
+        public static string RoomCount {
+            get {
+                return ResourceManager.GetString("RoomCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -268,11 +484,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subject Name.
+        /// </summary>
+        public static string SubjectName {
+            get {
+                return ResourceManager.GetString("SubjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Subject.
         /// </summary>
         public static string SubjectSelect {
             get {
                 return ResourceManager.GetString("SubjectSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Images.
+        /// </summary>
+        public static string UploadImages {
+            get {
+                return ResourceManager.GetString("UploadImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can upload multiple images for mass and then use it in lessons..
+        /// </summary>
+        public static string UploadImagesDescription {
+            get {
+                return ResourceManager.GetString("UploadImagesDescription", resourceCulture);
             }
         }
     }

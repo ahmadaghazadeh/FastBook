@@ -1,0 +1,77 @@
+﻿@model  FastBookCreator.Models.Pack
+@using FastBookCreator.Core
+
+<div>
+
+    @using (Html.BeginForm("SavePack", "Pack", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        
+        <div class="row">
+            <div class="col-md-6 group">
+                <div>
+                    @Html.TextBoxFor(model => model.PackName, new {@class = "form-control", placeholder = Resources.Resource.PackName})
+                    @Html.ValidationMessageFor(model => model.PackName)
+
+                </div>
+                <div>
+                    @Html.DropDownList("methodId", HelperExtensions.GetMethods().Select(item => new SelectListItem
+                    {
+                        Value = item._id.ToString(),
+                        Text = item.METHOD_NAME.ToString(),
+                        Selected = false
+                    }), @Resources.Resource.MethodSelect, new {@class = "form-control btn btn-default dropdown-toggle"})
+                  
+                </div>
+            </div>
+
+            <div class="col-md-6 group">
+                <div>
+                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = Resources.Resource.Description })
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+                <div>
+                    @Html.DropDownList("subjectId", HelperExtensions.GetSubjects().Select(item => new SelectListItem
+                    {
+                        Value = item._id.ToString(),
+                        Text = item.SubjectName.ToString(),
+                        Selected = false
+                    }), @Resources.Resource.SubjectSelect, new {@class = "form-control btn btn-default dropdown-toggle"})
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row center-block">
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
+            </button>
+        </div>
+    }
+</div>
+
+
+@*  <textarea cols="80" id="editor1" name="editor1" rows="10">
+            &lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;
+        </textarea>
+
+    <script>
+        CKEDITOR.replace('editor1', {
+              uiColor: '#AAEAAA'
+        });
+
+        CKEDITOR.editorConfig = function (config) {
+            //Define changes to default configuration here. For example:
+            config.language = 'fa';
+            config.uiColor = '#11DC11';
+        };
+    </script>*@
+
+
+@section scripts
+{
+    <script>
+
+    </script>
+}

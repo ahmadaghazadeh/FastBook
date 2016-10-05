@@ -4,17 +4,25 @@
 
 <h2>@ViewBag.Title</h2>
 <div>
-    <div class="jumbotron">
-    <h3>@Resources.Resource.Pack</h3>
-    <h5>@Resources.Resource.PackDescription</h5>
+    <div class="jumbotron col-md-5 group ">
+        <h3>@Resources.Resource.Pack</h3>
+        <h5>@Resources.Resource.PackDescription</h5>
         <p>
             <a class="btn btn-primary btn-lg" href="@Url.Action("Insert", "Pack")" role="button">@Resources.Resource.PackCreate</a>
             <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Pack")" role="button">@Resources.Resource.PackList</a>
         </p>
-</div>
+    </div>
+
+    <div class="jumbotron col-md-5 group">
+        <h3>@Resources.Resource.UploadImages</h3>
+        <h5>@Resources.Resource.UploadImagesDescription</h5>
+        <p>
+            <a class="btn btn-primary btn-lg" href="@Url.Action("UploadImages", "Shared")" role="button">@Resources.Resource.UploadImages</a>
+        </p>
+    </div>
 
 </div>
 
 @section scripts{
-    
+
 }

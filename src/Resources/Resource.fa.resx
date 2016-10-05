@@ -183,4 +183,94 @@
   <data name="SubjectId" xml:space="preserve">
     <value>موضوع</value>
   </data>
+  <data name="ErrorDescription" xml:space="preserve">
+    <value>توضیحات نمیتواند خالی باشد</value>
+  </data>
+  <data name="ErrorColor" xml:space="preserve">
+    <value>رنگ بسته نمی تواند خالی باشد</value>
+  </data>
+  <data name="ErrorLogo" xml:space="preserve">
+    <value>آیکن را انتخاب کنید</value>
+  </data>
+  <data name="ErrorMethodId" xml:space="preserve">
+    <value>روش آموزشی باید انتخاب شود</value>
+  </data>
+  <data name="ErrorPackName" xml:space="preserve">
+    <value>نام بسته باید وارد شود</value>
+  </data>
+  <data name="ErrorSubjectId" xml:space="preserve">
+    <value>موضوع باید انتخاب شود</value>
+  </data>
+  <data name="Float" xml:space="preserve">
+    <value>left</value>
+  </data>
+  <data name="Phone_Number" xml:space="preserve">
+    <value>شماره موبایل</value>
+  </data>
+  <data name="AllowEdit" xml:space="preserve">
+    <value>قابلیت ویرایش</value>
+  </data>
+  <data name="ErrorLanguage" xml:space="preserve">
+    <value>زبان را وارد کنید</value>
+  </data>
+  <data name="ErrorMethodName" xml:space="preserve">
+    <value>نام روش مورد نظر را وارد کنید</value>
+  </data>
+  <data name="ErrorRoomCount" xml:space="preserve">
+    <value>تعداد خانه ها باید وارد شود</value>
+  </data>
+  <data name="ErrorSubjectName" xml:space="preserve">
+    <value>عنوان موضوع را وارد کنید</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="RoomCount" xml:space="preserve">
+    <value>تعداد خانه</value>
+  </data>
+  <data name="SubjectName" xml:space="preserve">
+    <value>عنوان موضوع</value>
+  </data>
+  <data name="UploadImages" xml:space="preserve">
+    <value>بارگذاری تصاویر</value>
+  </data>
+  <data name="UploadImagesDescription" xml:space="preserve">
+    <value>می توانید چندین تصویر را به صورت دسته جمعی بارگذاری کنید و بعدا در درس ها از آن ها استفاده کنید .</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="dictCancelUpload" xml:space="preserve">
+    <value>لغو آپلود</value>
+  </data>
+  <data name="dictCancelUploadConfirmation" xml:space="preserve">
+    <value>آیا مطمئن هستید که می خواهید به لغو این آپلود؟</value>
+  </data>
+  <data name="dictFallbackMessage" xml:space="preserve">
+    <value>مرورگر شما از کشیدن و رها کردن پشتیبانی نمی کند ارسال فایل.</value>
+  </data>
+  <data name="dictFallbackText" xml:space="preserve">
+    <value>لطفا از فرم مجدد زیر استفاده کنید برای آپلود فایل های خود را مانند در گذشته.</value>
+  </data>
+  <data name="dictFileTooBig" xml:space="preserve">
+    <value>فایل خیلی برزگ است ({{filesize}}MiB). بیشترین اندازه: {{maxFilesize}}MiB.</value>
+  </data>
+  <data name="dictInvalidFileType" xml:space="preserve">
+    <value>شما می توانید فایل های از این نوع را آپلود کنید.</value>
+  </data>
+  <data name="dictMaxFilesExceeded" xml:space="preserve">
+    <value>شما می توانید هر فایل های بیشتر را آپلود کنید.</value>
+  </data>
+  <data name="dictRemoveFile" xml:space="preserve">
+    <value>حذف فایل</value>
+  </data>
+  <data name="dictResponseError" xml:space="preserve">
+    <value>سرور با {{statusCode}}  کد پاسخ دادند.</value>
+  </data>
+  <data name="DropFiles" xml:space="preserve">
+    <value>رها کردن فایل در اینجا برای آپلود</value>
+  </data>
+  <data name="dictDefaultMessage" xml:space="preserve">
+    <value>رها کردن فایل در اینجا برای آپلود</value>
+  </data>
 </root>

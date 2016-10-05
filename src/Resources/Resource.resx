@@ -189,4 +189,85 @@
   <data name="SubjectId" xml:space="preserve">
     <value>Subject</value>
   </data>
+  <data name="ErrorDescription" xml:space="preserve">
+    <value>Description can not be empty</value>
+  </data>
+  <data name="AllowEdit" xml:space="preserve">
+    <value>Editable</value>
+  </data>
+  <data name="ErrorColor" xml:space="preserve">
+    <value>Color package can not be empty</value>
+  </data>
+  <data name="ErrorLanguage" xml:space="preserve">
+    <value>Enter language</value>
+  </data>
+  <data name="ErrorLogo" xml:space="preserve">
+    <value>Select the icon</value>
+  </data>
+  <data name="ErrorMethodId" xml:space="preserve">
+    <value>Training methods should be chosen</value>
+  </data>
+  <data name="ErrorMethodName" xml:space="preserve">
+    <value>Enter the name of the desired method</value>
+  </data>
+  <data name="ErrorPackName" xml:space="preserve">
+    <value>The package name must be entered</value>
+  </data>
+  <data name="ErrorRoomCount" xml:space="preserve">
+    <value>The number of room to be imported</value>
+  </data>
+  <data name="ErrorSubjectId" xml:space="preserve">
+    <value>Topic must be selected</value>
+  </data>
+  <data name="ErrorSubjectName" xml:space="preserve">
+    <value>Enter the Subject</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="RoomCount" xml:space="preserve">
+    <value>Room count</value>
+  </data>
+  <data name="SubjectName" xml:space="preserve">
+    <value>Subject Name</value>
+  </data>
+  <data name="UploadImages" xml:space="preserve">
+    <value>Upload Images</value>
+  </data>
+  <data name="UploadImagesDescription" xml:space="preserve">
+    <value>You can upload multiple images for mass and then use it in lessons.</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="dictCancelUpload" xml:space="preserve">
+    <value>Cancel upload</value>
+  </data>
+  <data name="dictCancelUploadConfirmation" xml:space="preserve">
+    <value>Are you sure you want to cancel this upload?</value>
+  </data>
+  <data name="dictDefaultMessage" xml:space="preserve">
+    <value>Drop files here to upload</value>
+  </data>
+  <data name="dictFallbackMessage" xml:space="preserve">
+    <value>Your browser does not support drag'n'drop file uploads.</value>
+  </data>
+  <data name="dictFallbackText" xml:space="preserve">
+    <value>Please use the fallback form below to upload your files like in the olden days.</value>
+  </data>
+  <data name="dictFileTooBig" xml:space="preserve">
+    <value>File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.</value>
+  </data>
+  <data name="dictInvalidFileType" xml:space="preserve">
+    <value>You can't upload files of this type.</value>
+  </data>
+  <data name="dictMaxFilesExceeded" xml:space="preserve">
+    <value>You can not upload any more files.</value>
+  </data>
+  <data name="dictRemoveFile" xml:space="preserve">
+    <value>Remove file</value>
+  </data>
+  <data name="dictResponseError" xml:space="preserve">
+    <value>Server responded with {{statusCode}} code.</value>
+  </data>
 </root>

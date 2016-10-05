@@ -13,14 +13,10 @@ namespace FastBookCreator
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/toastr.min.js",
-                        "~/Scripts/site.js"));
-
-          
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-            //            "~/Scripts/modernizr-*"));
+                        "~/Scripts/site.js",
+                        "~/Scripts/dropzone/dropzone.js",
+                        "~/Scripts/modernizr-*"));
+ 
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -45,12 +41,12 @@ namespace FastBookCreator
                       "~/Content/site.css",
                       "~/Content/bootstrap-theme.min.css",
                       "~/Content/bootstrap-select.css",
-                      "~/Content/toastr.min.css"
+                      "~/Content/toastr.min.css",
+                      "~/Scripts/dropzone/basic.css",
+                     "~/Scripts/dropzone/dropzone.css"
                       ));
- 
-            bundles.Add(new StyleBundle("~/Content/dropzonescss").Include(
-                     "~/Scripts/dropzone/css/basic.css",
-                     "~/Scripts/dropzone/css/dropzone.css"));
+
+     
 
             bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
                      "~/Content/Gridmvc.css",

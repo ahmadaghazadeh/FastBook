@@ -12,12 +12,11 @@ namespace FastBookCreator.Core
             get { return Title; }
             set
             {
-                if (ResourceType != null)
-                {
-                    var prop = ResourceType.GetProperty(value);
-                    Title = prop?.GetValue(null)?.ToString() ?? value;
-                }
+                if (ResourceType == null) return;
+                var prop = ResourceType.GetProperty(value);
+                Title = prop?.GetValue(null)?.ToString() ?? value;
             }
+            
         }
     }
 }

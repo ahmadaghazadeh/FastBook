@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@Resources.Resource.AppName  - @ViewBag.Title </title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+   
 
 </head>
 <body dir="@Resources.Resource.dir">
@@ -44,8 +43,9 @@
             <p>&copy; @DateTime.Now.Year - @Resources.Resource.AppName Application</p>
         </footer>
     </div>
-
-@RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

@@ -9,29 +9,30 @@ namespace FastBookCreator.Models
     [GridTable(PagingEnabled = true, PageSize = 20)]
     public class Pack
     {
-        [Required]
+        
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorLogo")]
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Logo")]
-        public string Logo { get; set; }
+        public byte[] Logo { get; set; }
 
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "PackId", SortEnabled = true)]
-        public long Id { get; set; }
-        [Required]
+        public long _id { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorPackName")]
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "PackName", SortEnabled = true)]
-        public string PackName { get; set; } 
+        public string PackName { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorMethodId")]
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "MethodId", SortEnabled = true)]
         public string MethodId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorSubjectId")]
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "SubjectId", SortEnabled = true)]
         public string SubjectId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorColor")]
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Color")]
         public string Color { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorDescription")]
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Description", SortEnabled = true)]
         public string Description { get; set; }
     }

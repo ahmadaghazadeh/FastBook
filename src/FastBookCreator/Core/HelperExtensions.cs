@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Dapper;
 using FastBookCreator.Models;
+using System.Linq.Expressions;
 
 namespace FastBookCreator.Core
 {
@@ -97,5 +98,24 @@ namespace FastBookCreator.Core
             }
         }
 
-    }
+        public static IEnumerable<Method> GetMethods()
+        {
+            using (var connection = SqliteConn.GetCommonDb())
+            {
+                return connection.Query<Method>($"SELECT * FROM METHODS WHERE LANGUAGE='{Resources.Resource.lang}'");
+            }
+        }
+
+
+        public static IEnumerable<Subject> GetSubjects()
+        {
+            using (var connection = SqliteConn.GetCommonDb())
+            {
+                
+                return connection.Query<Subject>($"SELECT * FROM SUBJECT WHERE LANGUAGE='{Resources.Resource.lang}'");
+            }
+        }
+ 
+       
+     }
 }

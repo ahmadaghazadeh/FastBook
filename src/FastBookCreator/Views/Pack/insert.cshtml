@@ -1,9 +1,10 @@
 ﻿@model  FastBookCreator.Models.Pack
 @using FastBookCreator.Core
-
+@Styles.Render("~/Content/dropzonescss")
+@Scripts.Render("~/bundles/dropzonescripts")
 <div>
 
-    @using (Html.BeginForm("SavePack", "Pack", FormMethod.Post))
+    @using (Html.BeginForm("SavePack", "Pack", FormMethod.Post,new {enctype="multipart/form-data"}))
     {
         @Html.ValidationSummary(true)
         
@@ -12,16 +13,18 @@
                 <div>
                     @Html.TextBoxFor(model => model.PackName, new {@class = "form-control", placeholder = Resources.Resource.PackName})
                     @Html.ValidationMessageFor(model => model.PackName)
-
                 </div>
                 <div>
-                    @Html.DropDownList("methodId", HelperExtensions.GetPacks().Select(item => new SelectListItem
+                    @Html.DropDownList("methodId", HelperExtensions.GetMethods().Select(item => new SelectListItem
                     {
-                        Value = item.PackName,
-                        Text = item.Description.ToString(),
+                        Value = item._id.ToString(),
+                        Text = item.METHOD_NAME.ToString(),
                         Selected = false
                     }), @Resources.Resource.MethodSelect, new {@class = "form-control btn btn-default dropdown-toggle"})
-                  
+                </div>
+                <div>
+                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = Resources.Resource.Description })
+                    @Html.ValidationMessageFor(model => model.Description)
                 </div>
             </div>
 
@@ -31,12 +34,19 @@
                     @Html.ValidationMessageFor(model => model.Description)
                 </div>
                 <div>
-                    @Html.DropDownList("subjectId", HelperExtensions.GetPacks().Select(item => new SelectListItem
+                    @Html.DropDownList("subjectId", HelperExtensions.GetSubjects().Select(item => new SelectListItem
                     {
-                        Value = item.PackName,
-                        Text = item.Description.ToString(),
+                        Value = item._id.ToString(),
+                        Text = item.SUBJECT_NAME.ToString(),
                         Selected = false
                     }), @Resources.Resource.SubjectSelect, new {@class = "form-control btn btn-default dropdown-toggle"})
+                </div>
+                <div class="jumbotron">
+                    <div class="dropzone" id="dropzoneForm">
+                        <div class="fallback">
+                            <input class="form-control" name="file" type="file" multiple />
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -49,8 +59,16 @@
             </button>
         </div>
     }
+
+ 
+
 </div>
 
+<style type="text/css">
+    .dz-max-files-reached {
+        background-color: red;
+    }
+</style>
 
 @*  <textarea cols="80" id="editor1" name="editor1" rows="10">
             &lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;
@@ -71,7 +89,5 @@
 
 @section scripts
 {
-    <script>
-
-    </script>
+    
 }
