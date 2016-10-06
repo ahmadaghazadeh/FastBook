@@ -27,6 +27,18 @@ namespace FastBookCreator.Core
             };
         }
 
+        public static string Image(this HtmlHelper helper,
+                               string url,
+                               string altText,
+                               object htmlAttributes)
+        {
+            TagBuilder builder = new TagBuilder("img");
+            builder.Attributes.Add("src", url);
+            builder.Attributes.Add("alt", altText);
+            builder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
+            return builder.ToString(TagRenderMode.SelfClosing);
+        }
+
         public static void SetAppCulture(this CultureInfo culture)
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = culture;
@@ -98,6 +110,14 @@ namespace FastBookCreator.Core
             }
         }
 
+        public static IEnumerable<ResPack> GetResPacks()
+        {
+            using (var connection = SqliteConn.GetPackDb())
+            {
+                return connection.Query<ResPack>("SELECT * FROM RESOURCE");
+            }
+        }
+
         public static IEnumerable<Method> GetMethods()
         {
             using (var connection = SqliteConn.GetCommonDb())
@@ -115,7 +135,13 @@ namespace FastBookCreator.Core
                 return connection.Query<Subject>($"SELECT * FROM SUBJECT WHERE LANGUAGE='{Resources.Resource.lang}'");
             }
         }
- 
-       
-     }
+
+        public static MvcHtmlString Image(this HtmlHelper html, byte[] image)
+        {
+            var img =  $"data:image/jpg;base64,{ Convert.ToBase64String(image)}" ;
+            return   MvcHtmlString.Create($"<img src='{img}'/>" );
+        }
+
+
+    }
 }

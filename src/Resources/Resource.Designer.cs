@@ -277,6 +277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error in saving image file.
+        /// </summary>
+        public static string ErrorSaveImage {
+            get {
+                return ResourceManager.GetString("ErrorSaveImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Topic must be selected.
         /// </summary>
         public static string ErrorSubjectId {
@@ -340,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string Image {
+            get {
+                return ResourceManager.GetString("Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to en.
         /// </summary>
         public static string lang {
@@ -381,6 +399,15 @@ namespace Resources {
         public static string MethodSelect {
             get {
                 return ResourceManager.GetString("MethodSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -457,6 +484,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resource Number.
+        /// </summary>
+        public static string ResourceID {
+            get {
+                return ResourceManager.GetString("ResourceID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Room count.
         /// </summary>
         public static string RoomCount {
@@ -471,6 +507,15 @@ namespace Resources {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image saved.
+        /// </summary>
+        public static string ShowImage {
+            get {
+                return ResourceManager.GetString("ShowImage", resourceCulture);
             }
         }
         

@@ -268,6 +268,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttachmentsModel.cs" />
+    <Compile Include="Models\ResPack.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Method.cs" />
     <Compile Include="Models\Pack.cs" />
@@ -821,6 +822,7 @@
     <Content Include="Views\Errors\Index.cshtml" />
     <Content Include="Views\Errors\NotFound.cshtml" />
     <Content Include="Views\Shared\UploadImages.cshtml" />
+    <Content Include="Views\Shared\ShowImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">
@@ -838,6 +840,7 @@
   <ItemGroup>
     <Folder Include="images\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Resource\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

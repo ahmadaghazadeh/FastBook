@@ -1,0 +1,42 @@
+﻿@using FastBookCreator.Core
+@using GridMvc.Html
+
+<h2>@ViewBag.Title</h2>
+@Styles.Render("~/Content/Gridmvc")
+
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+        <a class="btn btn- btn-lg" href="@Url.Action("UploadImages", "Shared")" role="button">@Resources.Resource.UploadImages</a>
+    </div>
+</div>
+
+
+@*<div style="padding: 100px;">
+    @Html.Grid(HelperExtensions.GetResPacks()).Named("dataGrid").Columns(columns =>
+   {
+       columns.Add(x => x.DATA)
+                  .Titled(Resources.Resource.Image)
+                  .RenderValueAs(o => Html.Image(o.DATA));
+
+   }
+       )
+</div>*@
+
+<div id="other">
+    Trigger the handler
+</div>
+
+@Scripts.Render("~/bundles/Gridmvc")
+
+
+@section scripts
+{
+    <script>
+        $("#other")
+            .click(function () {
+                toastr.info('سلام خوبی ؟');
+            });
+        $(document).ready(function () { toastr.info('سلام خوبی ؟'); });
+
+    </script>
+}

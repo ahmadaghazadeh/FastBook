@@ -63,7 +63,7 @@ namespace FastBookCreator.Models
     {
         [Required]
         [Phone]
-        [Display(ResourceType = typeof(Resource), Name = "Phone_Number")]
+        [Display(ResourceType = typeof(ResPack), Name = "Phone_Number")]
         public string Number { get; set; }
     }
 
@@ -75,7 +75,7 @@ namespace FastBookCreator.Models
 
         [Required]
         [Phone]
-        [Display(ResourceType = typeof(Resource), Name = "Phone_Number")]
+        [Display(ResourceType = typeof(ResPack), Name = "Phone_Number")]
         public string PhoneNumber { get; set; }
     }
 

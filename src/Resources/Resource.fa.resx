@@ -273,4 +273,19 @@
   <data name="dictDefaultMessage" xml:space="preserve">
     <value>رها کردن فایل در اینجا برای آپلود</value>
   </data>
+  <data name="ErrorSaveImage" xml:space="preserve">
+    <value>خطا هنگام ذخیره فایل تصویر</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>تصویر</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
+  <data name="ResourceID" xml:space="preserve">
+    <value>شماره منبع</value>
+  </data>
+  <data name="ShowImage" xml:space="preserve">
+    <value>تصاویر ذخیره شده</value>
+  </data>
 </root>
