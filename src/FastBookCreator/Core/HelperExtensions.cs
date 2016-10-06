@@ -136,7 +136,7 @@ namespace FastBookCreator.Core
             }
         }
 
-        public static MvcHtmlString Image(this HtmlHelper html, byte[] image)
+        public static MvcHtmlString Image(this HtmlHelper html, byte[] image,string width,string height )
         {
             var img =  $"data:image/jpg;base64,{ Convert.ToBase64String(image)}" ;
             return   MvcHtmlString.Create($"<img src='{img}'/>" );

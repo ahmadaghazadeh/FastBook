@@ -22,6 +22,17 @@
        )
 </div>*@
 
+
+<table>
+    @foreach (var item in HelperExtensions.GetResPacks())
+    {
+        <tr>
+                <td>@Html.Image(item.DATA)</td>
+          
+        </tr>
+    }
+</table>
+
 <div id="other">
     Trigger the handler
 </div>
