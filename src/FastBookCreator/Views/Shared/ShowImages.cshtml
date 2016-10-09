@@ -1,93 +1,83 @@
 ﻿@using FastBookCreator.Core
-
-<h2>@ViewBag.Title</h2>
-@Styles.Render("~/Content/shiny")
-
+@using GridMvc.Html
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group" role="group">
         <a class="btn btn- btn-lg" href="@Url.Action("UploadImages", "Shared")" role="button">@Resources.Resource.UploadImages</a>
     </div>
 </div>
 
-@*<div style="padding: 100px;">
-        @Html.Grid(HelperExtensions.GetResPacks()).Columns(columns =>
-    {
+@*<div class="container">
+        <div class="row">
+            <div id="images"></div>
+            @foreach (var item in resPacks)
+            {
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" width="150" height="150">
+                    @item.NAME
+                    @Html.Image(item._id.ToString(), item.DATA, $"class=\"img-responsive\" alt=\"{item.NAME}\"")
+                </div>
+            }
 
-        columns.Add(o => o.NAME)
-        .Titled(Resources.Resource.Name)
-        .RenderValueAs(o => o.NAME);
-
-        columns.Add(o => o.DATA)
-        .Titled(Resources.Resource.Image)
-        .Encoded(false)
-        .Sanitized(false)
-        .RenderValueAs(o => Html.ByteImage(o.DATA, 150));
-    })*@
-
-@{var resPacks = HelperExtensions.GetResPacks();}
-
-<div class="col-sm-12">
-        <input type="text" class="form-control" placeholder="Search for...">
-        <span class="input-group-btn">
-        </span>
-</div><!-- /.col-lg-6 -->
-
-<div class="container">
-    <div class="row">
-        <div id="images"></div>
-        @foreach (var item in resPacks)
-        {
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" width="150" height="150">
-                @item.NAME
-                @Html.Image(item._id.ToString(), item.DATA, "class=\"img-responsive\" ")
-            </div>
-        }
-
-    </div>
-</div>
-
-
-
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        </div>
+    </div>*@
+<img id="imgPack"/>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#resModal">
     Launch demo modal
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="resModal" tabindex="-1" role="dialog" aria-labelledby="resModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="resModalLabel">Modal title</h4>
+
+                <div style="padding: 100px;">
+
+                    <div class="col-sm-12">
+                        <input id="txtSearch" type="text" class="form-control" placeholder="Search for...">
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    @Html.Grid(HelperExtensions.GetResPacks()).Named("resGrid").Columns(columns =>
+                    {
+                        columns.Add(o => o.NAME)
+                             .Titled(Resources.Resource.Name)
+                             .Filterable(true)
+                             .RenderValueAs(o => o.NAME);
+
+                        columns.Add(o => o._id, true);
+
+                        columns.Add(o => o.DATA)
+                            .Titled(Resources.Resource.Image)
+                            .Encoded(false)
+                            .Sanitized(false)
+                            .RenderValueAs(o => @Html.Image(o._id.ToString(), o.DATA, $"class=\"img-responsive\"  alt=\"{o.NAME}\""));
+                    }).WithPaging(15).Filterable(true)
+
+
+                </div>
+
             </div>
-             
+
         </div>
     </div>
 
+</div>
 
-    <div id="other">
-        Trigger the handler
-    </div>
-    
-
-    @section scripts
+@section scripts
 {
-        <script>
-            $("#other")
-                .click(function () {
-                    toastr.info('سلام خوبی ؟');
+    <script>
+        $(document).ready(function () {
+            //toastr.info('سلام خوبی ؟');
+            pageGrids.resGrid.onRowSelect(function (e) {
+
+                $("#imgPack").attr('src',$(e.row.NAME).attr("src")); 
+                $(function () {
+                    $('#resModal').modal('toggle');
                 });
-
-
-            $(document).ready(function () {
-                //toastr.info('سلام خوبی ؟');
-
-
             });
+        });
 
-            function myFunction() {
-                BootstrapDialog.alert('I want banana!');
-            }
+    </script>
+}
 
-        </script>
-    }

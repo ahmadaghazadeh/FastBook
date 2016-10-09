@@ -16,26 +16,16 @@ namespace FastBookCreator
                         "~/Scripts/site.js",
                         "~/Scripts/dropzone/dropzone.js",
                         "~/Scripts/modernizr-*",
-                        "~/Scripts/bootstrap-dialog.min.js"));
- 
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                        "~/Scripts/bootstrap-dialog.min.js",
+                        "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/bootstrap-select.min.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/Gridmvc").Include(
-                     "~/Scripts/gridmvc.min.js",
+                      "~/Scripts/bootstrap-select.min.js",
+                      "~/Scripts/gridmvc.js",
                      "~/Scripts/bootstrap-datepicker.js",
-                     "~/Scripts/gridmvc.lang.fa.js"));
-
-          
+                     "~/Scripts/gridmvc.lang.fa.js",
+                     "~/Scripts/ckeditor/ckeditor.js"));
  
-            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
-                 "~/Scripts/ckeditor/ckeditor.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
-                "~/Scripts/ckeditor/ckeditor.js"));
+ 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -54,13 +44,6 @@ namespace FastBookCreator
                      "~/Content/Gridmvc.css",
                      "~/Content/gridmvc.datepicker.min.css"));
 
-            bundles.Add(new StyleBundle("~/Content/shiny").Include(
-                     "~/Content/shiny.css"));
- 
-
-            bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
-                    "~/Content/Gridmvc.css",
-                    "~/Content/gridmvc.datepicker.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/errors").Include(
                    "~/Content/errors.css"));

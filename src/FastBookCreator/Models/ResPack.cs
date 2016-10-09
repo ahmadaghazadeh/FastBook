@@ -14,12 +14,12 @@ namespace FastBookCreator.Models
         public long _id { get; set; }
 
       
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Image", SortEnabled = true)]
+        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Image")]
         public Byte[] DATA { get; set; }
 
         
      
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Name", SortEnabled = true)]
+        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Name", SortEnabled = true,FilterEnabled = true)]
         public string NAME { get; set; }
  
     }
