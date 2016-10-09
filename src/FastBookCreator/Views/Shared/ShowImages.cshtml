@@ -1,8 +1,7 @@
 ﻿@using FastBookCreator.Core
-@using GridMvc.Html
 
 <h2>@ViewBag.Title</h2>
-@Styles.Render("~/Content/Gridmvc")
+@Styles.Render("~/Content/shiny")
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group" role="group">
@@ -10,44 +9,85 @@
     </div>
 </div>
 
-
 @*<div style="padding: 100px;">
-    @Html.Grid(HelperExtensions.GetResPacks()).Named("dataGrid").Columns(columns =>
-   {
-       columns.Add(x => x.DATA)
-                  .Titled(Resources.Resource.Image)
-                  .RenderValueAs(o => Html.Image(o.DATA));
-
-   }
-       )
-</div>*@
-
-
-<table>
-    @foreach (var item in HelperExtensions.GetResPacks())
+        @Html.Grid(HelperExtensions.GetResPacks()).Columns(columns =>
     {
-        <tr>
-                <td>@Html.Image(item.DATA)</td>
-          
-        </tr>
-    }
-</table>
 
-<div id="other">
-    Trigger the handler
+        columns.Add(o => o.NAME)
+        .Titled(Resources.Resource.Name)
+        .RenderValueAs(o => o.NAME);
+
+        columns.Add(o => o.DATA)
+        .Titled(Resources.Resource.Image)
+        .Encoded(false)
+        .Sanitized(false)
+        .RenderValueAs(o => Html.ByteImage(o.DATA, 150));
+    })*@
+
+@{var resPacks = HelperExtensions.GetResPacks();}
+
+<div class="col-sm-12">
+        <input type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+        </span>
+</div><!-- /.col-lg-6 -->
+
+<div class="container">
+    <div class="row">
+        <div id="images"></div>
+        @foreach (var item in resPacks)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" width="150" height="150">
+                @item.NAME
+                @Html.Image(item._id.ToString(), item.DATA, "class=\"img-responsive\" ")
+            </div>
+        }
+
+    </div>
 </div>
 
-@Scripts.Render("~/bundles/Gridmvc")
 
 
-@section scripts
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+             
+        </div>
+    </div>
+
+
+    <div id="other">
+        Trigger the handler
+    </div>
+    
+
+    @section scripts
 {
-    <script>
-        $("#other")
-            .click(function () {
-                toastr.info('سلام خوبی ؟');
-            });
-        $(document).ready(function () { toastr.info('سلام خوبی ؟'); });
+        <script>
+            $("#other")
+                .click(function () {
+                    toastr.info('سلام خوبی ؟');
+                });
 
-    </script>
-}
+
+            $(document).ready(function () {
+                //toastr.info('سلام خوبی ؟');
+
+
+            });
+
+            function myFunction() {
+                BootstrapDialog.alert('I want banana!');
+            }
+
+        </script>
+    }

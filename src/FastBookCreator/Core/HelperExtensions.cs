@@ -10,6 +10,7 @@ using System.Web.Routing;
 using Dapper;
 using FastBookCreator.Models;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace FastBookCreator.Core
 {
@@ -27,17 +28,7 @@ namespace FastBookCreator.Core
             };
         }
 
-        public static string Image(this HtmlHelper helper,
-                               string url,
-                               string altText,
-                               object htmlAttributes)
-        {
-            TagBuilder builder = new TagBuilder("img");
-            builder.Attributes.Add("src", url);
-            builder.Attributes.Add("alt", altText);
-            builder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
-            return builder.ToString(TagRenderMode.SelfClosing);
-        }
+  
 
         public static void SetAppCulture(this CultureInfo culture)
         {
@@ -135,13 +126,16 @@ namespace FastBookCreator.Core
                 return connection.Query<Subject>($"SELECT * FROM SUBJECT WHERE LANGUAGE='{Resources.Resource.lang}'");
             }
         }
+ 
 
-        public static MvcHtmlString Image(this HtmlHelper html, byte[] image,string width,string height )
+        public static MvcHtmlString Image(this HtmlHelper helper,string id,
+                byte[] image,string attributes="")
         {
-            var img =  $"data:image/jpg;base64,{ Convert.ToBase64String(image)}" ;
-            return   MvcHtmlString.Create($"<img src='{img}'/>" );
+            var img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat($"<img id='{id}' src='{img}' { attributes}>");
+            return MvcHtmlString.Create(sb.ToString());
         }
-
 
     }
 }

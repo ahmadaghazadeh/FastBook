@@ -288,4 +288,7 @@
   <data name="ShowImage" xml:space="preserve">
     <value>تصاویر ذخیره شده</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>بستن</value>
+  </data>
 </root>

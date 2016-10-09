@@ -15,7 +15,8 @@ namespace FastBookCreator
                         "~/Scripts/toastr.min.js",
                         "~/Scripts/site.js",
                         "~/Scripts/dropzone/dropzone.js",
-                        "~/Scripts/modernizr-*"));
+                        "~/Scripts/modernizr-*",
+                        "~/Scripts/bootstrap-dialog.min.js"));
  
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
@@ -43,7 +44,8 @@ namespace FastBookCreator
                       "~/Content/bootstrap-select.css",
                       "~/Content/toastr.min.css",
                       "~/Scripts/dropzone/basic.css",
-                     "~/Scripts/dropzone/dropzone.css"
+                     "~/Scripts/dropzone/dropzone.css",
+                     "~/Content/bootstrap-dialog.min.css"
                       ));
 
      
@@ -51,6 +53,10 @@ namespace FastBookCreator
             bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
                      "~/Content/Gridmvc.css",
                      "~/Content/gridmvc.datepicker.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/shiny").Include(
+                     "~/Content/shiny.css"));
+ 
 
             bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
                     "~/Content/Gridmvc.css",
