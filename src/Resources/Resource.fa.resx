@@ -291,4 +291,10 @@
   <data name="Close" xml:space="preserve">
     <value>بستن</value>
   </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>انتخاب تصویر</value>
+  </data>
+  <data name="SeachImage" xml:space="preserve">
+    <value>جستجوی تصویر</value>
+  </data>
 </root>

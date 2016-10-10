@@ -288,4 +288,10 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>Select image</value>
+  </data>
+  <data name="SeachImage" xml:space="preserve">
+    <value>Search Image</value>
+  </data>
 </root>

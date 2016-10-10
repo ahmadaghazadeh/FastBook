@@ -4,43 +4,13 @@
 @Scripts.Render("~/bundles/dropzonescripts")
 <div>
 
-    @using (Html.BeginForm("SavePack", "Pack", FormMethod.Post,new {enctype="multipart/form-data"}))
+    @using (Html.BeginForm("SavePack", "Pack", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary(true)
-        
+
         <div class="row">
-            <div class="col-md-6 group">
-                <div>
-                    @Html.TextBoxFor(model => model.PackName, new {@class = "form-control", placeholder = Resources.Resource.PackName})
-                    @Html.ValidationMessageFor(model => model.PackName)
-                </div>
-                <div>
-                    @Html.DropDownList("methodId", HelperExtensions.GetMethods().Select(item => new SelectListItem
-                    {
-                        Value = item._id.ToString(),
-                        Text = item.METHOD_NAME.ToString(),
-                        Selected = false
-                    }), @Resources.Resource.MethodSelect, new {@class = "form-control btn btn-default dropdown-toggle"})
-                </div>
-                <div>
-                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = Resources.Resource.Description })
-                    @Html.ValidationMessageFor(model => model.Description)
-                </div>
-            </div>
 
             <div class="col-md-6 group">
-                <div>
-                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = Resources.Resource.Description })
-                    @Html.ValidationMessageFor(model => model.Description)
-                </div>
-                <div>
-                    @Html.DropDownList("subjectId", HelperExtensions.GetSubjects().Select(item => new SelectListItem
-                    {
-                        Value = item._id.ToString(),
-                        Text = item.SUBJECT_NAME.ToString(),
-                        Selected = false
-                    }), @Resources.Resource.SubjectSelect, new {@class = "form-control btn btn-default dropdown-toggle"})
-                </div>
                 <div class="jumbotron">
                     <div class="dropzone" id="dropzoneForm">
                         <div class="fallback">
@@ -49,6 +19,47 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6 group">
+                <div>
+                    @Html.TextBoxFor(model => model.PackName, new { @class = "form-control", placeholder = Resources.Resource.PackName })
+                    @Html.ValidationMessageFor(model => model.PackName)
+                </div>
+                <div>
+                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = Resources.Resource.Description })
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+
+                <div>
+                    @Html.TextBoxFor(model => model.Color, new { @class = "form-control", placeholder = Resources.Resource.Color })
+                    @Html.ValidationMessageFor(model => model.Color)
+                </div>
+            </div>
+
+            <div class="col-md-6 group">
+
+                <div>
+                    @Html.DropDownList("methodId", HelperExtensions.GetMethods().Select(item => new SelectListItem
+               {
+                   Value = item._id.ToString(),
+                   Text = item.METHOD_NAME.ToString(),
+                   Selected = false
+               }), @Resources.Resource.MethodSelect, new { @class = "form-control btn btn-default dropdown-toggle" })
+                </div>
+
+                <div>
+                    @Html.DropDownList("subjectId", HelperExtensions.GetSubjects().Select(item => new SelectListItem
+               {
+                   Value = item._id.ToString(),
+                   Text = item.SUBJECT_NAME.ToString(),
+                   Selected = false
+               }), @Resources.Resource.SubjectSelect, new { @class = "form-control btn btn-default dropdown-toggle" })
+                </div>
+
+
+
+            </div>
+
 
 
         </div>
@@ -60,7 +71,7 @@
         </div>
     }
 
- 
+
 
 </div>
 
@@ -89,5 +100,5 @@
 
 @section scripts
 {
-    
+
 }

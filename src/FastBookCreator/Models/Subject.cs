@@ -12,21 +12,21 @@ namespace FastBookCreator.Models
         
         
 
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "SubjectID", SortEnabled = true)]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "SubjectID", SortEnabled = true)]
         public long _id { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ResPack), ErrorMessageResourceName = "ErrorSubjectName")]
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "SubjectName", SortEnabled = true)]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorSubjectName")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "SubjectName", SortEnabled = true)]
         public string SUBJECT_NAME { get; set; }
 
         
      
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "AllowEdit", SortEnabled = true)]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "AllowEdit", SortEnabled = true)]
         public string ALLOW_EDIT { get; set; }
  
 
-        [Required(ErrorMessageResourceType = typeof(ResPack), ErrorMessageResourceName = "ErrorLanguage")]
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Language", SortEnabled = true)]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorLanguage")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Language", SortEnabled = true)]
         public string LANGUAGE { get; set; }
     }
 }

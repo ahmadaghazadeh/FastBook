@@ -10,16 +10,16 @@ namespace FastBookCreator.Models
     public class ResPack
     {
 
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "ResourceID", SortEnabled = true)]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "ResourceID", SortEnabled = true)]
         public long _id { get; set; }
 
       
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Image")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Image")]
         public Byte[] DATA { get; set; }
 
         
      
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Name", SortEnabled = true,FilterEnabled = true)]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Name", SortEnabled = true,FilterEnabled = true)]
         public string NAME { get; set; }
  
     }

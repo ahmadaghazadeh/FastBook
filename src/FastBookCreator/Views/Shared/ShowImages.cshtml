@@ -1,83 +1,50 @@
 ﻿@using FastBookCreator.Core
-@using GridMvc.Html
+
+<h2>@ViewBag.Title</h2>
+
+
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group" role="group">
         <a class="btn btn- btn-lg" href="@Url.Action("UploadImages", "Shared")" role="button">@Resources.Resource.UploadImages</a>
     </div>
 </div>
 
-@*<div class="container">
-        <div class="row">
-            <div id="images"></div>
-            @foreach (var item in resPacks)
-            {
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" width="150" height="150">
-                    @item.NAME
-                    @Html.Image(item._id.ToString(), item.DATA, $"class=\"img-responsive\" alt=\"{item.NAME}\"")
-                </div>
-            }
-
-        </div>
-    </div>*@
-<img id="imgPack"/>
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#resModal">
-    Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="resModal" tabindex="-1" role="dialog" aria-labelledby="resModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="resModalLabel">Modal title</h4>
-
-                <div style="padding: 100px;">
-
-                    <div class="col-sm-12">
-                        <input id="txtSearch" type="text" class="form-control" placeholder="Search for...">
-                    </div>
-                    <!-- /.col-lg-6 -->
-                    @Html.Grid(HelperExtensions.GetResPacks()).Named("resGrid").Columns(columns =>
-                    {
-                        columns.Add(o => o.NAME)
-                             .Titled(Resources.Resource.Name)
-                             .Filterable(true)
-                             .RenderValueAs(o => o.NAME);
-
-                        columns.Add(o => o._id, true);
-
-                        columns.Add(o => o.DATA)
-                            .Titled(Resources.Resource.Image)
-                            .Encoded(false)
-                            .Sanitized(false)
-                            .RenderValueAs(o => @Html.Image(o._id.ToString(), o.DATA, $"class=\"img-responsive\"  alt=\"{o.NAME}\""));
-                    }).WithPaging(15).Filterable(true)
-
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
+<img id="imgPack" src="../../Content/images/ibook.png" alt="" data-toggle="modal" data-target="#searchModal" width="150" height="150" />
+@*
+<div id="other">
+    Trigger the handler
 </div>
+*@
+
+@Html.Partial("_SearchImageDialog")
 
 @section scripts
 {
     <script>
+      
         $(document).ready(function () {
             //toastr.info('سلام خوبی ؟');
-            pageGrids.resGrid.onRowSelect(function (e) {
+        });
+        $("#txtSearch")
+       .on("keyup",
+           function (ev) {
+               $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" }, function (data) {
+                   var imeges = "";
+                   $.each(data, function (key, value) {
+                       imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                           value.NAME + value.DATA +
+                                         "</div>";
 
-                $("#imgPack").attr('src',$(e.row.NAME).attr("src")); 
-                $(function () {
-                    $('#resModal').modal('toggle');
-                });
-            });
+                   });
+                   $("#images").html(imeges);
+               });
+           });
+        $("img[id^=img-]").on("click", function () {
+            // Do stuff, get id of image perhaps?
+
+            $("#imgPack").attr("src", this.src);
+            $('#searchModal').modal('toggle');
         });
 
     </script>
 }
-

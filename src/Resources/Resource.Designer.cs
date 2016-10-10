@@ -520,6 +520,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search Image.
+        /// </summary>
+        public static string SeachImage {
+            get {
+                return ResourceManager.GetString("SeachImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select image.
+        /// </summary>
+        public static string SelectImage {
+            get {
+                return ResourceManager.GetString("SelectImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image saved.
         /// </summary>
         public static string ShowImage {

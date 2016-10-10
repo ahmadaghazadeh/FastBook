@@ -116,3 +116,7 @@ textarea {
 {
     margin: 0 0 11px;
 }
+.img-grid .img-responsive {
+    width: 150px;
+    height: 150px
+}

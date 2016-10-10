@@ -126,15 +126,22 @@ namespace FastBookCreator.Core
                 return connection.Query<Subject>($"SELECT * FROM SUBJECT WHERE LANGUAGE='{Resources.Resource.lang}'");
             }
         }
- 
 
-        public static MvcHtmlString Image(this HtmlHelper helper,string id,
-                byte[] image,string attributes="")
+
+        public static MvcHtmlString MVCImage(this HtmlHelper helper, string id,
+                byte[] image, string attributes = "")
+        {
+
+            return MvcHtmlString.Create(Image(id, image, attributes));
+        }
+
+        public static string Image(string id,
+               byte[] image, string attributes = "")
         {
             var img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat($"<img id='{id}' src='{img}' { attributes}>");
-            return MvcHtmlString.Create(sb.ToString());
+            sb.AppendFormat($"<img id='img-{id}' src='{img}' { attributes}>");
+            return sb.ToString();
         }
 
     }

@@ -29,13 +29,13 @@ namespace FastBookCreator
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
                       "~/Content/bootstrap-theme.min.css",
                       "~/Content/bootstrap-select.css",
                       "~/Content/toastr.min.css",
                       "~/Scripts/dropzone/basic.css",
                      "~/Scripts/dropzone/dropzone.css",
-                     "~/Content/bootstrap-dialog.min.css"
+                     "~/Content/bootstrap-dialog.min.css",
+                       "~/Content/site.css"
                       ));
 
      
