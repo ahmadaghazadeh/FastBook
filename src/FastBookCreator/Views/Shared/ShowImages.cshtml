@@ -27,22 +27,22 @@
 @{var resPacks = HelperExtensions.GetResPacks();}
 
 <div class="col-sm-12">
-        <input type="text" class="form-control" placeholder="Search for...">
-        <span class="input-group-btn">
-        </span>
+    <input id="txtSearch" type="text" class="form-control" placeholder="Search for...">
+    <span class="input-group-btn">
+    </span>
 </div><!-- /.col-lg-6 -->
 
 <div class="container">
     <div class="row">
-        <div id="images"></div>
-        @foreach (var item in resPacks)
-        {
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" width="150" height="150">
-                @item.NAME
-                @Html.Image(item._id.ToString(), item.DATA, "class=\"img-responsive\" ")
-            </div>
-        }
-
+        <div id="images">
+            @foreach (var item in resPacks)
+            {
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" width="150" height="150">
+                    @item.NAME
+                    @Html.MVCImage(item._id.ToString(), item.DATA, $"class=\"img-responsive\" alt=\"{item._id.ToString()}\" ")
+                </div>
+            }
+        </div>
     </div>
 </div>
 
@@ -60,7 +60,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
-             
+
         </div>
     </div>
 
@@ -68,26 +68,47 @@
     <div id="other">
         Trigger the handler
     </div>
-    
+
 
     @section scripts
 {
         <script>
-            $("#other")
-                .click(function () {
-                    toastr.info('سلام خوبی ؟');
-                });
-
+            //$("#other")
+            //    .click(function () {
+            //        toastr.info('سلام خوبی ؟');
+            //    });
 
             $(document).ready(function () {
                 //toastr.info('سلام خوبی ؟');
 
 
+
+                function myFunction() {
+                    BootstrapDialog.alert('I want banana!');
+                }
+
             });
 
-            function myFunction() {
-                BootstrapDialog.alert('I want banana!');
-            }
+            $("#txtSearch")
+          .on("keyup",
+              function (ev) {
+                  $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" }, function (data) {
+
+                      var imeges = ""
+                      $.each(data, function (key, value) {
+                          imeges = imeges + "<div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-6\" width=\"150\" height=\"150\">" +
+                              value.NAME + value.DATA +
+                              "</div>";
+
+                      });
+
+                      $("#images").html(imeges);
+
+
+                  })
+              });
 
         </script>
     }
+
+
