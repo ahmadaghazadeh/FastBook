@@ -14,34 +14,7 @@ namespace FastBookCreator.Controllers
 {
     public class SharedApiController : ApiController
     {
-        /*// GET: api/SharedApi
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
-        // GET: api/SharedApi/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/SharedApi
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/SharedApi/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/SharedApi/5
-        public void Delete(int id)
-        {
-        }*/
-
-        
         // POST: api/Shared
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("Shared/GetHighLight")]
@@ -68,13 +41,47 @@ namespace FastBookCreator.Controllers
         public IHttpActionResult ResPacks(JObject jsonData)
         {
             dynamic json = jsonData;
-            using (var connection = SqliteConn.GetPackDb())
+            var userId = json.userId;
+            var packId = json.packId;
+            var where = json.where;
+            using (var connection = SqliteConn.GetPackDb(userId, packId))
             {
-                var items = connection.Query<ResPack>($"SELECT * FROM RESOURCE {json.where}");
+                List<ResPack> items = connection.Query<ResPack>($"SELECT * FROM RESOURCE {where}");
                 var query = from i in items
                             select new { NAME = i.NAME, DATA = HelperExtensions.Image(i._id.ToString(), i.DATA, $"class='img-responsive' alt='{i._id.ToString()}'"), _id = i._id.ToString() };
                 return Ok(query);
             }
+        }
+
+
+        [HttpPost]
+        [Route("Pack/SavePack")]
+        public IHttpActionResult SavePack(JObject jObject)
+        {
+            dynamic json = jObject;
+            var pack = new Pack()
+            {
+                COLOR = int.Parse(json.COLOR.ToString(), System.Globalization.NumberStyles.HexNumber),
+                PACK_NAME = json.PACK_NAME,
+                METHOD_ID = json.METHOD_ID,
+                SUBJECT_ID = json.SUBJECT_ID,
+                DESCRIPTION = json.DESCRIPTION,
+            };
+
+            int result;
+            if (json._id.ToObject<int>() == 0)
+            {
+                var insertQuery = @"INSERT INTO [PACKS](PACK_NAME,METHOD_ID,SUBJECT_ID,COLOR,DESCRIPTION) VALUES (@PACK_NAME,@METHOD_ID,@SUBJECT_ID,@COLOR,@DESCRIPTION);
+                                    select last_insert_rowid();";
+                result = SqliteConn.GetCommonDb().Query<int>(insertQuery, pack).Single();
+            }
+            else
+            {
+                var updateQuery = $"UPDATE [PACKS] SET PACK_NAME=PACK_NAME ,METHOD_ID = @METHOD_ID,SUBJECT_ID = @SUBJECT_ID,COLOR=@COLOR,DESCRIPTION=@DESCRIPTION WHERE _id={json._id} ";
+                SqliteConn.GetCommonDb().Execute(updateQuery, pack);
+                result = json._id.ToObject<int>();
+            }
+            return Ok(result);
         }
     }
 }

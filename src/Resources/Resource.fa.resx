@@ -267,11 +267,8 @@
   <data name="dictResponseError" xml:space="preserve">
     <value>سرور با {{statusCode}}  کد پاسخ دادند.</value>
   </data>
-  <data name="DropFiles" xml:space="preserve">
-    <value>رها کردن فایل در اینجا برای آپلود</value>
-  </data>
   <data name="dictDefaultMessage" xml:space="preserve">
-    <value>رها کردن فایل در اینجا برای آپلود</value>
+    <value>رها کردن فایل در اینجا برای آپلود (عرض : 400 - ارتفای : 300)</value>
   </data>
   <data name="ErrorSaveImage" xml:space="preserve">
     <value>خطا هنگام ذخیره فایل تصویر</value>
@@ -296,5 +293,26 @@
   </data>
   <data name="SeachImage" xml:space="preserve">
     <value>جستجوی تصویر</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>ذخیرات ثبت گردید</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+  <data name="DeletePrompt" xml:space="preserve">
+    <value>می خواهید حذف کنید؟</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>توجه</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>حذف شد</value>
+  </data>
+  <data name="UnSuccess" xml:space="preserve">
+    <value>خطای رخ داده است</value>
+  </data>
+  <data name="ImagesSizeError" xml:space="preserve">
+    <value>اندازه تصویر باید با عرض 400 و ارتفاع 300 باشد</value>
   </data>
 </root>

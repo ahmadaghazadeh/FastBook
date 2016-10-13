@@ -138,7 +138,11 @@ namespace FastBookCreator.Core
         public static string Image(string id,
                byte[] image, string attributes = "")
         {
-            var img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
+            var img = "";
+            if (image!=null)
+            {
+                  img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
+            }
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat($"<img id='img-{id}' src='{img}' { attributes}>");
             return sb.ToString();

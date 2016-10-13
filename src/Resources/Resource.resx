@@ -247,7 +247,7 @@
     <value>Are you sure you want to cancel this upload?</value>
   </data>
   <data name="dictDefaultMessage" xml:space="preserve">
-    <value>Drop files here to upload</value>
+    <value>Drop files here to upload (width: 400 - Height: 300)</value>
   </data>
   <data name="dictFallbackMessage" xml:space="preserve">
     <value>Your browser does not support drag'n'drop file uploads.</value>
@@ -293,5 +293,26 @@
   </data>
   <data name="SeachImage" xml:space="preserve">
     <value>Search Image</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>Save successful</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DeletePrompt" xml:space="preserve">
+    <value>You want to delete?</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>Delete Success</value>
+  </data>
+  <data name="UnSuccess" xml:space="preserve">
+    <value>An error occurred</value>
+  </data>
+  <data name="ImagesSizeError" xml:space="preserve">
+    <value>Image Size Error image size to a width of 400 and a height of 300 is</value>
   </data>
 </root>

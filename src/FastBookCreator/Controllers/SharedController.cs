@@ -11,6 +11,7 @@ using System.IO;
 using System.Data.SQLite;
 using Dapper;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace FastBookCreator.Controllers
 {
@@ -24,7 +25,7 @@ namespace FastBookCreator.Controllers
             // Save culture in a cookie
             HttpCookie cookie = Request.Cookies["_culture"];
             if (cookie != null)
-                cookie.Value = culture;   // update cookie value
+                cookie.Value = culture; // update cookie value
             else // create new cookie
             {
                 cookie = new HttpCookie("_culture")
@@ -40,45 +41,65 @@ namespace FastBookCreator.Controllers
             return Redirect(callerActionRout);
         }
 
-        public ActionResult SaveUploadedFile()
+        public ActionResult SaveUploadedFile(ResType resType)
         {
-            bool isSavedSuccessfully = true;
-            string fName = "";
+            var isSavedSuccessfully = false;
+            var fName = "";
             var resList = new List<ResPack>();
             foreach (string fileName in Request.Files)
             {
-                HttpPostedFileBase file = Request.Files[fileName];
-                fName = file.FileName;
-                if (file != null && file.ContentLength > 0)
+                var file = Request.Files[fileName];
+                if (file != null)
                 {
-                    MemoryStream target = new MemoryStream();
-                    file.InputStream.CopyTo(target);
-                    byte[] data = target.ToArray();
-                    resList.Add(
-                        new ResPack
-                        {
-                            NAME = fName,
-                            DATA = data
-                        }
-                        );
-                  }
+                    fName = file.FileName;
+                    if (file.ContentLength > 0)
+                    {
+                        var target = new MemoryStream();
+                        file.InputStream.CopyTo(target);
+                        var data = target.ToArray();
+                        resList.Add(
+                            new ResPack
+                            {
+                                NAME = fName,
+                                DATA = data
+                            }
+                            );
+                    }
+                }
+                isSavedSuccessfully = true;
 
             }
-            using (var db = SqliteConn.GetPackDb())
+
+            var insertQuery = "";
+            var result = 0;
+            switch (resType.typeId)
             {
-                string insertQuery = @"INSERT INTO [RESOURCE](NAME,DATA) VALUES (@NAME,@DATA)";
-                var result = db.Execute(insertQuery, resList);
+                case ResTypeID.Pack:
+                    insertQuery = @"UPDATE PACKS set LOGO=@LOGO WHERE _id=@id";
+                    result = SqliteConn.GetCommonDb()
+                        .Execute(insertQuery, new { id = resType._id, LOGO = resList[0].DATA });
+                    break;
+
+                case ResTypeID.Item:
+                case ResTypeID.ItemDetail:
+                case ResTypeID.Lesson:
+                case ResTypeID.Method:
+                case ResTypeID.Page:
+                    insertQuery = @"INSERT INTO [RESOURCE](NAME,DATA) VALUES (@NAME,@DATA) 
+                                   SELECT CAST(SCOPE_IDENTITY() as long)";
+                    result = SqliteConn.GetPackDb().Query<int>(insertQuery, resList).Single();
+                    break;
+
             }
 
-            if (isSavedSuccessfully)
-            {
-                return Json(new { Message = fName });
-            }
-            else
-            {
-                return Json(new { Message = Resources.Resource.ErrorSaveImage });
-            }
+            return
+                Json(isSavedSuccessfully
+                    ? new { Message = fName, _id = result }
+                    : new { Message = Resources.Resource.ErrorSaveImage, _id = result });
         }
+
+
+
         public ActionResult UploadImages()
         {
             return View();
@@ -90,9 +111,9 @@ namespace FastBookCreator.Controllers
             ViewBag.Title = Resources.Resource.ShowImage;
             return View();
         }
- 
 
-      
+
+
 
     }
 

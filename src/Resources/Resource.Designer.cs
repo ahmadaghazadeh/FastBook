@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attention.
+        /// </summary>
+        public static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
@@ -102,6 +111,24 @@ namespace Resources {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You want to delete?.
+        /// </summary>
+        public static string DeletePrompt {
+            get {
+                return ResourceManager.GetString("DeletePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Success.
+        /// </summary>
+        public static string DeleteSuccess {
+            get {
+                return ResourceManager.GetString("DeleteSuccess", resourceCulture);
             }
         }
         
@@ -133,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drop files here to upload.
+        ///   Looks up a localized string similar to Drop files here to upload (width: 400 - Height: 300).
         /// </summary>
         public static string dictDefaultMessage {
             get {
@@ -210,6 +237,15 @@ namespace Resources {
         public static string dir {
             get {
                 return ResourceManager.GetString("dir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -367,6 +403,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image Size Error image size to a width of 400 and a height of 300 is.
+        /// </summary>
+        public static string ImagesSizeError {
+            get {
+                return ResourceManager.GetString("ImagesSizeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to en.
         /// </summary>
         public static string lang {
@@ -520,6 +565,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save successful.
+        /// </summary>
+        public static string SaveSuccess {
+            get {
+                return ResourceManager.GetString("SaveSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search Image.
         /// </summary>
         public static string SeachImage {
@@ -570,6 +624,15 @@ namespace Resources {
         public static string SubjectSelect {
             get {
                 return ResourceManager.GetString("SubjectSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred.
+        /// </summary>
+        public static string UnSuccess {
+            get {
+                return ResourceManager.GetString("UnSuccess", resourceCulture);
             }
         }
         
