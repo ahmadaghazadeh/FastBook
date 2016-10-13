@@ -141,8 +141,8 @@
   <data name="Pack" xml:space="preserve">
     <value>Package</value>
   </data>
-  <data name="PackId" xml:space="preserve">
-    <value>PackId</value>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="PackName" xml:space="preserve">
     <value>Package Name</value>
@@ -314,5 +314,32 @@
   </data>
   <data name="ImagesSizeError" xml:space="preserve">
     <value>Image Size Error image size to a width of 400 and a height of 300 is</value>
+  </data>
+  <data name="SelectPack" xml:space="preserve">
+    <value>Please specify Training Package</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="ErrorLessonTitle" xml:space="preserve">
+    <value>Enter Course</value>
+  </data>
+  <data name="Lesson" xml:space="preserve">
+    <value>Lesson</value>
+  </data>
+  <data name="LessonCreate" xml:space="preserve">
+    <value>Create new lesson</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
   </data>
 </root>

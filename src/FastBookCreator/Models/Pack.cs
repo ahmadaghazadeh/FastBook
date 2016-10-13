@@ -14,7 +14,7 @@ namespace FastBookCreator.Models
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Logo")]
         public byte[] LOGO { get; set; }
 
-        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "PackId", SortEnabled = true)]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Id", SortEnabled = true)]
         public long _id { get; set; }
         [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorPackName")]
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "PackName", SortEnabled = true)]

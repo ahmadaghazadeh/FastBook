@@ -11,6 +11,7 @@ using Dapper;
 using FastBookCreator.Models;
 using System.Linq.Expressions;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace FastBookCreator.Core
 {
@@ -101,13 +102,7 @@ namespace FastBookCreator.Core
             }
         }
 
-        public static IEnumerable<ResPack> GetResPacks()
-        {
-            using (var connection = SqliteConn.GetPackDb())
-            {
-                return connection.Query<ResPack>("SELECT * FROM RESOURCE");
-            }
-        }
+       
 
         public static IEnumerable<Method> GetMethods()
         {
@@ -144,9 +139,10 @@ namespace FastBookCreator.Core
                   img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
             }
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat($"<img id='img-{id}' src='{img}' { attributes}>");
+            sb.AppendFormat($"<img id='{id}' src='{img}' { attributes}>");
             return sb.ToString();
         }
+
 
     }
 }

@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<img id="imgPack" src="../../Content/images/ibook.png" alt="" data-toggle="modal" data-target="#searchModal" width="150" height="150" />
+<img id="imgPack" src="../../Content/images/ibook.png" alt="" data-toggle="modal" data-target="#searchModal" width="200" height="150" />
 @*
 <div id="other">
     Trigger the handler
@@ -23,7 +23,16 @@
     <script>
       
         $(document).ready(function () {
-            //toastr.info('سلام خوبی ؟');
+            $.post("../Shared/ResPacks", { where: " " }, function (data) {
+                var imeges = "";
+                $.each(data, function (key, value) {
+                    imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                        value.NAME + value.DATA +
+                                      "</div>";
+
+                });
+                $("#images").html(imeges);
+            });
         });
         $("#txtSearch")
        .on("keyup",

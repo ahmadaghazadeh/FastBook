@@ -1,10 +1,10 @@
-﻿using System;
+﻿ 
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Dapper;
+
 using FastBookCreator.Core;
 using FastBookCreator.Models;
 using HighlightCode.App_Start;
@@ -36,26 +36,27 @@ namespace FastBookCreator.Controllers
             return Ok(code.ToHighLightFormat(lng));
         }
 
-        [HttpPost]
-        [Route("Shared/ResPacks")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("Shared/ResPacks")]
         public IHttpActionResult ResPacks(JObject jsonData)
         {
             dynamic json = jsonData;
-            var userId = json.userId;
-            var packId = json.packId;
-            var where = json.where;
-            using (var connection = SqliteConn.GetPackDb(userId, packId))
+            var userId = json.userId.ToString();
+            var packId = json.packId.ToString();
+            var where = json.where.ToString();
+            using (SQLiteConnection connection = SqliteConn.GetPackDb(userId, packId))
             {
-                List<ResPack> items = connection.Query<ResPack>($"SELECT * FROM RESOURCE {where}");
+                var items = connection.Query<ResPack>($"SELECT * FROM RESOURCE {where}");
                 var query = from i in items
-                            select new { NAME = i.NAME, DATA = HelperExtensions.Image(i._id.ToString(), i.DATA, $"class='img-responsive' alt='{i._id.ToString()}'"), _id = i._id.ToString() };
+                            select new { NAME = i.NAME, DATA = HelperExtensions.Image("img-"+i._id.ToString(), i.DATA, $"class='img-responsive' alt='{i._id.ToString()}'"), _id = i._id.ToString() };
                 return Ok(query);
             }
         }
 
 
-        [HttpPost]
-        [Route("Pack/SavePack")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("Pack/SavePack")]
         public IHttpActionResult SavePack(JObject jObject)
         {
             dynamic json = jObject;
@@ -77,8 +78,40 @@ namespace FastBookCreator.Controllers
             }
             else
             {
-                var updateQuery = $"UPDATE [PACKS] SET PACK_NAME=PACK_NAME ,METHOD_ID = @METHOD_ID,SUBJECT_ID = @SUBJECT_ID,COLOR=@COLOR,DESCRIPTION=@DESCRIPTION WHERE _id={json._id} ";
+                var updateQuery = $"UPDATE [PACKS] SET PACK_NAME=@PACK_NAME ,METHOD_ID = @METHOD_ID,SUBJECT_ID = @SUBJECT_ID,COLOR=@COLOR,DESCRIPTION=@DESCRIPTION WHERE _id={json._id} ";
                 SqliteConn.GetCommonDb().Execute(updateQuery, pack);
+                result = json._id.ToObject<int>();
+            }
+            return Ok(result);
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("Lesson/SaveLesson")]
+        public IHttpActionResult SaveLesson(JObject jObject)
+        {
+             
+            dynamic json = jObject;
+            string userId = json.userId.ToString();
+            string packId = json.packId.ToString();
+            string resourceId = json.resourceId.ToString();
+            var lesson = new Lesson()
+            {
+                COLOR = int.Parse(json.COLOR.ToString(), System.Globalization.NumberStyles.HexNumber),
+                LESSON_TITLE = json.LESSON_TITLE,
+                RESOURCE_ID =long.Parse( resourceId)
+            };
+
+            int result;
+            if (json._id.ToObject<int>() == 0)
+            {
+                var insertQuery = @"INSERT INTO [Lesson](LESSON_TITLE,COLOR,RESOURCE_ID) VALUES (@LESSON_TITLE,@COLOR,@RESOURCE_ID);
+                                    select last_insert_rowid();";
+                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, lesson).Single();
+            }
+            else
+            {
+                var updateQuery = $"UPDATE [Lesson] SET LESSON_TITLE=@LESSON_TITLE  ,COLOR=@COLOR,RESOURCE_ID,@RESOURCE_ID WHERE _id={json._id} ";
+                SqliteConn.GetPackDb(userId, packId).Execute(updateQuery, lesson);
                 result = json._id.ToObject<int>();
             }
             return Ok(result);

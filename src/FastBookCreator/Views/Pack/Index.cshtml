@@ -27,7 +27,7 @@
    .RenderValueAs(o => @Html.MVCImage(o._id.ToString(), o.LOGO, $"class=\"img-responsive\" alt=\"{o._id.ToString()}\" "));
 
     column.Add(o => o._id)
-    .Titled(Resources.Resource.PackId)
+    .Titled(Resources.Resource.Id)
     .Sortable(true);
 
     column.Add(o => o.PACK_NAME)
@@ -45,12 +45,19 @@
     .SetWidth(100)
     .RenderValueAs(o => $"<div  style=\" min-height: 100%; background-color:#{o.COLOR.ToString("X")}\"<div> . </div>");
 
+    column.Add(o => @Resources.Resource.Lesson).Encoded(false)
+   .Sanitized(false)
+   .Titled(@Resources.Resource.Lesson)
+   .RenderValueAs(
+       f => $"<button  type=\"button\" onclick=\"location.href='/Lesson/Index?_id={f._id}'\" class=\"btn btn-default\">" +
+                        $"<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> {@Resources.Resource.Lesson}</button>");
+
     column.Add(o => @Resources.Resource.Edit).Encoded(false)
     .Sanitized(false)
     .Titled(@Resources.Resource.Edit)
     .RenderValueAs(
         f => $"<button  type=\"button\" onclick=\"location.href='/Pack/Edit?_id={f._id}'\" class=\"btn btn-default\">" +
-                         $"<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> {@Resources.Resource.Edit}</button>");
+                         $"<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span> {@Resources.Resource.Edit}</button>");
 
     column.Add(o => @Resources.Resource.Delete).Encoded(false)
     .Titled(@Resources.Resource.Delete)
@@ -72,7 +79,7 @@
                 <h4 class="modal-title">@Resources.Resource.Attention</h4>
             </div>
             <div class="modal-body">
-                <span class="label label-default">@Resources.Resource.PackId</span> : <input class="form-control" type="text" id="deleteId" value="" readonly />
+                <span class="label label-default">@Resources.Resource.Id</span> : <input class="form-control" type="text" id="deleteId" value="" readonly />
                 <h3>@Resources.Resource.DeletePrompt</h3>
             </div>
             <div class="modal-footer">
@@ -95,7 +102,7 @@
         $("#btnDelete").click(function () {
             toastr.success("@Resources.Resource.DeleteSuccess");
         });
-
+ 
 
     </script>
 }

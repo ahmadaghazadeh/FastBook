@@ -15,7 +15,7 @@ namespace FastBookCreator.Models
 
       
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Image")]
-        public Byte[] DATA { get; set; }
+        public byte[] DATA { get; set; }
 
         
      

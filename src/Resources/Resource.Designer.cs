@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
@@ -277,6 +286,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter Course.
+        /// </summary>
+        public static string ErrorLessonTitle {
+            get {
+                return ResourceManager.GetString("ErrorLessonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select the icon.
         /// </summary>
         public static string ErrorLogo {
@@ -385,11 +403,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        public static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
             }
         }
         
@@ -430,11 +466,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lesson.
+        /// </summary>
+        public static string Lesson {
+            get {
+                return ResourceManager.GetString("Lesson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new lesson.
+        /// </summary>
+        public static string LessonCreate {
+            get {
+                return ResourceManager.GetString("LessonCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logo.
         /// </summary>
         public static string Logo {
             get {
                 return ResourceManager.GetString("Logo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
             }
         }
         
@@ -493,15 +565,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PackId.
-        /// </summary>
-        public static string PackId {
-            get {
-                return ResourceManager.GetString("PackId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to View Packages.
         /// </summary>
         public static string PackList {
@@ -534,6 +597,15 @@ namespace Resources {
         public static string Phone_Number {
             get {
                 return ResourceManager.GetString("Phone_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
             }
         }
         
@@ -588,6 +660,15 @@ namespace Resources {
         public static string SelectImage {
             get {
                 return ResourceManager.GetString("SelectImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify Training Package.
+        /// </summary>
+        public static string SelectPack {
+            get {
+                return ResourceManager.GetString("SelectPack", resourceCulture);
             }
         }
         

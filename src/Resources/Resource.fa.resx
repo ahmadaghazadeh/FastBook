@@ -141,8 +141,8 @@
   <data name="Pack" xml:space="preserve">
     <value>بسته آموزشی </value>
   </data>
-  <data name="PackId" xml:space="preserve">
-    <value>شماره بسته</value>
+  <data name="Id" xml:space="preserve">
+    <value>شماره </value>
   </data>
   <data name="PackName" xml:space="preserve">
     <value>نام بسته</value>
@@ -314,5 +314,32 @@
   </data>
   <data name="ImagesSizeError" xml:space="preserve">
     <value>اندازه تصویر باید با عرض 400 و ارتفاع 300 باشد</value>
+  </data>
+  <data name="SelectPack" xml:space="preserve">
+    <value>لطفا بسته آموزشی را مشخص کنید</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>خروج از سیستم</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>خروج از سیستم</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
+  <data name="ErrorLessonTitle" xml:space="preserve">
+    <value>عنوان درس را وارد کنید</value>
+  </data>
+  <data name="Lesson" xml:space="preserve">
+    <value>درس</value>
+  </data>
+  <data name="LessonCreate" xml:space="preserve">
+    <value>ساختن درس جدید</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>پاک کردن</value>
   </data>
 </root>
