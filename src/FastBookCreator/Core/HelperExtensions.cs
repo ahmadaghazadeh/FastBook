@@ -10,15 +10,17 @@ using System.Web.Routing;
 using Dapper;
 using FastBookCreator.Models;
 using System.Linq.Expressions;
+using System.Resources;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using Resources;
 
 namespace FastBookCreator.Core
 {
     public static class HelperExtensions
     {
         public static readonly Dictionary<string, string> Languages;
- 
+
 
         static HelperExtensions()
         {
@@ -29,12 +31,12 @@ namespace FastBookCreator.Core
             };
         }
 
-  
+
 
         public static void SetAppCulture(this CultureInfo culture)
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = culture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         public static string GetCurrentCultureTwoLetter()
@@ -50,7 +52,7 @@ namespace FastBookCreator.Core
             {
                 Text = lang.Value,
                 Value = lang.Key,
-                Selected = string.Equals(currentCulture, lang.Key, StringComparison.CurrentCultureIgnoreCase)
+                Selected = String.Equals(currentCulture, lang.Key, StringComparison.CurrentCultureIgnoreCase)
             }).ToList();
 
             return res;
@@ -102,13 +104,13 @@ namespace FastBookCreator.Core
             }
         }
 
-       
+
 
         public static IEnumerable<Method> GetMethods()
         {
             using (var connection = SqliteConn.GetCommonDb())
             {
-                return connection.Query<Method>($"SELECT * FROM METHODS WHERE LANGUAGE='{Resources.Resource.lang}'");
+                return connection.Query<Method>($"SELECT * FROM METHODS WHERE LANGUAGE='{Resource.lang}'");
             }
         }
 
@@ -117,8 +119,8 @@ namespace FastBookCreator.Core
         {
             using (var connection = SqliteConn.GetCommonDb())
             {
-                
-                return connection.Query<Subject>($"SELECT * FROM SUBJECT WHERE LANGUAGE='{Resources.Resource.lang}'");
+
+                return connection.Query<Subject>($"SELECT * FROM SUBJECT WHERE LANGUAGE='{Resource.lang}'");
             }
         }
 
@@ -134,9 +136,9 @@ namespace FastBookCreator.Core
                byte[] image, string attributes = "")
         {
             var img = "";
-            if (image!=null)
+            if (image != null)
             {
-                  img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
+                img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
             }
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat($"<img id='{id}' src='{img}' { attributes}>");
@@ -144,5 +146,63 @@ namespace FastBookCreator.Core
         }
 
 
+        public static IEnumerable<IconHtml> ItemIcons()
+        {
+            IEnumerable<IconHtml> icons=new[]
+            {
+                new IconHtml()
+                {
+                    Name = Resource.ItemHTML,
+                    Icon = "<i class=\"fa fa-html5\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                    Name = Resource.ItemPicture,
+                    Icon = "<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                    Name = Resource.ItemSound,
+                    Icon = "<i class=\"fa fa-file-audio-o\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                    Name = Resource.ItemVideo,
+                    Icon = "<i class=\"fa fa-file-video-o\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                    Name = Resource.ItemTTS,
+                    Icon = "<span class=\"glyphicon glyphicon-bullhorn\" aria-hidden=\"true\"></span>"
+                },
+                new IconHtml()
+                {
+                    Name = Resource.ItemMultipleChoice,
+                    Icon = "<i class=\"fa fa-check-square\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                    Name = Resource.ItemPlacement,
+                    Icon = "<i class=\"material-icons\">space_bar</i>"
+                },
+
+                new IconHtml()
+                {
+                    Name = Resource.ItemOrdering,
+                    Icon = "<span class=\"glyphicon glyphicon-sort\" aria-hidden=\"true\"></span>"
+                },
+                new IconHtml()
+                {
+                    Name = Resource.ItemFill,
+                    Icon = "<i class=\"material-icons\">mode_edit</i>"
+                },
+                new IconHtml()
+                {
+                    Name = Resource.ItemOnechoice,
+                    Icon = "<i class=\"fa fa-dot-circle-o\" aria-hidden=\"true\"></i>"
+                },
+            };
+            return icons;
+        }
     }
 }

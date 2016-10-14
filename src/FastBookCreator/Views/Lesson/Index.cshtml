@@ -1,41 +1,29 @@
-﻿@*@model List<FastBookCreator.Models.Pack>*@
+﻿@model List<FastBookCreator.Models.Lesson>
 @using FastBookCreator.Core
 @using GridMvc.Html
 
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
-    @* <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default"></button>
-        </div>*@
+    
     <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default">@Html.ActionLink(@Resources.Resource.PackCreate, "Insert", "Pack")</button>
+        <button type="button" class="btn btn-default">@Html.ActionLink(@Resources.Resource.LessonCreate, "Insert", "Lesson")</button>
     </div>
-    @*<div class="btn-group" role="group">
-            <button type="button" class="btn btn-default">Right</button>
-        </div>*@
+    
 </div>
 
 
 <div style="padding: 100px;">
-    @Html.Grid(HelperExtensions.GetPacks()).Named("dataGrid").Columns(column =>
+    @Html.Grid(Model).Named("dataGrid").Columns(column =>
 {
     column.Add(o => o.LOGO)
-   .Titled(Resources.Resource.PackName)
+   .Titled(Resources.Resource.Name)
    .Encoded(false)
    .Sanitized(false)
    .SetWidth(100)
-   .RenderValueAs(o => @Html.MVCImage(o._id.ToString(), o.LOGO, $"class=\"img-responsive\" alt=\"{o._id.ToString()}\" "));
+   .RenderValueAs(o => @Html.MVCImage("img-"+o._id.ToString(), o.LOGO, $"class=\"img-responsive\" alt=\"{o._id.ToString()}\" "));
 
     column.Add(o => o._id)
     .Titled(Resources.Resource.Id)
-    .Sortable(true);
-
-    column.Add(o => o.PACK_NAME)
-    .Titled(Resources.Resource.PackName)
-    .Sortable(true);
-
-    column.Add(o => o.DESCRIPTION)
-    .Titled(Resources.Resource.Description)
     .Sortable(true);
 
     column.Add(o => o.COLOR)
@@ -45,18 +33,18 @@
     .SetWidth(100)
     .RenderValueAs(o => $"<div  style=\" min-height: 100%; background-color:#{o.COLOR.ToString("X")}\"<div> . </div>");
 
-    column.Add(o => @Resources.Resource.Lesson).Encoded(false)
+    column.Add(o => @Resources.Resource.Page).Encoded(false)
    .Sanitized(false)
-   .Titled(@Resources.Resource.Lesson)
+   .Titled(@Resources.Resource.Edit)
    .RenderValueAs(
-       f => $"<button  type=\"button\" onclick=\"location.href='/Lesson/Index?_id={f._id}'\" class=\"btn btn-default\">" +
-                        $"<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span> {@Resources.Resource.Lesson}</button>");
+       f => $"<button  type=\"button\" onclick=\"location.href='/Page/Index?LessonId={f._id}'\" class=\"btn btn-default\">" +
+                        $"<span class=\"glyphicon glyphicon-file\" aria-hidden=\"true\"></span> {@Resources.Resource.Page}</button>");
 
     column.Add(o => @Resources.Resource.Edit).Encoded(false)
     .Sanitized(false)
     .Titled(@Resources.Resource.Edit)
     .RenderValueAs(
-        f => $"<button  type=\"button\" onclick=\"location.href='/Pack/Edit?_id={f._id}'\" class=\"btn btn-default\">" +
+        f => $"<button  type=\"button\" onclick=\"location.href='/Lesson/Edit?_id={f._id}'\" class=\"btn btn-default\">" +
                          $"<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> {@Resources.Resource.Edit}</button>");
 
     column.Add(o => @Resources.Resource.Delete).Encoded(false)
@@ -96,13 +84,12 @@
         $(".deleteId").click(function () {
             var deleteId = $(this).data('id');
             $(".modal-body #deleteId").val(deleteId);
-            $("#btnDelete").attr("onclick", "location.href='/Pack/Delete?_id=" + deleteId + "'");
+            $("#btnDelete").attr("onclick", "location.href='/Lesson/Delete?_id=" + deleteId + "'");
         });
 
         $("#btnDelete").click(function () {
             toastr.success("@Resources.Resource.DeleteSuccess");
         });
- 
 
     </script>
 }

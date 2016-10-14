@@ -342,4 +342,88 @@
   <data name="Clear" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="ErrorPageTypeId" xml:space="preserve">
+    <value>Select Page Type</value>
+  </data>
+  <data name="FlashCard" xml:space="preserve">
+    <value>FlashCard</value>
+  </data>
+  <data name="LessonNumber" xml:space="preserve">
+    <value>LessonNumber</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="PageCreate" xml:space="preserve">
+    <value>Create new page</value>
+  </data>
+  <data name="PageType" xml:space="preserve">
+    <value>Page Type</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="AfterCreatePage" xml:space="preserve">
+    <value>After the page Go to the Item</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="CreateItem" xml:space="preserve">
+    <value>Create new item</value>
+  </data>
+  <data name="ErrorContent" xml:space="preserve">
+    <value>Enter content</value>
+  </data>
+  <data name="ErrorItemTitle" xml:space="preserve">
+    <value>Items must be entered as</value>
+  </data>
+  <data name="ErrorMedia" xml:space="preserve">
+    <value>Enter Media</value>
+  </data>
+  <data name="ErrorStoreType" xml:space="preserve">
+    <value>Enter Store Type</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="ItemFill" xml:space="preserve">
+    <value>Question Fill</value>
+  </data>
+  <data name="ItemHTML" xml:space="preserve">
+    <value>Insert Html Format</value>
+  </data>
+  <data name="ItemMultipleChoice" xml:space="preserve">
+    <value>Question Multiple choice</value>
+  </data>
+  <data name="ItemOnechoice" xml:space="preserve">
+    <value>Question One choice</value>
+  </data>
+  <data name="ItemOrdering" xml:space="preserve">
+    <value>Question Ordering</value>
+  </data>
+  <data name="ItemPicture" xml:space="preserve">
+    <value>Insert Picture</value>
+  </data>
+  <data name="ItemPlacement" xml:space="preserve">
+    <value>Question Placement</value>
+  </data>
+  <data name="ItemSound" xml:space="preserve">
+    <value>Insert Sound</value>
+  </data>
+  <data name="ItemTTS" xml:space="preserve">
+    <value>Text to Speech</value>
+  </data>
+  <data name="ItemTypeId" xml:space="preserve">
+    <value>Item Type</value>
+  </data>
+  <data name="ItemVideo" xml:space="preserve">
+    <value>Insert Video</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="StoreType" xml:space="preserve">
+    <value>Store Type</value>
+  </data>
 </root>

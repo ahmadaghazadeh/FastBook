@@ -254,6 +254,8 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController .cs" />
+    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Controllers\PackController.cs" />
@@ -269,6 +271,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttachmentsModel.cs" />
+    <Compile Include="Models\IconHtml.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Page.cs" />
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\ResType.cs" />
     <Compile Include="Models\ResPack.cs" />
@@ -297,11 +302,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\errors.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\gridmvc.datepicker.css" />
     <Content Include="Content\gridmvc.datepicker.min.css" />
     <Content Include="Content\images\error.jpg" />
     <Content Include="Content\images\ibook.png" />
+    <Content Include="Content\images\pageType1.svg" />
+    <Content Include="Content\images\pageType2.svg" />
+    <Content Include="Content\images\pageType3.svg" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -348,6 +357,7 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
@@ -761,6 +771,13 @@
     <Content Include="Asset\PACK.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\iransans.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\MaterialIcons-Regular.woff2" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
@@ -832,6 +849,10 @@
     <Content Include="Views\Shared\_SearchImageDialog.cshtml" />
     <Content Include="Views\Lesson\Index.cshtml" />
     <Content Include="Views\Lesson\Insert.cshtml" />
+    <Content Include="Views\Page\Index.cshtml" />
+    <Content Include="Views\Page\Insert.cshtml" />
+    <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\Item\InsertHTML.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">

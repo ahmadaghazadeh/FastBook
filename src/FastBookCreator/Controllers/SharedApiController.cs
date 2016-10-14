@@ -116,5 +116,75 @@ namespace FastBookCreator.Controllers
             }
             return Ok(result);
         }
+
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("Page/SavePage")]
+        public IHttpActionResult SavePage(JObject jObject)
+        {
+            dynamic json = jObject;
+            string userId = json.userId.ToString();
+            string packId = json.packId.ToString();
+            string lessonId = json.lessonId.ToString();
+            string pageTypeId = json.pageTypeId.ToString();
+            var page = new Page()
+            {
+                LESSON_ID = long.Parse(lessonId),
+                PAGE_TYPE_ID = long.Parse(pageTypeId),
+            };
+
+            int result;
+            if (json._id.ToObject<int>() == 0)
+            {
+                var insertQuery = @"INSERT INTO [PAGE](LESSON_ID,PAGE_TYPE_ID) VALUES (@LESSON_ID,@PAGE_TYPE_ID);
+                                    select last_insert_rowid();";
+                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, page).Single();
+            }
+            else
+            {
+                var updateQuery = $"UPDATE [PAGE] SET LESSON_ID=@LESSON_ID  ,PAGE_TYPE_ID=@PAGE_TYPE_ID  WHERE _id={json._id} ";
+                SqliteConn.GetPackDb(userId, packId).Execute(updateQuery, page);
+                result = json._id.ToObject<int>();
+            }
+            return Ok(result);
+        }
+
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("Item/SaveItemHTML")]
+        public IHttpActionResult SaveItemHTML(JObject jObject)
+        {
+            dynamic json = jObject;
+            string userId = json.userId.ToString();
+            string packId = json.packId.ToString();
+            string lessonId = json.lessonId.ToString();
+            string itemTypeId = json.itemTypeId.ToString();
+            string pageTypeId = json.pageTypeId.ToString();
+            var item = new Item()
+            {
+                LESSON_ID = long.Parse(lessonId),
+                ITEM_TYPE_ID= long.Parse(itemTypeId),
+                PAGE_ID = long.Parse(pageTypeId),
+                ITEM_TITLE= json.itemTitle,
+                CONTENT= json.contenr
+            };
+
+            int result;
+            if (json._id.ToObject<int>() == 0)
+            {
+                var insertQuery = @"INSERT INTO [ITEM](ITEM_TYPE_ID,PAGE_ID,LESSON_ID,ITEM_TITLE,CONTENT) VALUES (@ITEM_TYPE_ID,@PAGE_ID,@LESSON_ID,@ITEM_TITLE,@CONTENT);
+                                    select last_insert_rowid();";
+                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, item).Single();
+            }
+            else
+            {
+                var updateQuery = $"UPDATE [PAGE] SET ITEM_TYPE_ID=@ITEM_TYPE_ID,PAGE_ID=@PAGE_ID,LESSON_ID=LESSON_ID,ITEM_TITLE=@ITEM_TITLE,CONTENT=@CONTENT  WHERE _id={json._id} ";
+                SqliteConn.GetPackDb(userId, packId).Execute(updateQuery, item);
+                result = json._id.ToObject<int>();
+            }
+            return Ok(result);
+        }
     }
 }

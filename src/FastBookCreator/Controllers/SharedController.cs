@@ -34,9 +34,8 @@ namespace FastBookCreator.Controllers
                     Value = culture,
                     Expires = DateTime.Now.AddYears(1)
                 };
+                Response.Cookies.Add(cookie);
             }
-            Response.Cookies.Add(cookie);
-
             var callerActionRout = Request.GetReferrerUrlByCulture(culture);
 
             return Redirect(callerActionRout);
@@ -107,7 +106,7 @@ namespace FastBookCreator.Controllers
             return View();
         }
 
-        public ActionResult SetCurrentPack(string packId)
+        public void SetCurrentPack(string packId)
         {
             // Save PackId in a cookie
             var cookie = Request.Cookies["_packId"];
@@ -120,15 +119,12 @@ namespace FastBookCreator.Controllers
                     Value = packId,
                     Expires = DateTime.Now.AddYears(1)
                 };
+            
             }
             Response.Cookies.Add(cookie);
-
-            var callerActionRout = Request.GetReferrerUrlByCulture(packId);
-
-            return Redirect(callerActionRout);
         }
 
-        public ActionResult SetUserId(string userId)
+        public void SetUserId(string userId)
         {
             // Save UserId in a cookie
             var cookie = Request.Cookies["_userId"];
@@ -141,12 +137,41 @@ namespace FastBookCreator.Controllers
                     Value = userId,
                     Expires = DateTime.Now.AddYears(1)
                 };
+               
             }
             Response.Cookies.Add(cookie);
+        }
 
-            var callerActionRout = Request.GetReferrerUrlByCulture(userId);
+        public void SetIsAfterCreate(bool isChecked)
+        {
+            var flag = isChecked.ToString().ToLower();
+            // Save UserId in a cookie
+            var cookie = Request.Cookies["_isAfterCreate"];
+            if (cookie != null)
+                cookie.Value = flag; // update cookie value
+            else // create new cookie
+            {
+                cookie = new HttpCookie("_isAfterCreate")
+                {
+                    Value = flag,
+                    Expires = DateTime.Now.AddYears(1)
+                };
+            }
+            Response.Cookies.Add(cookie);
+        }
 
-            return Redirect(callerActionRout);
+        public string GetIsAfterCreate()
+        {
+            // Save UserId in a cookie
+            var cookie = Request.Cookies["_isAfterCreate"];
+            if (cookie != null) return  cookie.Value.ToLower();
+            cookie = new HttpCookie("_isAfterCreate")
+            {
+                Value = "false",
+                Expires = DateTime.Now.AddYears(1)
+            };
+            Response.Cookies.Add(cookie);
+            return cookie.Value.ToLower();
         }
 
         public string GetUserId()

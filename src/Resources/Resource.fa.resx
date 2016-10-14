@@ -342,4 +342,85 @@
   <data name="Clear" xml:space="preserve">
     <value>پاک کردن</value>
   </data>
+  <data name="ErrorPageTypeId" xml:space="preserve">
+    <value>نوع صفحه را مشخض کنید</value>
+  </data>
+  <data name="LessonNumber" xml:space="preserve">
+    <value>شماره صفحه</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>صفحه</value>
+  </data>
+  <data name="PageType" xml:space="preserve">
+    <value>نوع صفحه</value>
+  </data>
+  <data name="PageCreate" xml:space="preserve">
+    <value>ساختن صفحه جدید</value>
+  </data>
+  <data name="FlashCard" xml:space="preserve">
+    <value>فلش کارت</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>سوالی</value>
+  </data>
+  <data name="AfterCreatePage" xml:space="preserve">
+    <value>بعد از ساختن صفحه برو به آیتم ها</value>
+  </data>
+  <data name="CreateItem" xml:space="preserve">
+    <value>ایجاد آیتم جدید</value>
+  </data>
+  <data name="ErrorContent" xml:space="preserve">
+    <value>محتوا را وارد کنید</value>
+  </data>
+  <data name="ErrorItemTitle" xml:space="preserve">
+    <value>عنوان آیتم باید وارد شود</value>
+  </data>
+  <data name="ErrorMedia" xml:space="preserve">
+    <value>را وارد کنید رسانه</value>
+  </data>
+  <data name="ErrorStoreType" xml:space="preserve">
+    <value>نوع ذخیره سازی را انتخاب کنید</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>آیتم ها</value>
+  </data>
+  <data name="ItemFill" xml:space="preserve">
+    <value>سوال پر کردنی</value>
+  </data>
+  <data name="ItemHTML" xml:space="preserve">
+    <value>آیتم با فرمت وب</value>
+  </data>
+  <data name="ItemMultipleChoice" xml:space="preserve">
+    <value>سوال  چند جوابی </value>
+  </data>
+  <data name="ItemOnechoice" xml:space="preserve">
+    <value>سوال یک گزینه ای</value>
+  </data>
+  <data name="ItemOrdering" xml:space="preserve">
+    <value>سوال مرتب سازی</value>
+  </data>
+  <data name="ItemPicture" xml:space="preserve">
+    <value>وارد کردن تصویر</value>
+  </data>
+  <data name="ItemPlacement" xml:space="preserve">
+    <value>سوال جایگزینی</value>
+  </data>
+  <data name="ItemSound" xml:space="preserve">
+    <value>وارد کردن صدا</value>
+  </data>
+  <data name="ItemTTS" xml:space="preserve">
+    <value>متن به کفتار انگلیسی</value>
+  </data>
+  <data name="ItemTypeId" xml:space="preserve">
+    <value>نوع آیتم</value>
+  </data>
+  <data name="ItemVideo" xml:space="preserve">
+    <value>وارد کردن ویدیو</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>چند رسانه ای</value>
+  </data>
+  <data name="StoreType" xml:space="preserve">
+    <value>نوع فروشگاه</value>
+  </data>
 </root>

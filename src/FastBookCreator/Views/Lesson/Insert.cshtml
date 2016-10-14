@@ -1,0 +1,116 @@
+﻿@model  FastBookCreator.Models.Lesson
+
+
+@using System.Drawing
+@using FastBookCreator.Core
+@using FastBookCreator.Models
+<div>
+    @{
+        var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "post",
+            OnSuccess = $"OnSuccess()",
+        };
+    }
+
+    @using (Ajax.BeginForm("SaveLesson", "Lesson", ajaxOptions, new {enctype = "multipart/form-data"}))
+    {
+        <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId"/>
+        <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId"/>
+        <input id="resourceId"  name="resourceId" type="hidden" value="0" />
+        <div class="row">
+
+            <div class="col-md-12">
+                <div>
+                    @Html.MVCImage("imgLesson", @Model.LOGO,$"alt=\"\" data-toggle=\"modal\" data-target=\"#searchModal\" width=\"200\" height=\"150\"")
+                </div>
+            </div>
+
+            <div class="col-md-6 group">
+                <div>
+                    @Html.TextBoxFor(model => model.LESSON_TITLE, new {@class = "form-control", placeholder = Resources.Resource.Name})
+                    @Html.ValidationMessageFor(model => model.LESSON_TITLE)
+                </div>
+                
+
+            </div>
+
+            <div class="col-md-6 group">
+                <div>
+                    <input name="COLOR" id="COLOR" class="jscolor form-control" value=@ColorTranslator.ToHtml(Color.FromArgb(@Model.COLOR))/>
+                </div>
+                <div>
+                    @Html.TextBoxFor(model => model._id, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model._id)
+                </div>
+            </div>
+        </div>
+
+        <div class="row center-block">
+            <button id="submit-all" type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
+            </button>
+        </div>
+    }
+
+</div>
+
+@Html.Partial("_SearchImageDialog")
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.post("../Shared/ResPacks", { where: " ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+                var imeges = "";
+                $.each(data, function (key, value) {
+                    imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                        value.NAME + value.DATA +
+                                      "</div>";
+
+                });
+                $("#images").html(imeges);
+                $("img[id^=img-]").click(imgClick);
+            });
+        });
+
+        $("#txtSearch")
+       .on("keyup",
+           function (ev) {
+               $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" ,userId: "@ViewBag.UserId", packId: "@ViewBag.PackId"}, function (data) {
+                   var imeges = "";
+                   $.each(data, function (key, value) {
+                       imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                           value.NAME + value.DATA +
+                                         "</div>";
+
+                   });
+                   $("#images").html(imeges);
+                   $("img[id^=img-]").click(imgClick);
+               });
+           });
+
+        $(document).ready(function () {
+            $("img[id^=img-]").click(imgClick);
+            if ($("#imgLesson").attr("src")==="") {
+                $("#imgLesson").attr("src", "../Content/images/ibook.png");
+            }
+        });
+
+        var imgClick=function () {
+            // Do stuff, get id of image perhaps?
+            $("#imgLesson").attr("src", this.src);
+            $("#resourceId").val(this.alt);
+            $('#searchModal').modal('toggle');
+        }
+
+        function OnSuccess() {
+            $("#_id").attr("0");
+            toastr.info("@Resources.Resource.Save");
+            $("#LESSON_TITLE").val("");
+            $("#COLOR").val("3433410");
+            $("#imgLesson").attr("src", "../Content/images/ibook.png");
+        }
+    </script>
+}

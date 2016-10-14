@@ -18,13 +18,13 @@ namespace FastBookCreator
                         "~/Scripts/modernizr-*",
                         "~/Scripts/bootstrap-dialog.min.js",
                         "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/bootstrap-select.min.js",
-                      "~/Scripts/gridmvc.js",
-                     "~/Scripts/bootstrap-datepicker.js",
-                     "~/Scripts/gridmvc.lang.fa.js",
-                     "~/Scripts/ckeditor/ckeditor.js",
-                     "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                        "~/Scripts/respond.js",
+                        "~/Scripts/bootstrap-select.min.js",
+                        "~/Scripts/gridmvc.js",
+                       "~/Scripts/bootstrap-datepicker.js",
+                       "~/Scripts/gridmvc.lang.fa.js",
+                       "~/Scripts/ckeditor/ckeditor.js",
+                       "~/Scripts/jquery.unobtrusive-ajax.min.js",
                        "~/Scripts/jscolor.min.js"));
  
  
@@ -37,6 +37,8 @@ namespace FastBookCreator
                       "~/Scripts/dropzone/basic.css",
                      "~/Scripts/dropzone/dropzone.css",
                      "~/Content/bootstrap-dialog.min.css",
+                     "~/Content/bootstrap-dialog.min.css",
+                     "~/Content/font-awesome.min.css",
                        "~/Content/site.css"
                       ));
 
@@ -53,7 +55,7 @@ namespace FastBookCreator
             bundles.Add(new ScriptBundle("~/bundles/clipboard", "https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js").Include("~/Scripts/clipboard.min.js"));
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = Debugger.IsAttached;
+            BundleTable.EnableOptimizations = !Debugger.IsAttached;
         }
     }
 }
