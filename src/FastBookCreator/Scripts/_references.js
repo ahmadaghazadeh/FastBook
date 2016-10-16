@@ -237,4 +237,5 @@
 /// <reference path="respond.min.js" />
 /// <reference path="script.js" />
 /// <reference path="site.js" />
+/// <reference path="tipso.min.js" />
 /// <reference path="toastr.min.js" />
