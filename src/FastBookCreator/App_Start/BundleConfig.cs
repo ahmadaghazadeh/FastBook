@@ -25,6 +25,7 @@ namespace FastBookCreator
                        "~/Scripts/gridmvc.lang.fa.js",
                        "~/Scripts/ckeditor/ckeditor.js",
                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                       "~/Scripts/tipso.min.js",
                        "~/Scripts/jscolor.min.js"));
  
  
@@ -39,7 +40,8 @@ namespace FastBookCreator
                      "~/Content/bootstrap-dialog.min.css",
                      "~/Content/bootstrap-dialog.min.css",
                      "~/Content/font-awesome.min.css",
-                       "~/Content/site.css"
+                       "~/Content/site.css",
+                       "~/Content/tipso.min.css"
                       ));
 
      

@@ -4,13 +4,13 @@
 
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
-    
+
     <div class="btn-group" role="group">
-        <button type="button"  data-toggle="modal"  data-target="#selectItemModal" class="btn btn-default">@Html.ActionLink(@Resources.Resource.CreateItem, "Index", "Item")</button>
+        <button type="button" data-toggle="modal" data-target="#selectItemModal" class="btn btn-default">@Resources.Resource.CreateItem</button>
     </div>
-    
+
 </div>
- 
+
 <div style="padding: 100px;">
     @Html.Grid(Model).Named("dataGrid").Columns(column =>
 {
@@ -19,7 +19,7 @@
         .Encoded(false)
         .Sanitized(false)
         .SetWidth(100)
-        .RenderValueAs(o => "" );
+        .RenderValueAs(o => "");
 
     column.Add(o => o._id)
     .Titled(Resources.Resource.Id)
@@ -71,36 +71,29 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+ <span class="top tipso_style" data-tipso-title="Hello" data-tipso="This is a TIPSO with a title!">content</span>
 
- 
 <div class="modal fade" tabindex="-1" role="dialog" id="selectItemModal" style="margin: 10%">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">@Resources.Resource.Attention</h4>
+                <h4 class="modal-title">@Resources.Resource.Item</h4>
             </div>
             <div class="modal-body">
 
                 <h3>@Resources.Resource.CreateItem</h3>
 
-                <ul class="list-group" >
+                <ul class="list-group">
                     @foreach (var icon in HelperExtensions.ItemIcons().Skip(1).Take(5))
                     {
-                        <li class="list-group-item">
-                            <button value="1" dir="@Resources.Resource.dir" type="button" class="list-group-item pageType">
-                                @icon.Name   @icon.Icon
+                        <li class="list-group-item ">
+                            <button value="@icon.PageName"  style="text-align: @Resources.Resource.TextAlign; width: 100%;" dir="@Resources.Resource.dir" type="button" class="btn btn-default itemType">
+                                @MvcHtmlString.Create(@icon.Icon) &nbsp;&nbsp;  @icon.Name
                             </button>
                         </li>
                     }
                 </ul>
-
-                <div class="input-group" style="padding: 10px;  direction: ltr;">
-                    <span class="input-group-addon">
-                        <input type="checkbox" aria-label="..." id="afterCreatePage">
-                    </span>
-                    <input type="text" class="form-control" aria-label="..." readonly value="@Resources.Resource.AfterCreatePage">
-                </div>
 
             </div>
         </div><!-- /.modal-content -->
@@ -119,6 +112,10 @@
         $("#btnDelete").click(function () {
             toastr.success("@Resources.Resource.DeleteSuccess");
         });
+        $(".itemType").click(function () {
+            
+        });
+        $('.tipso').tipso('show');
 
     </script>
 }

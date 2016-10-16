@@ -152,52 +152,62 @@ namespace FastBookCreator.Core
             {
                 new IconHtml()
                 {
+                    PageName = "InsertHTML",
                     Name = Resource.ItemHTML,
                     Icon = "<i class=\"fa fa-html5\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                  PageName = "InserPicture",
                     Name = Resource.ItemPicture,
                     Icon = "<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                   PageName = "InserSound",
                     Name = Resource.ItemSound,
                     Icon = "<i class=\"fa fa-file-audio-o\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                   PageName = "InserVideo",
                     Name = Resource.ItemVideo,
                     Icon = "<i class=\"fa fa-file-video-o\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                  PageName = "InserTTS",
                     Name = Resource.ItemTTS,
                     Icon = "<span class=\"glyphicon glyphicon-bullhorn\" aria-hidden=\"true\"></span>"
                 },
                 new IconHtml()
                 {
+                   PageName = "InserMultipleChoice",
                     Name = Resource.ItemMultipleChoice,
                     Icon = "<i class=\"fa fa-check-square\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                   PageName = "InserPlacement",
                     Name = Resource.ItemPlacement,
                     Icon = "<i class=\"material-icons\">space_bar</i>"
                 },
 
                 new IconHtml()
                 {
+                 PageName = "InserOrdering",
                     Name = Resource.ItemOrdering,
                     Icon = "<span class=\"glyphicon glyphicon-sort\" aria-hidden=\"true\"></span>"
                 },
                 new IconHtml()
                 {
+                 PageName = "InserFill",
                     Name = Resource.ItemFill,
                     Icon = "<i class=\"material-icons\">mode_edit</i>"
                 },
                 new IconHtml()
                 {
+                 PageName = "InserOnechoice",
                     Name = Resource.ItemOnechoice,
                     Icon = "<i class=\"fa fa-dot-circle-o\" aria-hidden=\"true\"></i>"
                 },

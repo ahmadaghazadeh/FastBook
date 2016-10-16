@@ -426,4 +426,7 @@
   <data name="StoreType" xml:space="preserve">
     <value>Store Type</value>
   </data>
+  <data name="TextAlign" xml:space="preserve">
+    <value>left</value>
+  </data>
 </root>

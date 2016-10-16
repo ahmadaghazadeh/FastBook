@@ -1,7 +1,7 @@
 ﻿/* LOADER */
 jQuery(document).ready(function () {
 
- 
+  
 
     toastr.options = {
         "closeButton": false,
@@ -69,7 +69,7 @@ jQuery(document).ready(function () {
 });
 
 
-;
+ 
 (function (document, window, index) {
     // feature detection for drag&drop upload
     var isAdvancedUpload = function () {
