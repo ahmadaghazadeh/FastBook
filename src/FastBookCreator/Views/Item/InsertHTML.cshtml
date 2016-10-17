@@ -9,22 +9,22 @@
         };
     }
 
-    @using (Ajax.BeginForm("SaveItemHTML", "Item", ajaxOptions, new {enctype = "multipart/form-data"}))
+    @using (Ajax.BeginForm("SaveItemHTML", "Item", ajaxOptions, new { enctype = "multipart/form-data" }))
     {
-        <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId"/>
-        <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId"/>
-        <input id="resourceId"  name="resourceId" type="hidden" value="0" />
+        <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId" />
+        <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
+        <input id="resourceId" name="resourceId" type="hidden" value="0" />
         <div class="row">
 
 
             <div class="col-md-6 group">
                 <div>
-                    @Html.TextBoxFor(model => model._id, new {@class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly"})
+                    @Html.TextBoxFor(model => model._id, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model._id)
                 </div>
 
                 <div>
-                    @Html.TextBoxFor(model => model.ITEM_TITLE, new {@class = "form-control", placeholder = Resources.Resource.Name})
+                    @Html.TextBoxFor(model => model.ITEM_TITLE, new { @class = "form-control", placeholder = Resources.Resource.Name })
                     @Html.ValidationMessageFor(model => model.ITEM_TITLE)
                 </div>
 
@@ -32,17 +32,17 @@
 
             <div class="col-md-6 group">
                 <div>
-                    @Html.TextBoxFor(model => model.ITEM_TYPE_ID, new {@class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly"})
+                    @Html.TextBoxFor(model => model.ITEM_TYPE_ID, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.ITEM_TYPE_ID)
                 </div>
                 <div>
-                    @Html.TextBoxFor(model => model.LESSON_ID, new {@class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly"})
+                    @Html.TextBoxFor(model => model.LESSON_ID, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.LESSON_ID)
                 </div>
             </div>
 
             <div class="col-md-12 group">
-                <textarea cols="80" id="editor1" name="editor1" rows="10">
+                <textarea class="code" cols="80" id="editor1" name="editor1" rows="10" style="     direction: ltr ">
                     &lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;
                 </textarea>
             </div>
@@ -62,9 +62,16 @@
 @section scripts
 {
     <script type="text/javascript">
-        
+
         CKEDITOR.replace('editor1', {
-      
+            extraPlugins: 'codesnippet'
+        });
+
+        document.getElementsByTag("code").bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+            alert("The text has been changed.");
+        });
+        $(".hljs").bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+            alert("The text has been changed.");
         });
 
         $(document).ready(function () {
@@ -84,7 +91,7 @@
         $("#txtSearch")
             .on("keyup",
                 function (ev) {
-                    $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" ,userId: "@ViewBag.UserId", packId: "@ViewBag.PackId"}, function (data) {
+                    $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
                         var imeges = "";
                         $.each(data, function (key, value) {
                             imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
@@ -99,12 +106,12 @@
 
         $(document).ready(function () {
             $("img[id^=img-]").click(imgClick);
-            if ($("#imgLesson").attr("src")==="") {
+            if ($("#imgLesson").attr("src") === "") {
                 $("#imgLesson").attr("src", "../Content/images/ibook.png");
             }
         });
 
-        var imgClick=function () {
+        var imgClick = function () {
             // Do stuff, get id of image perhaps?
             $("#imgLesson").attr("src", this.src);
             $("#resourceId").val(this.alt);
