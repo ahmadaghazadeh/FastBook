@@ -1,8 +1,5 @@
 ﻿@model  FastBookCreator.Models.Item
 
-
-@using System.Drawing
-@using FastBookCreator.Core
 <div>
     @{
         var ajaxOptions = new AjaxOptions
@@ -67,13 +64,8 @@
     <script type="text/javascript">
         
         CKEDITOR.replace('editor1', {
-            uiColor: '#AAEAAA'
+      
         });
-
-        CKEDITOR.editorConfig = function (config) {
-            config.language = 'fa';
-            config.uiColor = '#11DC11';
-        };
 
         $(document).ready(function () {
             $.post("../Shared/ResPacks", { where: " ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {

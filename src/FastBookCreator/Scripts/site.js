@@ -1,7 +1,6 @@
 ﻿/* LOADER */
 jQuery(document).ready(function () {
 
-  
 
     toastr.options = {
         "closeButton": false,
@@ -228,3 +227,4 @@ jQuery(document).ready(function () {
    
 }(document, window, 0));
 
+ 

@@ -6,7 +6,7 @@
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
 
     <div class="btn-group" role="group">
-        <button type="button" data-toggle="modal" data-target="#selectItemModal" class="btn btn-default">@Resources.Resource.CreateItem</button>
+        <button type="button"  data-toggle="modal" data-target="#selectItemModal" class="btn btn-default">@Resources.Resource.CreateItem</button>
     </div>
 
 </div>
@@ -70,9 +70,8 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
- <span class="top tipso_style" data-tipso-title="Hello" data-tipso="This is a TIPSO with a title!">content</span>
-
+ 
+ 
 <div class="modal fade" tabindex="-1" role="dialog" id="selectItemModal" style="margin: 10%">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -85,11 +84,12 @@
                 <h3>@Resources.Resource.CreateItem</h3>
 
                 <ul class="list-group">
-                    @foreach (var icon in HelperExtensions.ItemIcons().Skip(1).Take(5))
+                    @foreach (var icon in HelperExtensions.ItemIcons().Take(5))
                     {
                         <li class="list-group-item ">
-                            <button value="@icon.PageName"  style="text-align: @Resources.Resource.TextAlign; width: 100%;" dir="@Resources.Resource.dir" type="button" class="btn btn-default itemType">
-                                @MvcHtmlString.Create(@icon.Icon) &nbsp;&nbsp;  @icon.Name
+                            <button value="@icon.PageName" onclick="location.href='@Url.Action(icon.PageName, "Item")';"   style="text-align:  @Resources.Resource.TextAlign; width: 100%;" dir="@Resources.Resource.dir" type="button" class="btn btn-default itemType">
+                                @MvcHtmlString.Create(@icon.Icon) &nbsp;&nbsp;  
+                                 @icon.Name 
                             </button>
                         </li>
                     }
@@ -115,7 +115,6 @@
         $(".itemType").click(function () {
             
         });
-        $('.tipso').tipso('show');
-
+        
     </script>
 }
