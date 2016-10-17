@@ -141,8 +141,8 @@
   <data name="Pack" xml:space="preserve">
     <value>بسته آموزشی </value>
   </data>
-  <data name="PackId" xml:space="preserve">
-    <value>شماره بسته</value>
+  <data name="Id" xml:space="preserve">
+    <value>شماره </value>
   </data>
   <data name="PackName" xml:space="preserve">
     <value>نام بسته</value>
@@ -267,11 +267,8 @@
   <data name="dictResponseError" xml:space="preserve">
     <value>سرور با {{statusCode}}  کد پاسخ دادند.</value>
   </data>
-  <data name="DropFiles" xml:space="preserve">
-    <value>رها کردن فایل در اینجا برای آپلود</value>
-  </data>
   <data name="dictDefaultMessage" xml:space="preserve">
-    <value>رها کردن فایل در اینجا برای آپلود</value>
+    <value>رها کردن فایل در اینجا برای آپلود (عرض : 400 - ارتفای : 300)</value>
   </data>
   <data name="ErrorSaveImage" xml:space="preserve">
     <value>خطا هنگام ذخیره فایل تصویر</value>
@@ -290,5 +287,143 @@
   </data>
   <data name="Close" xml:space="preserve">
     <value>بستن</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>انتخاب تصویر</value>
+  </data>
+  <data name="SeachImage" xml:space="preserve">
+    <value>جستجوی تصویر</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>ذخیرات ثبت گردید</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+  <data name="DeletePrompt" xml:space="preserve">
+    <value>می خواهید حذف کنید؟</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>توجه</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>حذف شد</value>
+  </data>
+  <data name="UnSuccess" xml:space="preserve">
+    <value>خطای رخ داده است</value>
+  </data>
+  <data name="ImagesSizeError" xml:space="preserve">
+    <value>اندازه تصویر باید با عرض 400 و ارتفاع 300 باشد</value>
+  </data>
+  <data name="SelectPack" xml:space="preserve">
+    <value>لطفا بسته آموزشی را مشخص کنید</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>خروج از سیستم</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>خروج از سیستم</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
+  <data name="ErrorLessonTitle" xml:space="preserve">
+    <value>عنوان درس را وارد کنید</value>
+  </data>
+  <data name="Lesson" xml:space="preserve">
+    <value>درس</value>
+  </data>
+  <data name="LessonCreate" xml:space="preserve">
+    <value>ساختن درس جدید</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>پاک کردن</value>
+  </data>
+  <data name="ErrorPageTypeId" xml:space="preserve">
+    <value>نوع صفحه را مشخض کنید</value>
+  </data>
+  <data name="LessonNumber" xml:space="preserve">
+    <value>شماره صفحه</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>صفحه</value>
+  </data>
+  <data name="PageType" xml:space="preserve">
+    <value>نوع صفحه</value>
+  </data>
+  <data name="PageCreate" xml:space="preserve">
+    <value>ساختن صفحه جدید</value>
+  </data>
+  <data name="FlashCard" xml:space="preserve">
+    <value>فلش کارت</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>سوالی</value>
+  </data>
+  <data name="AfterCreatePage" xml:space="preserve">
+    <value>بعد از ساختن صفحه برو به آیتم ها</value>
+  </data>
+  <data name="CreateItem" xml:space="preserve">
+    <value>ایجاد آیتم جدید</value>
+  </data>
+  <data name="ErrorContent" xml:space="preserve">
+    <value>محتوا را وارد کنید</value>
+  </data>
+  <data name="ErrorItemTitle" xml:space="preserve">
+    <value>عنوان آیتم باید وارد شود</value>
+  </data>
+  <data name="ErrorMedia" xml:space="preserve">
+    <value>را وارد کنید رسانه</value>
+  </data>
+  <data name="ErrorStoreType" xml:space="preserve">
+    <value>نوع ذخیره سازی را انتخاب کنید</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>آیتم ها</value>
+  </data>
+  <data name="ItemFill" xml:space="preserve">
+    <value>سوال پر کردنی</value>
+  </data>
+  <data name="ItemHTML" xml:space="preserve">
+    <value>آیتم با فرمت وب</value>
+  </data>
+  <data name="ItemMultipleChoice" xml:space="preserve">
+    <value>سوال  چند جوابی </value>
+  </data>
+  <data name="ItemOnechoice" xml:space="preserve">
+    <value>سوال یک گزینه ای</value>
+  </data>
+  <data name="ItemOrdering" xml:space="preserve">
+    <value>سوال مرتب سازی</value>
+  </data>
+  <data name="ItemPicture" xml:space="preserve">
+    <value>وارد کردن تصویر</value>
+  </data>
+  <data name="ItemPlacement" xml:space="preserve">
+    <value>سوال جایگزینی</value>
+  </data>
+  <data name="ItemSound" xml:space="preserve">
+    <value>وارد کردن صدا</value>
+  </data>
+  <data name="ItemTTS" xml:space="preserve">
+    <value>متن به کفتار انگلیسی</value>
+  </data>
+  <data name="ItemTypeId" xml:space="preserve">
+    <value>نوع آیتم</value>
+  </data>
+  <data name="ItemVideo" xml:space="preserve">
+    <value>وارد کردن ویدیو</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>چند رسانه ای</value>
+  </data>
+  <data name="StoreType" xml:space="preserve">
+    <value>نوع فروشگاه</value>
+  </data>
+  <data name="TextAlign" xml:space="preserve">
+    <value>right</value>
   </data>
 </root>

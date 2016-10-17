@@ -54,7 +54,7 @@ namespace FastBookCreator.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public string Create([Bind(Exclude = "id")] Item model)
+        public string Create([Bind(Exclude = "id")] Entities.Item model)
         {
             string msg;
             try
@@ -79,7 +79,7 @@ namespace FastBookCreator.Controllers
 
 
         [System.Web.Mvc.HttpPost]
-        public string Edit(Item model)
+        public string Edit(Entities.Item model)
         {
             string msg;
             try

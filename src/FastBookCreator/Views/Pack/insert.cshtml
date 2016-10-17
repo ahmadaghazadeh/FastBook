@@ -1,74 +1,89 @@
 ﻿@model  FastBookCreator.Models.Pack
+
+
+@using System.Drawing
 @using FastBookCreator.Core
-@Styles.Render("~/Content/dropzonescss")
-@Scripts.Render("~/bundles/dropzonescripts")
+@using FastBookCreator.Models
 <div>
 
-    @using (Html.BeginForm("SavePack", "Pack", FormMethod.Post,new {enctype="multipart/form-data"}))
+    @{
+        var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "post",
+            OnSuccess = "UploadFile(data,0)",
+            OnBegin = "return OnBegin()"
+        };
+    }
+
+    <div class="jumbotron">
+        @using (Html.BeginForm("SaveUploadedFile", "Shared", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
+        {
+            <div class="fallback">
+                <input name="file" type="file" multiple />
+            </div>
+            <input id="_id" class="form-control" name="_id" type="hidden" value="0" />
+            <input id="typeId" class="form-control" name="typeId" type="hidden" value="0" />
+        }
+    </div>
+    @using (Ajax.BeginForm("SavePack", "Pack", ajaxOptions, new { enctype = "multipart/form-data" }))
     {
-        @Html.ValidationSummary(true)
-        
         <div class="row">
+
             <div class="col-md-6 group">
                 <div>
-                    @Html.TextBoxFor(model => model.PackName, new {@class = "form-control", placeholder = Resources.Resource.PackName})
-                    @Html.ValidationMessageFor(model => model.PackName)
+
+                    @Html.TextBoxFor(model => model.PACK_NAME, new { @class = "form-control", placeholder = Resources.Resource.PackName })
+                    @Html.ValidationMessageFor(model => model.PACK_NAME)
                 </div>
                 <div>
-                    @Html.DropDownList("methodId", HelperExtensions.GetMethods().Select(item => new SelectListItem
-                    {
-                        Value = item._id.ToString(),
-                        Text = item.METHOD_NAME.ToString(),
-                        Selected = false
-                    }), @Resources.Resource.MethodSelect, new {@class = "form-control btn btn-default dropdown-toggle"})
+                    @Html.TextBoxFor(model => model.DESCRIPTION, new { @class = "form-control", placeholder = Resources.Resource.Description })
+                    @Html.ValidationMessageFor(model => model.DESCRIPTION)
                 </div>
+
                 <div>
-                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = Resources.Resource.Description })
-                    @Html.ValidationMessageFor(model => model.Description)
+                    <input name="COLOR" id="COLOR" class="jscolor form-control" value=@ColorTranslator.ToHtml(Color.FromArgb(@Model.COLOR)) />
+
                 </div>
             </div>
 
             <div class="col-md-6 group">
-                <div>
-                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = Resources.Resource.Description })
-                    @Html.ValidationMessageFor(model => model.Description)
-                </div>
-                <div>
-                    @Html.DropDownList("subjectId", HelperExtensions.GetSubjects().Select(item => new SelectListItem
-                    {
-                        Value = item._id.ToString(),
-                        Text = item.SUBJECT_NAME.ToString(),
-                        Selected = false
-                    }), @Resources.Resource.SubjectSelect, new {@class = "form-control btn btn-default dropdown-toggle"})
-                </div>
-                <div class="jumbotron">
-                    <div class="dropzone" id="dropzoneForm">
-                        <div class="fallback">
-                            <input class="form-control" name="file" type="file" multiple />
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+                <div>
+                    @Html.TextBoxFor(model => model._id, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model._id)
+                </div>
+                <div>
+                    @Html.DropDownList("METHOD_ID", HelperExtensions.GetMethods().Select(item => new SelectListItem
+               {
+                   Value = item._id.ToString(),
+                   Text = item.METHOD_NAME.ToString(),
+                   Selected = false
+               }), @Resources.Resource.MethodSelect, new { @class = "form-control btn btn-default dropdown-toggle" })
+                </div>
+
+                <div>
+                    @Html.DropDownList("SUBJECT_ID", HelperExtensions.GetSubjects().Select(item => new SelectListItem
+               {
+                   Value = item._id.ToString(),
+                   Text = item.SUBJECT_NAME.ToString(),
+                   Selected = false
+               }), @Resources.Resource.SubjectSelect, new { @class = "form-control btn btn-default dropdown-toggle" })
+                </div>
+
+            </div>
 
         </div>
 
         <div class="row center-block">
-            <button type="submit" class="btn btn-default">
+            <button id="submit-all" type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
             </button>
         </div>
     }
 
- 
-
 </div>
 
-<style type="text/css">
-    .dz-max-files-reached {
-        background-color: red;
-    }
-</style>
+
 
 @*  <textarea cols="80" id="editor1" name="editor1" rows="10">
             &lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;
@@ -89,5 +104,111 @@
 
 @section scripts
 {
-    
+    <script type="text/javascript">
+
+        var ImageWidth = 400, ImageHeight = 300;
+
+        var UploadFile = function (data, typeId) {
+            $("#_id").attr("value", data);
+            $("#typeId").attr("value", typeId);
+            dropzoneForm.processQueue();
+            toastr.info("@Resources.Resource.Save");
+            $("#SUBJECT_ID").val("");
+            $("#PACK_NAME").val("");
+            $("#METHOD_ID").val("");
+            $("#_id").val("0");
+            $("#COLOR").val("3433410");
+            $("#DESCRIPTION").val("");
+
+            dropzoneForm.removeAllFiles(true);
+            dropzoneForm.on("complete", function (file) {
+                dropzoneForm.removeFile(file);
+            });
+
+        }
+        var OnBegin = function (data, typeId) {
+               if (dropzoneForm.getQueuedFiles().length === 0 &&
+               dropzoneForm.getUploadingFiles().length === 0 &&
+               dropzoneForm.getAcceptedFiles().length===0) {
+                toastr.warning("@Resources.Resource.ErrorLogo");
+                return false;
+            }
+            return true;
+        }
+        //File Upload response from the server
+        Dropzone.options.dropzoneForm = {
+            autoProcessQueue: false,
+            maxFiles: 1,
+            maxFilesize: 0.1,
+            dictDefaultMessage: "@Resources.Resource.dictDefaultMessage",
+            dictFallbackText: "@Resources.Resource.dictFallbackText",
+            dictFileTooBig: "@Resources.Resource.dictFileTooBig",
+            dictInvalidFileType: "@Resources.Resource.dictInvalidFileType",
+            dictResponseError: "@Resources.Resource.dictResponseError",
+            dictCancelUpload: "@Resources.Resource.dictCancelUpload",
+            dictCancelUploadConfirmation: "@Resources.Resource.dictCancelUploadConfirmation",
+            dictRemoveFile: "@Resources.Resource.dictRemoveFile",
+            dictMaxFilesExceeded: "@Resources.Resource.dictMaxFilesExceeded",
+            init: function () {
+                dropzoneForm = this;
+                this.on("maxfilesexceeded", function (data) {
+                    var res = eval('(' + data.xhr.responseText + ')');
+                });
+
+
+                this.on("addedfile", function (file) {
+                    // Create the remove button
+                    var removeButton = Dropzone.createElement("<button class=\"btn btn-default\"><span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>&nbsp;&nbsp; @Resources.Resource.Delete </button>");
+                    // Capture the Dropzone instance as closure.
+                    var _this = this;
+                    // Listen to the click event
+                    removeButton.addEventListener("click", function (e) {
+                        // Make sure the button click doesn't submit the form:
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Remove the file preview.
+                        _this.removeFile(file);
+                        // If you want to the delete the file on the server as well,
+                        // you can do the AJAX request here.
+                    });
+                    // Add the button to the file preview element.
+                    file.previewElement.appendChild(removeButton);
+                });
+
+
+                this.on("thumbnail", function (file) {
+                    // Do the dimension checks you want to do
+                    if (file.width > ImageWidth || file.height > ImageHeight) {
+                        file.rejectDimensions();
+                    }
+                    else {
+                        file.acceptDimensions();
+                    }
+                });
+
+                @if (ViewBag.isEdit.ToString().Equals("1"))
+                {
+                <text>
+                    var mockFile = {
+                        name: "pack.png",
+                        size: 12345,
+                        accepted: true,
+                        kind: 'image'
+                    }
+                    var image = "data:image/jpg;base64,@Convert.ToBase64String(Model.LOGO)";
+                    dropzoneForm.emit("addedfile", mockFile);
+                    dropzoneForm.files.push(mockFile);
+                    dropzoneForm.createThumbnailFromUrl(mockFile, image, function () {
+                        dropzoneForm.emit("complete", mockFile);
+                    });
+                </text>
+                }
+            },
+
+            accept: function(file, done) {
+                file.acceptDimensions = done;
+                file.rejectDimensions = function() { done("@Resources.Resource.ImagesSizeError"); };
+              }
+        }
+    </script>
 }

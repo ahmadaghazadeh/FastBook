@@ -10,30 +10,30 @@ namespace FastBookCreator.Models
     public class Pack
     {
         
-        [Required(ErrorMessageResourceType = typeof(ResPack), ErrorMessageResourceName = "ErrorLogo")]
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Logo")]
-        public byte[] Logo { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorLogo")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Logo")]
+        public byte[] LOGO { get; set; }
 
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "PackId", SortEnabled = true)]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Id", SortEnabled = true)]
         public long _id { get; set; }
-        [Required(ErrorMessageResourceType = typeof(ResPack), ErrorMessageResourceName = "ErrorPackName")]
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "PackName", SortEnabled = true)]
-        public string PackName { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorPackName")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "PackName", SortEnabled = true)]
+        public string PACK_NAME { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ResPack), ErrorMessageResourceName = "ErrorMethodId")]
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "MethodId", SortEnabled = true)]
-        public string MethodId { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorMethodId")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "MethodId", SortEnabled = true)]
+        public string METHOD_ID { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ResPack), ErrorMessageResourceName = "ErrorSubjectId")]
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "SubjectId", SortEnabled = true)]
-        public string SubjectId { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorSubjectId")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "SubjectId", SortEnabled = true)]
+        public string SUBJECT_ID { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ResPack), ErrorMessageResourceName = "ErrorColor")]
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Color")]
-        public string Color { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorColor")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Color")]
+        public int COLOR { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ResPack), ErrorMessageResourceName = "ErrorDescription")]
-        [GridColumnDisplay(ResourceType = typeof(ResPack), Name = "Description", SortEnabled = true)]
-        public string Description { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorDescription")]
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Description", SortEnabled = true)]
+        public string DESCRIPTION { get; set; }
     }
 }

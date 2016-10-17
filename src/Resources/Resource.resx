@@ -141,8 +141,8 @@
   <data name="Pack" xml:space="preserve">
     <value>Package</value>
   </data>
-  <data name="PackId" xml:space="preserve">
-    <value>PackId</value>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="PackName" xml:space="preserve">
     <value>Package Name</value>
@@ -247,7 +247,7 @@
     <value>Are you sure you want to cancel this upload?</value>
   </data>
   <data name="dictDefaultMessage" xml:space="preserve">
-    <value>Drop files here to upload</value>
+    <value>Drop files here to upload (width: 400 - Height: 300)</value>
   </data>
   <data name="dictFallbackMessage" xml:space="preserve">
     <value>Your browser does not support drag'n'drop file uploads.</value>
@@ -287,5 +287,146 @@
   </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>Select image</value>
+  </data>
+  <data name="SeachImage" xml:space="preserve">
+    <value>Search Image</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>Save successful</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DeletePrompt" xml:space="preserve">
+    <value>You want to delete?</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>Delete Success</value>
+  </data>
+  <data name="UnSuccess" xml:space="preserve">
+    <value>An error occurred</value>
+  </data>
+  <data name="ImagesSizeError" xml:space="preserve">
+    <value>Image Size Error image size to a width of 400 and a height of 300 is</value>
+  </data>
+  <data name="SelectPack" xml:space="preserve">
+    <value>Please specify Training Package</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="ErrorLessonTitle" xml:space="preserve">
+    <value>Enter Course</value>
+  </data>
+  <data name="Lesson" xml:space="preserve">
+    <value>Lesson</value>
+  </data>
+  <data name="LessonCreate" xml:space="preserve">
+    <value>Create new lesson</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ErrorPageTypeId" xml:space="preserve">
+    <value>Select Page Type</value>
+  </data>
+  <data name="FlashCard" xml:space="preserve">
+    <value>FlashCard</value>
+  </data>
+  <data name="LessonNumber" xml:space="preserve">
+    <value>LessonNumber</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="PageCreate" xml:space="preserve">
+    <value>Create new page</value>
+  </data>
+  <data name="PageType" xml:space="preserve">
+    <value>Page Type</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="AfterCreatePage" xml:space="preserve">
+    <value>After the page Go to the Item</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="CreateItem" xml:space="preserve">
+    <value>Create new item</value>
+  </data>
+  <data name="ErrorContent" xml:space="preserve">
+    <value>Enter content</value>
+  </data>
+  <data name="ErrorItemTitle" xml:space="preserve">
+    <value>Items must be entered as</value>
+  </data>
+  <data name="ErrorMedia" xml:space="preserve">
+    <value>Enter Media</value>
+  </data>
+  <data name="ErrorStoreType" xml:space="preserve">
+    <value>Enter Store Type</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="ItemFill" xml:space="preserve">
+    <value>Question Fill</value>
+  </data>
+  <data name="ItemHTML" xml:space="preserve">
+    <value>Insert Html Format</value>
+  </data>
+  <data name="ItemMultipleChoice" xml:space="preserve">
+    <value>Question Multiple choice</value>
+  </data>
+  <data name="ItemOnechoice" xml:space="preserve">
+    <value>Question One choice</value>
+  </data>
+  <data name="ItemOrdering" xml:space="preserve">
+    <value>Question Ordering</value>
+  </data>
+  <data name="ItemPicture" xml:space="preserve">
+    <value>Insert Picture</value>
+  </data>
+  <data name="ItemPlacement" xml:space="preserve">
+    <value>Question Placement</value>
+  </data>
+  <data name="ItemSound" xml:space="preserve">
+    <value>Insert Sound</value>
+  </data>
+  <data name="ItemTTS" xml:space="preserve">
+    <value>Text to Speech</value>
+  </data>
+  <data name="ItemTypeId" xml:space="preserve">
+    <value>Item Type</value>
+  </data>
+  <data name="ItemVideo" xml:space="preserve">
+    <value>Insert Video</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="StoreType" xml:space="preserve">
+    <value>Store Type</value>
+  </data>
+  <data name="TextAlign" xml:space="preserve">
+    <value>left</value>
   </data>
 </root>

@@ -16,36 +16,32 @@ namespace FastBookCreator
                         "~/Scripts/site.js",
                         "~/Scripts/dropzone/dropzone.js",
                         "~/Scripts/modernizr-*",
-                        "~/Scripts/bootstrap-dialog.min.js"));
+                        "~/Scripts/bootstrap-dialog.min.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/respond.js",
+                        "~/Scripts/bootstrap-select.min.js",
+                        "~/Scripts/gridmvc.js",
+                       "~/Scripts/bootstrap-datepicker.js",
+                       "~/Scripts/gridmvc.lang.fa.js",
+                       "~/Scripts/ckeditor/ckeditor.js",
+                       "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                       "~/Scripts/tipso.min.js",
+                       "~/Scripts/jscolor.min.js"));
  
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/bootstrap-select.min.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/Gridmvc").Include(
-                     "~/Scripts/gridmvc.min.js",
-                     "~/Scripts/bootstrap-datepicker.js",
-                     "~/Scripts/gridmvc.lang.fa.js"));
-
-          
  
-            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
-                 "~/Scripts/ckeditor/ckeditor.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
-                "~/Scripts/ckeditor/ckeditor.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
                       "~/Content/bootstrap-theme.min.css",
                       "~/Content/bootstrap-select.css",
                       "~/Content/toastr.min.css",
                       "~/Scripts/dropzone/basic.css",
                      "~/Scripts/dropzone/dropzone.css",
-                     "~/Content/bootstrap-dialog.min.css"
+                     "~/Content/bootstrap-dialog.min.css",
+                     "~/Content/bootstrap-dialog.min.css",
+                     "~/Content/font-awesome.min.css",
+                       "~/Content/site.css",
+                       "~/Content/tipso.min.css"
                       ));
 
      
@@ -54,13 +50,6 @@ namespace FastBookCreator
                      "~/Content/Gridmvc.css",
                      "~/Content/gridmvc.datepicker.min.css"));
 
-            bundles.Add(new StyleBundle("~/Content/shiny").Include(
-                     "~/Content/shiny.css"));
- 
-
-            bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
-                    "~/Content/Gridmvc.css",
-                    "~/Content/gridmvc.datepicker.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/errors").Include(
                    "~/Content/errors.css"));

@@ -1,7 +1,7 @@
 ﻿@using FastBookCreator.Core
 
 <h2>@ViewBag.Title</h2>
-@Styles.Render("~/Content/shiny")
+
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group" role="group">
@@ -9,106 +9,51 @@
     </div>
 </div>
 
-@*<div style="padding: 100px;">
-        @Html.Grid(HelperExtensions.GetResPacks()).Columns(columns =>
-    {
-
-        columns.Add(o => o.NAME)
-        .Titled(Resources.Resource.Name)
-        .RenderValueAs(o => o.NAME);
-
-        columns.Add(o => o.DATA)
-        .Titled(Resources.Resource.Image)
-        .Encoded(false)
-        .Sanitized(false)
-        .RenderValueAs(o => Html.ByteImage(o.DATA, 150));
-    })*@
-
-@{var resPacks = HelperExtensions.GetResPacks();}
-
-<div class="col-sm-12">
-    <input id="txtSearch" type="text" class="form-control" placeholder="Search for...">
-    <span class="input-group-btn">
-    </span>
-</div><!-- /.col-lg-6 -->
-
-<div class="container">
-    <div class="row">
-        <div id="images">
-            @foreach (var item in resPacks)
-            {
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" width="150" height="150">
-                    @item.NAME
-                    @Html.MVCImage(item._id.ToString(), item.DATA, $"class=\"img-responsive\" alt=\"{item._id.ToString()}\" ")
-                </div>
-            }
-        </div>
-    </div>
+<img id="imgPack" src="../../Content/images/ibook.png" alt="" data-toggle="modal" data-target="#searchModal" width="200" height="150" />
+@*
+<div id="other">
+    Trigger the handler
 </div>
+*@
 
+@Html.Partial("_SearchImageDialog")
 
-
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div id="other">
-        Trigger the handler
-    </div>
-
-
-    @section scripts
+@section scripts
 {
-        <script>
-            //$("#other")
-            //    .click(function () {
-            //        toastr.info('سلام خوبی ؟');
-            //    });
+    <script>
+      
+        $(document).ready(function () {
+            $.post("../Shared/ResPacks", { where: " " }, function (data) {
+                var imeges = "";
+                $.each(data, function (key, value) {
+                    imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                        value.NAME + value.DATA +
+                                      "</div>";
 
-            $(document).ready(function () {
-                //toastr.info('سلام خوبی ؟');
-
-
-
-                function myFunction() {
-                    BootstrapDialog.alert('I want banana!');
-                }
-
+                });
+                $("#images").html(imeges);
             });
+        });
+        $("#txtSearch")
+       .on("keyup",
+           function (ev) {
+               $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" }, function (data) {
+                   var imeges = "";
+                   $.each(data, function (key, value) {
+                       imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                           value.NAME + value.DATA +
+                                         "</div>";
 
-            $("#txtSearch")
-          .on("keyup",
-              function (ev) {
-                  $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" }, function (data) {
+                   });
+                   $("#images").html(imeges);
+               });
+           });
+        $("img[id^=img-]").on("click", function () {
+            // Do stuff, get id of image perhaps?
 
-                      var imeges = ""
-                      $.each(data, function (key, value) {
-                          imeges = imeges + "<div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-6\" width=\"150\" height=\"150\">" +
-                              value.NAME + value.DATA +
-                              "</div>";
+            $("#imgPack").attr("src", this.src);
+            $('#searchModal').modal('toggle');
+        });
 
-                      });
-
-                      $("#images").html(imeges);
-
-
-                  })
-              });
-
-        </script>
-    }
-
-
+    </script>
+}

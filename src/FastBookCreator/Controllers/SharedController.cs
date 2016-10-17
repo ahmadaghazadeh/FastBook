@@ -11,10 +11,12 @@ using System.IO;
 using System.Data.SQLite;
 using Dapper;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using Resources;
 
 namespace FastBookCreator.Controllers
 {
-    [System.Web.Mvc.AllowAnonymous]
+    [AllowAnonymous]
     public class SharedController : BaseController
     {
         public ActionResult SetCulture(string culture)
@@ -24,7 +26,7 @@ namespace FastBookCreator.Controllers
             // Save culture in a cookie
             HttpCookie cookie = Request.Cookies["_culture"];
             if (cookie != null)
-                cookie.Value = culture;   // update cookie value
+                cookie.Value = culture; // update cookie value
             else // create new cookie
             {
                 cookie = new HttpCookie("_culture")
@@ -32,53 +34,66 @@ namespace FastBookCreator.Controllers
                     Value = culture,
                     Expires = DateTime.Now.AddYears(1)
                 };
+                Response.Cookies.Add(cookie);
             }
-            Response.Cookies.Add(cookie);
-
             var callerActionRout = Request.GetReferrerUrlByCulture(culture);
 
             return Redirect(callerActionRout);
         }
 
-        public ActionResult SaveUploadedFile()
+        public ActionResult SaveUploadedFile(ResType resType)
         {
-            bool isSavedSuccessfully = true;
-            string fName = "";
+            var isSavedSuccessfully = false;
+            var fName = "";
             var resList = new List<ResPack>();
             foreach (string fileName in Request.Files)
             {
-                HttpPostedFileBase file = Request.Files[fileName];
-                fName = file.FileName;
-                if (file != null && file.ContentLength > 0)
+                var file = Request.Files[fileName];
+                if (file != null)
                 {
-                    MemoryStream target = new MemoryStream();
-                    file.InputStream.CopyTo(target);
-                    byte[] data = target.ToArray();
-                    resList.Add(
-                        new ResPack
-                        {
-                            NAME = fName,
-                            DATA = data
-                        }
-                        );
-                  }
+                    fName = file.FileName;
+                    if (file.ContentLength > 0)
+                    {
+                        var target = new MemoryStream();
+                        file.InputStream.CopyTo(target);
+                        var data = target.ToArray();
+                        resList.Add(
+                            new ResPack
+                            {
+                                NAME = fName,
+                                DATA = data
+                            }
+                            );
+                    }
+                }
+                isSavedSuccessfully = true;
 
             }
-            using (var db = SqliteConn.GetPackDb())
+
+            var insertQuery = "";
+            var result = 0;
+            switch (resType.typeId)
             {
-                string insertQuery = @"INSERT INTO [RESOURCE](NAME,DATA) VALUES (@NAME,@DATA)";
-                var result = db.Execute(insertQuery, resList);
+                case ResTypeID.Common:
+                    insertQuery = @"UPDATE PACKS set LOGO=@LOGO WHERE _id=@id";
+                    result = SqliteConn.GetCommonDb()
+                        .Execute(insertQuery, new { id = resType._id, LOGO = resList[0].DATA });
+                    break;
+
+                case ResTypeID.Pack: 
+                    insertQuery = @"INSERT INTO [RESOURCE](NAME,DATA) VALUES (@NAME,@DATA)";
+                    result = SqliteConn.GetPackDb(GetUserId(), GetPackId()).Execute(insertQuery, resList);
+                    break;
+
             }
 
-            if (isSavedSuccessfully)
-            {
-                return Json(new { Message = fName });
-            }
-            else
-            {
-                return Json(new { Message = Resources.Resource.ErrorSaveImage });
-            }
+            return
+                Json(isSavedSuccessfully
+                    ? new { Message = fName, _id = result }
+                    : new { Message = Resource.ErrorSaveImage, _id = result });
         }
+
+
         public ActionResult UploadImages()
         {
             return View();
@@ -87,13 +102,109 @@ namespace FastBookCreator.Controllers
         // GET: Pack
         public ActionResult ShowImages()
         {
-            ViewBag.Title = Resources.Resource.ShowImage;
+            ViewBag.Title = Resource.ShowImage;
             return View();
         }
- 
 
-      
+        public void SetCurrentPack(string packId)
+        {
+            // Save PackId in a cookie
+            var cookie = Request.Cookies["_packId"];
+            if (cookie != null)
+                cookie.Value = packId; // update cookie value
+            else // create new cookie
+            {
+                cookie = new HttpCookie("_packId")
+                {
+                    Value = packId,
+                    Expires = DateTime.Now.AddYears(1)
+                };
+            
+            }
+            Response.Cookies.Add(cookie);
+        }
 
+        public void SetUserId(string userId)
+        {
+            // Save UserId in a cookie
+            var cookie = Request.Cookies["_userId"];
+            if (cookie != null)
+                cookie.Value = userId; // update cookie value
+            else // create new cookie
+            {
+                cookie = new HttpCookie("_userId")
+                {
+                    Value = userId,
+                    Expires = DateTime.Now.AddYears(1)
+                };
+               
+            }
+            Response.Cookies.Add(cookie);
+        }
+
+        public void SetIsAfterCreate(bool isChecked)
+        {
+            var flag = isChecked.ToString().ToLower();
+            // Save UserId in a cookie
+            var cookie = Request.Cookies["_isAfterCreate"];
+            if (cookie != null)
+                cookie.Value = flag; // update cookie value
+            else // create new cookie
+            {
+                cookie = new HttpCookie("_isAfterCreate")
+                {
+                    Value = flag,
+                    Expires = DateTime.Now.AddYears(1)
+                };
+            }
+            Response.Cookies.Add(cookie);
+        }
+
+        public string GetIsAfterCreate()
+        {
+            // Save UserId in a cookie
+            var cookie = Request.Cookies["_isAfterCreate"];
+            if (cookie != null) return  cookie.Value.ToLower();
+            cookie = new HttpCookie("_isAfterCreate")
+            {
+                Value = "false",
+                Expires = DateTime.Now.AddYears(1)
+            };
+            Response.Cookies.Add(cookie);
+            return cookie.Value.ToLower();
+        }
+
+        public string GetUserId()
+        {
+            // Save UserId in a cookie
+            var cookie = Request.Cookies["_userId"];
+            if (cookie != null) return cookie.Value;
+            cookie = new HttpCookie("_userId")
+            {
+                Value = "0",
+                Expires = DateTime.Now.AddYears(1)
+            };
+            Response.Cookies.Add(cookie);
+            return cookie.Value;
+        }
+
+        public string GetPackId()
+        {
+            var cookiePack = Request.Cookies["_packId"];
+            if (cookiePack == null)
+                throw new Exception(Resource.SelectPack);
+            return cookiePack.Value;
+        }
+
+
+        public ActionResult GetResPacks()
+        {
+
+            using (var connection = SqliteConn.GetPackDb(GetUserId(), GetPackId()))
+            {
+                return Json(connection.Query<ResPack>("SELECT * FROM RESOURCE"));
+            }
+        }
     }
 
 }

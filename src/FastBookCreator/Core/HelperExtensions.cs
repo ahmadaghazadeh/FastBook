@@ -10,14 +10,17 @@ using System.Web.Routing;
 using Dapper;
 using FastBookCreator.Models;
 using System.Linq.Expressions;
+using System.Resources;
 using System.Text;
+using Newtonsoft.Json.Linq;
+using Resources;
 
 namespace FastBookCreator.Core
 {
     public static class HelperExtensions
     {
         public static readonly Dictionary<string, string> Languages;
- 
+
 
         static HelperExtensions()
         {
@@ -28,12 +31,12 @@ namespace FastBookCreator.Core
             };
         }
 
-  
+
 
         public static void SetAppCulture(this CultureInfo culture)
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = culture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         public static string GetCurrentCultureTwoLetter()
@@ -49,7 +52,7 @@ namespace FastBookCreator.Core
             {
                 Text = lang.Value,
                 Value = lang.Key,
-                Selected = string.Equals(currentCulture, lang.Key, StringComparison.CurrentCultureIgnoreCase)
+                Selected = String.Equals(currentCulture, lang.Key, StringComparison.CurrentCultureIgnoreCase)
             }).ToList();
 
             return res;
@@ -101,19 +104,13 @@ namespace FastBookCreator.Core
             }
         }
 
-        public static IEnumerable<ResPack> GetResPacks()
-        {
-            using (var connection = SqliteConn.GetPackDb())
-            {
-                return connection.Query<ResPack>("SELECT * FROM RESOURCE");
-            }
-        }
+
 
         public static IEnumerable<Method> GetMethods()
         {
             using (var connection = SqliteConn.GetCommonDb())
             {
-                return connection.Query<Method>($"SELECT * FROM METHODS WHERE LANGUAGE='{Resources.Resource.lang}'");
+                return connection.Query<Method>($"SELECT * FROM METHODS WHERE LANGUAGE='{Resource.lang}'");
             }
         }
 
@@ -122,27 +119,100 @@ namespace FastBookCreator.Core
         {
             using (var connection = SqliteConn.GetCommonDb())
             {
-                
-                return connection.Query<Subject>($"SELECT * FROM SUBJECT WHERE LANGUAGE='{Resources.Resource.lang}'");
+
+                return connection.Query<Subject>($"SELECT * FROM SUBJECT WHERE LANGUAGE='{Resource.lang}'");
             }
         }
- 
 
-        public static MvcHtmlString MVCImage(this HtmlHelper helper,string id,
-                byte[] image,string attributes="")
+
+        public static MvcHtmlString MVCImage(this HtmlHelper helper, string id,
+                byte[] image, string attributes = "")
         {
-             
-            return MvcHtmlString.Create(Image(id,image,attributes));
+
+            return MvcHtmlString.Create(Image(id, image, attributes));
         }
 
         public static string Image(string id,
                byte[] image, string attributes = "")
         {
-            var img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
+            var img = "";
+            if (image != null)
+            {
+                img = $"data:image/jpg;base64,{ Convert.ToBase64String(image)}";
+            }
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat($"<img id='{id}' src='{img}' { attributes}>");
             return sb.ToString();
         }
 
+
+        public static IEnumerable<IconHtml> ItemIcons()
+        {
+            IEnumerable<IconHtml> icons=new[]
+            {
+                new IconHtml()
+                {
+                    PageName = "InsertHTML",
+                    Name = Resource.ItemHTML,
+                    Icon = "<i class=\"fa fa-html5\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                  PageName = "InserPicture",
+                    Name = Resource.ItemPicture,
+                    Icon = "<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                   PageName = "InserSound",
+                    Name = Resource.ItemSound,
+                    Icon = "<i class=\"fa fa-file-audio-o\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                   PageName = "InserVideo",
+                    Name = Resource.ItemVideo,
+                    Icon = "<i class=\"fa fa-file-video-o\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                  PageName = "InserTTS",
+                    Name = Resource.ItemTTS,
+                    Icon = "<span class=\"glyphicon glyphicon-bullhorn\" aria-hidden=\"true\"></span>"
+                },
+                new IconHtml()
+                {
+                   PageName = "InserMultipleChoice",
+                    Name = Resource.ItemMultipleChoice,
+                    Icon = "<i class=\"fa fa-check-square\" aria-hidden=\"true\"></i>"
+                },
+                new IconHtml()
+                {
+                   PageName = "InserPlacement",
+                    Name = Resource.ItemPlacement,
+                    Icon = "<i class=\"material-icons\">space_bar</i>"
+                },
+
+                new IconHtml()
+                {
+                 PageName = "InserOrdering",
+                    Name = Resource.ItemOrdering,
+                    Icon = "<span class=\"glyphicon glyphicon-sort\" aria-hidden=\"true\"></span>"
+                },
+                new IconHtml()
+                {
+                 PageName = "InserFill",
+                    Name = Resource.ItemFill,
+                    Icon = "<i class=\"material-icons\">mode_edit</i>"
+                },
+                new IconHtml()
+                {
+                 PageName = "InserOnechoice",
+                    Name = Resource.ItemOnechoice,
+                    Icon = "<i class=\"fa fa-dot-circle-o\" aria-hidden=\"true\"></i>"
+                },
+            };
+            return icons;
+        }
     }
 }

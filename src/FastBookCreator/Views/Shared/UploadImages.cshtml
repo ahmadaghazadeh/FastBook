@@ -1,30 +1,38 @@
-﻿@{
+﻿@using FastBookCreator.Models
+@{
     ViewBag.Title = "Home Page";
 }
 <div class="jumbotron">
     @using (Html.BeginForm("SaveUploadedFile", "Shared", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
     {
         <div class="fallback">
-            <input name="file" type="file" multiple />
+            <input name="file" type="file" multiple/>
         </div>
-
-        <div class="row center-block">
-            <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
-            </button>
-        </div>
+        <input id="_id" class="form-control" name="_id" type="hidden" value="0" />
+        <input id="typeId" class="form-control" name="typeId" type="hidden" value="@ResTypeID.Pack" />
     }
 </div>
-<style type="text/css">
-    .dz-max-files-reached {
-        background-color: red;
-    }
-</style>
+
+<div class="row center-block">
+    <button id="submit-all" type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
+        <span id="upLoadCount" class="badge">0</span>
+    </button>
+
+    <button id="clear" type="submit" class="btn btn-default">
+        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Clear
+    </button>
+
+
+</div>
+
 @section scripts{
     <script type="text/javascript">
-
+        var uploadedCount = 0;
+        var ImageWidth = 400, ImageHeight = 300;
         //File Upload response from the server
         Dropzone.options.dropzoneForm = {
+            autoProcessQueue: false,
             maxFiles: 1000,
             maxFilesize: 0.1,
             dictDefaultMessage :"@Resources.Resource.dictDefaultMessage" ,
@@ -35,12 +43,23 @@
             dictCancelUpload:"@Resources.Resource.dictCancelUpload",
             dictCancelUploadConfirmation:"@Resources.Resource.dictCancelUploadConfirmation",
             dictRemoveFile:"@Resources.Resource.dictRemoveFile",
-            dictMaxFilesExceeded:"@Resources.Resource.dictMaxFilesExceeded",
+            dictMaxFilesExceeded: "@Resources.Resource.dictMaxFilesExceeded",
+
             init: function () {
+                dropzoneForm = this;
                 this.on("maxfilesexceeded", function (data) {
                     var res = eval('(' + data.xhr.responseText + ')');
 
                 });
+
+                this.on("queuecomplete", function () {
+                    this.options.autoProcessQueue = false;
+                });
+
+                this.on("processing", function () {
+                    this.options.autoProcessQueue = true;
+                });
+
                 this.on("addedfile", function (file) {
                     // Create the remove button
                     var removeButton = Dropzone.createElement("<button class=\"btn btn-default\"><span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>&nbsp;&nbsp; @Resources.Resource.Delete </button>");
@@ -61,7 +80,20 @@
                     // Add the button to the file preview element.
                     file.previewElement.appendChild(removeButton);
                 });
+
+                this.on("complete", function (file) {
+                    uploadedCount++;
+                    $("#upLoadCount").html(uploadedCount +"("+dropzoneForm.getQueuedFiles().length+")");
+                });
             }
         };
+        $("#submit-all").click(function() {
+            dropzoneForm.processQueue();
+        });
+        $("#clear").click(function () {
+            dropzoneForm.removeAllFiles(true);
+        });
+
+
     </script>
 }

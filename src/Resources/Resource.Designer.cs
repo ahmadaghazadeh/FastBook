@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to After the page Go to the Item.
+        /// </summary>
+        public static string AfterCreatePage {
+            get {
+                return ResourceManager.GetString("AfterCreatePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editable.
         /// </summary>
         public static string AllowEdit {
@@ -75,6 +84,24 @@ namespace Resources {
         public static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attention.
+        /// </summary>
+        public static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
             }
         }
         
@@ -97,11 +124,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Content.
+        /// </summary>
+        public static string Content {
+            get {
+                return ResourceManager.GetString("Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new item.
+        /// </summary>
+        public static string CreateItem {
+            get {
+                return ResourceManager.GetString("CreateItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You want to delete?.
+        /// </summary>
+        public static string DeletePrompt {
+            get {
+                return ResourceManager.GetString("DeletePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Success.
+        /// </summary>
+        public static string DeleteSuccess {
+            get {
+                return ResourceManager.GetString("DeleteSuccess", resourceCulture);
             }
         }
         
@@ -133,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drop files here to upload.
+        ///   Looks up a localized string similar to Drop files here to upload (width: 400 - Height: 300).
         /// </summary>
         public static string dictDefaultMessage {
             get {
@@ -214,11 +277,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color package can not be empty.
         /// </summary>
         public static string ErrorColor {
             get {
                 return ResourceManager.GetString("ErrorColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter content.
+        /// </summary>
+        public static string ErrorContent {
+            get {
+                return ResourceManager.GetString("ErrorContent", resourceCulture);
             }
         }
         
@@ -232,6 +313,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Items must be entered as.
+        /// </summary>
+        public static string ErrorItemTitle {
+            get {
+                return ResourceManager.GetString("ErrorItemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter language.
         /// </summary>
         public static string ErrorLanguage {
@@ -241,11 +331,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter Course.
+        /// </summary>
+        public static string ErrorLessonTitle {
+            get {
+                return ResourceManager.GetString("ErrorLessonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select the icon.
         /// </summary>
         public static string ErrorLogo {
             get {
                 return ResourceManager.GetString("ErrorLogo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Media.
+        /// </summary>
+        public static string ErrorMedia {
+            get {
+                return ResourceManager.GetString("ErrorMedia", resourceCulture);
             }
         }
         
@@ -277,6 +385,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Page Type.
+        /// </summary>
+        public static string ErrorPageTypeId {
+            get {
+                return ResourceManager.GetString("ErrorPageTypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of room to be imported.
         /// </summary>
         public static string ErrorRoomCount {
@@ -295,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter Store Type.
+        /// </summary>
+        public static string ErrorStoreType {
+            get {
+                return ResourceManager.GetString("ErrorStoreType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Topic must be selected.
         /// </summary>
         public static string ErrorSubjectId {
@@ -309,6 +435,15 @@ namespace Resources {
         public static string ErrorSubjectName {
             get {
                 return ResourceManager.GetString("ErrorSubjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FlashCard.
+        /// </summary>
+        public static string FlashCard {
+            get {
+                return ResourceManager.GetString("FlashCard", resourceCulture);
             }
         }
         
@@ -349,6 +484,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        public static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -358,11 +502,137 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image.
         /// </summary>
         public static string Image {
             get {
                 return ResourceManager.GetString("Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image Size Error image size to a width of 400 and a height of 300 is.
+        /// </summary>
+        public static string ImagesSizeError {
+            get {
+                return ResourceManager.GetString("ImagesSizeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items.
+        /// </summary>
+        public static string Item {
+            get {
+                return ResourceManager.GetString("Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question Fill.
+        /// </summary>
+        public static string ItemFill {
+            get {
+                return ResourceManager.GetString("ItemFill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Html Format.
+        /// </summary>
+        public static string ItemHTML {
+            get {
+                return ResourceManager.GetString("ItemHTML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question Multiple choice.
+        /// </summary>
+        public static string ItemMultipleChoice {
+            get {
+                return ResourceManager.GetString("ItemMultipleChoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question One choice.
+        /// </summary>
+        public static string ItemOnechoice {
+            get {
+                return ResourceManager.GetString("ItemOnechoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question Ordering.
+        /// </summary>
+        public static string ItemOrdering {
+            get {
+                return ResourceManager.GetString("ItemOrdering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Picture.
+        /// </summary>
+        public static string ItemPicture {
+            get {
+                return ResourceManager.GetString("ItemPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question Placement.
+        /// </summary>
+        public static string ItemPlacement {
+            get {
+                return ResourceManager.GetString("ItemPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Sound.
+        /// </summary>
+        public static string ItemSound {
+            get {
+                return ResourceManager.GetString("ItemSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text to Speech.
+        /// </summary>
+        public static string ItemTTS {
+            get {
+                return ResourceManager.GetString("ItemTTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Type.
+        /// </summary>
+        public static string ItemTypeId {
+            get {
+                return ResourceManager.GetString("ItemTypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Video.
+        /// </summary>
+        public static string ItemVideo {
+            get {
+                return ResourceManager.GetString("ItemVideo", resourceCulture);
             }
         }
         
@@ -385,11 +655,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lesson.
+        /// </summary>
+        public static string Lesson {
+            get {
+                return ResourceManager.GetString("Lesson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new lesson.
+        /// </summary>
+        public static string LessonCreate {
+            get {
+                return ResourceManager.GetString("LessonCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LessonNumber.
+        /// </summary>
+        public static string LessonNumber {
+            get {
+                return ResourceManager.GetString("LessonNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logo.
         /// </summary>
         public static string Logo {
             get {
                 return ResourceManager.GetString("Logo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media.
+        /// </summary>
+        public static string Media {
+            get {
+                return ResourceManager.GetString("Media", resourceCulture);
             }
         }
         
@@ -448,15 +772,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PackId.
-        /// </summary>
-        public static string PackId {
-            get {
-                return ResourceManager.GetString("PackId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to View Packages.
         /// </summary>
         public static string PackList {
@@ -475,6 +790,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        public static string Page {
+            get {
+                return ResourceManager.GetString("Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new page.
+        /// </summary>
+        public static string PageCreate {
+            get {
+                return ResourceManager.GetString("PageCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Not Found.
         /// </summary>
         public static string PageNotFound {
@@ -484,11 +817,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Type.
+        /// </summary>
+        public static string PageType {
+            get {
+                return ResourceManager.GetString("PageType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone Number.
         /// </summary>
         public static string Phone_Number {
             get {
                 return ResourceManager.GetString("Phone_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question.
+        /// </summary>
+        public static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
             }
         }
         
@@ -520,11 +880,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save successful.
+        /// </summary>
+        public static string SaveSuccess {
+            get {
+                return ResourceManager.GetString("SaveSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Image.
+        /// </summary>
+        public static string SeachImage {
+            get {
+                return ResourceManager.GetString("SeachImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select image.
+        /// </summary>
+        public static string SelectImage {
+            get {
+                return ResourceManager.GetString("SelectImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify Training Package.
+        /// </summary>
+        public static string SelectPack {
+            get {
+                return ResourceManager.GetString("SelectPack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image saved.
         /// </summary>
         public static string ShowImage {
             get {
                 return ResourceManager.GetString("ShowImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Store Type.
+        /// </summary>
+        public static string StoreType {
+            get {
+                return ResourceManager.GetString("StoreType", resourceCulture);
             }
         }
         
@@ -552,6 +957,24 @@ namespace Resources {
         public static string SubjectSelect {
             get {
                 return ResourceManager.GetString("SubjectSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to left.
+        /// </summary>
+        public static string TextAlign {
+            get {
+                return ResourceManager.GetString("TextAlign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred.
+        /// </summary>
+        public static string UnSuccess {
+            get {
+                return ResourceManager.GetString("UnSuccess", resourceCulture);
             }
         }
         
