@@ -7,6 +7,7 @@ CKEDITOR.plugins.setLang( 'codesnippet', 'fa', {
 	button: 'قرار دادن کد قطعه',
 	codeContents: 'محتوای کد',
 	emptySnippetError: 'کد نمی تواند خالی باشد.',
+	emptyLangError: 'لطفا زبان مورد نظر را انتخاب کنید.',
 	language: 'زبان',
 	title: 'کد قطعه',
 	pathName: 'کد قطعه'

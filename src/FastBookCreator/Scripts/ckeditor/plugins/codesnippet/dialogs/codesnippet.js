@@ -5,6 +5,17 @@
 
 'use strict';
 
+function notEqualValidator(x, msg) {
+    return function () {
+        var value = this.getValue(),
+            pass = !!value.match(x);
+
+        if (pass) {
+            return msg;
+        }
+    };
+}
+
 ( function() {
 	CKEDITOR.dialog.add( 'codeSnippet', function( editor ) {
 		var snippetLangs = editor._.codesnippet.langs,
@@ -41,6 +52,7 @@
 						{
 							id: 'lang',
 							type: 'select',
+							required: true,
 							label: lang.language,
 							items: langSelectItems,
 							setup: function( widget ) {
@@ -55,6 +67,7 @@
 							commit: function( widget ) {
 								widget.setData( 'lang', this.getValue() );
 							}
+						    , validate: CKEDITOR.dialog.validate.notEmpty(lang.language)
 						},
 						{
 							id: 'code',
@@ -81,5 +94,7 @@
 				}
 			]
 		};
-	} );
-}() );
+	});
+	
+}()
+);

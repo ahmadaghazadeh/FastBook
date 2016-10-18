@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Mvc;
 using Dapper;
 
 using FastBookCreator.Core;
@@ -164,7 +165,7 @@ namespace FastBookCreator.Controllers
         [System.Web.Http.HttpPost]
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("Item/SaveItemHTML")]
-        public IHttpActionResult SaveItemHTML(JObject jObject)
+        public IHttpActionResult SaveItemHtml(JObject jObject)
         {
             dynamic json = jObject;
             string userId = json.userId.ToString();
@@ -175,11 +176,11 @@ namespace FastBookCreator.Controllers
           
 
             var doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(json.content.ToString());
+            doc.LoadHtml(new MvcHtmlString(json.content.ToString()).ToString());
             var pTags = doc.DocumentNode.Descendants("code");
             foreach (var tag in pTags)
             {
-                tag.InnerHtml = tag.InnerHtml.ToHighLightAndroidFormat("java");
+                tag.InnerHtml = tag.InnerHtml.ToHighLightAndroidFormat(tag.Attributes["lang"].Value);
             }
           
             var item = new Item()

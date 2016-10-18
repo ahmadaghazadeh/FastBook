@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using HtmlAgilityPack;
 
 namespace HighlightCode.App_Start
 {
@@ -32,8 +34,8 @@ namespace HighlightCode.App_Start
         public static string ToHighLightAndroidFormat(this string str, string lng)
         {
             WirteCodeToFile(str, lng);
-            WirteHighlightFile();
-            string htmlSource = File.ReadAllText(PathHighlight + "main."+ lng);
+            WirteHighlightFile(lng);
+            var htmlSource = File.ReadAllText(PathHighlight + "main.html");
 
             var result =  PreMailer.Net.PreMailer.MoveCssInline(htmlSource);
 
@@ -42,9 +44,13 @@ namespace HighlightCode.App_Start
 
             var pTags = doc.DocumentNode.Descendants("pre");
 
-            var html = pTags.SingleOrDefault().OuterHtml;
-            html = ClassHtml.Aggregate(html, (current, tag) => current.Replace($"class=\"{tag}\"", string.Empty));
-            doc.LoadHtml(html);
+            var singleOrDefault = pTags.SingleOrDefault();
+            if (singleOrDefault != null)
+            {
+                var html = singleOrDefault.OuterHtml;
+                html = ClassHtml.Aggregate(html, (current, tag) => current.Replace($"class=\"{tag}\"", string.Empty));
+                doc.LoadHtml(html);
+            }
             pTags = doc.DocumentNode.Descendants();
             foreach (var tag in pTags)
             {
@@ -52,10 +58,10 @@ namespace HighlightCode.App_Start
                 if (styleAttr != null)
                 {
                     var style = styleAttr.Value.Split(';');
-                    var newSt = new string[] { };
                     tag.Attributes.RemoveAll();
                     foreach (var st in style)
                     {
+                        string[] newSt;
                         if (st.Contains("background-color"))
                         {
                             newSt = st.Split(':');
@@ -72,33 +78,29 @@ namespace HighlightCode.App_Start
                                 tag.Attributes.Add(newSt[0], newSt[1]); ;
                             }
                         }
-                       
                     }
-                    
-                    
-                    
                 }
                 if (tag.Name.Equals("span"))
                 {
                     tag.Name = "font";
                 }
             }
-            return doc.DocumentNode.OuterHtml;
+            return doc.DocumentNode.OuterHtml ;
         }
         public static string ToHighLightFormat(this string str, string lng)
         {
             WirteCodeToFile(str, lng);
-            WirteHighlightFile();
+            WirteHighlightFile(lng);
             return File.ReadAllText(PathHighlight + "main.html");
 
         }
-        static void WirteHighlightFile()
+        static void WirteHighlightFile(string lng)
         {
             try
             {
-                var createFile = "cd " + Drive + Environment.NewLine;
+                var createFile = $"cd {Drive}{Environment.NewLine}" ;
                 createFile += "cd " + PathHighlight + Environment.NewLine;
-                createFile += "highlight -i main.java -o main.html --style custom --include-style " + Environment.NewLine;
+                createFile += $"highlight -i main.{lng} -o main.html --style custom --include-style " + Environment.NewLine;
 
                 File.WriteAllText(PathHighlight + "Create.bat", createFile);
 

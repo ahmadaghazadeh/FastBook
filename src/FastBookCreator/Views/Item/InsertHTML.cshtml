@@ -10,7 +10,7 @@
         };
     }
 
-    @using (Ajax.BeginForm("SaveItemHTML", "Item", ajaxOptions, new { enctype = "multipart/form-data" }))
+    @using (Ajax.BeginForm("SaveItemHtml", "Item", ajaxOptions, new { enctype = "multipart/form-data" }))
     {
         <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId" />
         <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
@@ -18,7 +18,8 @@
         <input id="lessonId" name="lessonId" type="hidden" value="1" />
         <input id="pageId" name="pageId" type="hidden" value="1" />
         <input id="itemTypeId" name="itemTypeId" type="hidden" value="1" />
-        <input id="ckEditorHtml" class="form-control" name="content" type="hidden" />
+        <input id="ckEditorHtml" class="form-control" name="content" value="" type="hidden" />
+        <input id="lang" class="form-control" name="lang" value="" type="hidden" />
         <div class="row">
 
 
