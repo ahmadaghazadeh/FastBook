@@ -1,4 +1,4 @@
-﻿ 
+﻿
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -16,18 +16,28 @@ namespace FastBookCreator.Controllers
     {
 
         // POST: api/Shared
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("Shared/GetHighLight")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("Shared/GetHighLightAndroid")]
         public IHttpActionResult GetHighLightAndroid(JObject jsonData)
         {
             dynamic json = jsonData;
-            string code = json.str;
-            string lng = json.str;
-            return Ok(code.ToHighLightAndroidFormat(lng));
+            string code = json.code;
+            string lang = json.lang;
+
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(code);
+            var pTags = doc.DocumentNode.Descendants("code");
+            foreach (var tag in pTags)
+            {
+                tag.InnerHtml = tag.InnerHtml.ToHighLightAndroidFormat(lang);
+            }
+            return Ok(doc.DocumentNode.OuterHtml);
         }
 
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("Shared/GetHighLight")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("Shared/GetHighLight")]
         public IHttpActionResult GetHighLight(JObject jsonData)
         {
             dynamic json = jsonData;
@@ -49,7 +59,7 @@ namespace FastBookCreator.Controllers
             {
                 var items = connection.Query<ResPack>($"SELECT * FROM RESOURCE {where}");
                 var query = from i in items
-                            select new { NAME = i.NAME, DATA = HelperExtensions.Image("img-"+i._id.ToString(), i.DATA, $"class='img-responsive' alt='{i._id.ToString()}'"), _id = i._id.ToString() };
+                            select new { NAME = i.NAME, DATA = HelperExtensions.Image("img-" + i._id.ToString(), i.DATA, $"class='img-responsive' alt='{i._id.ToString()}'"), _id = i._id.ToString() };
                 return Ok(query);
             }
         }
@@ -89,7 +99,7 @@ namespace FastBookCreator.Controllers
         [System.Web.Http.Route("Lesson/SaveLesson")]
         public IHttpActionResult SaveLesson(JObject jObject)
         {
-             
+
             dynamic json = jObject;
             string userId = json.userId.ToString();
             string packId = json.packId.ToString();
@@ -98,7 +108,7 @@ namespace FastBookCreator.Controllers
             {
                 COLOR = int.Parse(json.COLOR.ToString(), System.Globalization.NumberStyles.HexNumber),
                 LESSON_TITLE = json.LESSON_TITLE,
-                RESOURCE_ID =long.Parse( resourceId)
+                RESOURCE_ID = long.Parse(resourceId)
             };
 
             int result;
@@ -160,15 +170,25 @@ namespace FastBookCreator.Controllers
             string userId = json.userId.ToString();
             string packId = json.packId.ToString();
             string lessonId = json.lessonId.ToString();
+            string pageId = json.pageId.ToString();
             string itemTypeId = json.itemTypeId.ToString();
-            string pageTypeId = json.pageTypeId.ToString();
+          
+
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(json.content.ToString());
+            var pTags = doc.DocumentNode.Descendants("code");
+            foreach (var tag in pTags)
+            {
+                tag.InnerHtml = tag.InnerHtml.ToHighLightAndroidFormat("java");
+            }
+          
             var item = new Item()
             {
                 LESSON_ID = long.Parse(lessonId),
-                ITEM_TYPE_ID= long.Parse(itemTypeId),
-                PAGE_ID = long.Parse(pageTypeId),
-                ITEM_TITLE= json.itemTitle,
-                CONTENT= json.contenr
+                ITEM_TYPE_ID = long.Parse(itemTypeId),
+                PAGE_ID = long.Parse(pageId),
+                ITEM_TITLE = json.itemTitle,
+                CONTENT = doc.DocumentNode.OuterHtml
             };
 
             int result;

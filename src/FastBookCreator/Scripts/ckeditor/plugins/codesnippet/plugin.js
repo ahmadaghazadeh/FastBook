@@ -292,7 +292,7 @@
 			// to defire required content with "and" operator.
 			requiredContent: 'pre',
 			styleableElements: 'pre',
-			template: '<pre><code class="' + codeClass + '"></code></pre>',
+			template: '<pre><code class="' + codeClass + '" style="direction: ltr;"></code></pre>',
 			dialog: 'codeSnippet',
 			pathName: lang.pathName,
 			mask: true,
@@ -354,8 +354,10 @@
 				var childrenArray = getNonEmptyChildren( el ),
 					code;
 
-				if ( childrenArray.length != 1 || ( code = childrenArray[ 0 ] ).name != 'code' )
-					return;
+				if (childrenArray.length != 1 || (code = childrenArray[0]).name != 'code')
+				    return;
+			 
+					
 
 				// Upcast <code> with text only: http://dev.ckeditor.com/ticket/11926#comment:4
 				if ( code.children.length != 1 || code.children[ 0 ].type != CKEDITOR.NODE_TEXT )
@@ -371,7 +373,9 @@
 				textarea.setHtml( code.getHtml() );
 				data.code = textarea.getValue();
 
-				code.addClass( codeClass );
+				code.addClass(codeClass);
+
+				code.attributes['style'] = 'direction: ltr;';
 
 				return el;
 			},

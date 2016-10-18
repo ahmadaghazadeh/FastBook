@@ -33,7 +33,7 @@ namespace HighlightCode.App_Start
         {
             WirteCodeToFile(str, lng);
             WirteHighlightFile();
-            string htmlSource = File.ReadAllText(PathHighlight + "main.html");
+            string htmlSource = File.ReadAllText(PathHighlight + "main."+ lng);
 
             var result =  PreMailer.Net.PreMailer.MoveCssInline(htmlSource);
 

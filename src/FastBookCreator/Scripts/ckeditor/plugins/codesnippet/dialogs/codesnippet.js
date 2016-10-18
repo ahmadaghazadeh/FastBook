@@ -62,11 +62,11 @@
 							label: lang.codeContents,
 							setup: function( widget ) {
 							    this.setValue(widget.data.code);
-							    alert(this.getValue());
+							    
 							},
 							commit: function( widget ) {
 							    widget.setData('code', this.getValue());
-							       alert(this.getValue());
+							      
 							},
 							required: true,
 							validate: CKEDITOR.dialog.validate.notEmpty( lang.emptySnippetError ),

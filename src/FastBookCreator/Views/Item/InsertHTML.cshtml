@@ -5,7 +5,8 @@
         var ajaxOptions = new AjaxOptions
         {
             HttpMethod = "post",
-            OnSuccess = $"OnSuccess()",
+            OnSuccess = $"OnSuccess();",
+            OnBegin = $"OnBegin();"
         };
     }
 
@@ -14,6 +15,10 @@
         <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId" />
         <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
         <input id="resourceId" name="resourceId" type="hidden" value="0" />
+        <input id="lessonId" name="lessonId" type="hidden" value="1" />
+        <input id="pageId" name="pageId" type="hidden" value="1" />
+        <input id="itemTypeId" name="itemTypeId" type="hidden" value="1" />
+        <input id="ckEditorHtml" class="form-control" name="content" type="hidden" />
         <div class="row">
 
 
@@ -42,8 +47,8 @@
             </div>
 
             <div class="col-md-12 group">
-                <textarea class="code" cols="80" id="editor1" name="editor1" rows="10" style="     direction: ltr ">
-                    &lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;
+                <textarea class="code" cols="80" id="editor1" name="editor1" rows="10" style="direction: ltr; ">
+                    @MvcHtmlString.Create(@Model.CONTENT)
                 </textarea>
             </div>
         </div>
@@ -67,13 +72,6 @@
             extraPlugins: 'codesnippet'
         });
 
-        document.getElementsByTag("code").bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
-            alert("The text has been changed.");
-        });
-        $(".hljs").bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
-            alert("The text has been changed.");
-        });
-
         $(document).ready(function () {
             $.post("../Shared/ResPacks", { where: " ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
                 var imeges = "";
@@ -86,6 +84,14 @@
                 $("#images").html(imeges);
                 $("img[id^=img-]").click(imgClick);
             });
+
+            $("img[id^=img-]").click(imgClick);
+
+            if ($("#imgLesson").attr("src") === "") {
+                $("#imgLesson").attr("src", "../Content/images/ibook.png");
+            }
+
+
         });
 
         $("#txtSearch")
@@ -104,12 +110,7 @@
                     });
                 });
 
-        $(document).ready(function () {
-            $("img[id^=img-]").click(imgClick);
-            if ($("#imgLesson").attr("src") === "") {
-                $("#imgLesson").attr("src", "../Content/images/ibook.png");
-            }
-        });
+
 
         var imgClick = function () {
             // Do stuff, get id of image perhaps?
@@ -125,5 +126,15 @@
             $("#COLOR").val("3433410");
             $("#imgLesson").attr("src", "../Content/images/ibook.png");
         }
+
+        function OnBegin() {
+            var editor_data = CKEDITOR.instances.editor1.getData();
+            $("#ckEditorHtml").val(editor_data);
+        }
+         CKEDITOR.instances.editor1.on('change', function () {
+             CKEDITOR.instances.editor1.updateElement();
+            
+         });
+         
     </script>
 }
