@@ -19,8 +19,8 @@ namespace FastBookCreator.Controllers
             controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
             string userId= controller.GetUserId();
             string packId = controller.GetPackId();
-            ViewBag.UserId = controller.GetUserId();
-            ViewBag.PackId = controller.GetPackId();
+            ViewBag.UserId = userId;
+            ViewBag.PackId = packId;
             ViewBag.LessonId = pageId;
             IEnumerable<Item> items;
             using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))

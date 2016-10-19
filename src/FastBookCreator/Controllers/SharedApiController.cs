@@ -195,7 +195,7 @@ namespace FastBookCreator.Controllers
                 ITEM_TYPE_ID = long.Parse(itemTypeId),
                 PAGE_ID = long.Parse(pageId),
                 ITEM_TITLE = json.ITEM_TITLE,
-                CONTENT = doc.DocumentNode.OuterHtml
+                CONTENT = doc.DocumentNode.OuterHtml.Replace("&lt;", "<").Replace("&gt;", ">") 
             };
 
             int result;
