@@ -1,7 +1,34 @@
-AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            View view = layoutInflater.inflate(R.layout.meme_post_actions_dialog,null);
-            builder.setView(view);
-int width = (int)(getResources().getDisplayMetrics().widthPixels*0.50); //<-- int width=400;
-int height = (int)(getResources().getDisplayMetrics().heightPixels*0.50);//<-- int height =300;
-AlertDialog alertDialog = builder.create();
-alertDialog.getWindow().setLayout(width, height);    
+ACCESS_LOCATION_EXTRA_COMMANDS
+ACCESS_NETWORK_STATE
+ACCESS_NOTIFICATION_POLICY
+ACCESS_WIFI_STATE
+BLUETOOTH
+BLUETOOTH_ADMIN
+BROADCAST_STICKY
+CHANGE_NETWORK_STATE
+CHANGE_WIFI_MULTICAST_STATE
+CHANGE_WIFI_STATE
+DISABLE_KEYGUARD
+EXPAND_STATUS_BAR
+GET_PACKAGE_SIZE
+INSTALL_SHORTCUT
+INTERNET
+KILL_BACKGROUND_PROCESSES
+MODIFY_AUDIO_SETTINGS
+NFC
+READ_SYNC_SETTINGS
+READ_SYNC_STATS
+RECEIVE_BOOT_COMPLETED
+REORDER_TASKS
+REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+REQUEST_INSTALL_PACKAGES
+SET_ALARM
+SET_TIME_ZONE
+SET_WALLPAPER
+SET_WALLPAPER_HINTS
+TRANSMIT_IR
+UNINSTALL_SHORTCUT
+USE_FINGERPRINT
+VIBRATE
+WAKE_LOCK
+WRITE_SYNC_SETTINGS

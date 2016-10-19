@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>main.java</title>
+<title>main.cs</title>
 <style type="text/css">
 body.hl	{ background-color:#eeeeee; }
 pre.hl	{ color:#000000; background-color:#eeeeee; font-size:10pt; font-family:'Courier New',monospace;}
@@ -23,27 +23,26 @@ pre.hl	{ color:#000000; background-color:#eeeeee; font-size:10pt; font-family:'C
 </style>
 </head>
 <body class="hl">
-<pre class="hl"><span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>div <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>span <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group-addon&quot;</span> id<span class="hl opt">=</span><span class="hl str">&quot;basic-addon1&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>&#64;<span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>span<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>input type<span class="hl opt">=</span><span class="hl str">&quot;text&quot;</span> <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;form-control&quot;</span> placeholder<span class="hl opt">=</span><span class="hl str">&quot;Username&quot;</span> aria<span class="hl opt">-</span>describedby<span class="hl opt">=</span><span class="hl str">&quot;basic-addon1&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-<span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>div<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
+<pre class="hl"> <span class="hl kwa">public string</span> <span class="hl kwd">HtmlAgi</span><span class="hl opt">(</span><span class="hl kwa">string</span> url<span class="hl opt">,</span> <span class="hl kwa">string</span> key<span class="hl opt">)</span>
+    <span class="hl opt">{</span>
 
-<span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>div <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>input type<span class="hl opt">=</span><span class="hl str">&quot;text&quot;</span> <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;form-control&quot;</span> placeholder<span class="hl opt">=</span><span class="hl str">&quot;Recipient&apos;s username&quot;</span> aria<span class="hl opt">-</span>describedby<span class="hl opt">=</span><span class="hl str">&quot;basic-addon2&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>span <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group-addon&quot;</span> id<span class="hl opt">=</span><span class="hl str">&quot;basic-addon2&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span><span class="hl kwc">&#64;example</span><span class="hl opt">.</span>com<span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>span<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-<span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>div<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
+        <span class="hl kwa">var</span> Webget <span class="hl opt">=</span> <span class="hl kwa">new</span> <span class="hl kwd">HtmlWeb</span><span class="hl opt">();</span>
+        <span class="hl kwa">var</span> doc <span class="hl opt">=</span> Webget<span class="hl opt">.</span><span class="hl kwd">Load</span><span class="hl opt">(</span>url<span class="hl opt">);</span>
+        HtmlNode ourNode <span class="hl opt">=</span> doc<span class="hl opt">.</span>DocumentNode<span class="hl opt">.</span><span class="hl kwd">SelectSingleNode</span><span class="hl opt">(</span><span class="hl kwa">string</span><span class="hl opt">.</span><span class="hl kwd">Format</span><span class="hl opt">(</span><span class="hl str">&quot;//meta[&#64;name=&apos;</span><span class="hl ipl">{0}</span><span class="hl str">&apos;]&quot;</span><span class="hl opt">,</span> key<span class="hl opt">));</span>
 
-<span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>div <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>span <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group-addon&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>$<span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>span<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>input type<span class="hl opt">=</span><span class="hl str">&quot;text&quot;</span> <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;form-control&quot;</span> aria<span class="hl opt">-</span>label<span class="hl opt">=</span><span class="hl str">&quot;Amount (to the nearest dollar)&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>span <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group-addon&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span><span class="hl num">.00</span><span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>span<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-<span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>div<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
+        <span class="hl kwa">if</span> <span class="hl opt">(</span>ourNode <span class="hl opt">!=</span> <span class="hl kwa">null</span><span class="hl opt">)</span>
+        <span class="hl opt">{</span>
 
-<span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>label <span class="hl kwa">for</span><span class="hl opt">=</span><span class="hl str">&quot;basic-url&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>Your vanity URL<span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>label<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-<span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>div <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>span <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;input-group-addon&quot;</span> id<span class="hl opt">=</span><span class="hl str">&quot;basic-addon3&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>https<span class="hl opt">:</span><span class="hl slc">//example.com/users/&amp;lt;/span&amp;gt;</span>
-  <span class="hl opt">&amp;</span>lt<span class="hl opt">;</span>input type<span class="hl opt">=</span><span class="hl str">&quot;text&quot;</span> <span class="hl kwa">class</span><span class="hl opt">=</span><span class="hl str">&quot;form-control&quot;</span> id<span class="hl opt">=</span><span class="hl str">&quot;basic-url&quot;</span> aria<span class="hl opt">-</span>describedby<span class="hl opt">=</span><span class="hl str">&quot;basic-addon3&quot;</span><span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
-<span class="hl opt">&amp;</span>lt<span class="hl opt">;/</span>div<span class="hl opt">&amp;</span>gt<span class="hl opt">;</span>
+
+                <span class="hl kwa">return</span> ourNode<span class="hl opt">.</span><span class="hl kwd">GetAttributeValue</span><span class="hl opt">(</span><span class="hl str">&quot;content&quot;</span><span class="hl opt">,</span> <span class="hl str">&quot;&quot;</span><span class="hl opt">);</span>
+
+        <span class="hl opt">}</span>
+        <span class="hl kwa">else</span>
+        <span class="hl opt">{</span>
+            <span class="hl kwa">return</span> <span class="hl str">&quot;not fount&quot;</span><span class="hl opt">;</span>
+        <span class="hl opt">}</span>
+
+    <span class="hl opt">}</span>
 </pre>
 </body>
 </html>

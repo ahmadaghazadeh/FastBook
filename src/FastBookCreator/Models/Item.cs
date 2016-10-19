@@ -25,6 +25,7 @@ namespace FastBookCreator.Models
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "ItemTypeId", SortEnabled = true)]
         public long ITEM_TYPE_NAME { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "ErrorlessonId")]
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Lesson", SortEnabled = true)]
         public long LESSON_ID { get; set; }
 

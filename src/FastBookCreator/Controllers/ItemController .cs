@@ -13,12 +13,12 @@ namespace FastBookCreator.Controllers
         public ActionResult Index(Page page)
         {
             var pageId = page._id.ToString();
-            var pageTypeId =long.Parse( page.PAGE_TYPE_ID.ToString());
-            ViewBag.Title =Resources.Resource.Page;
+            var pageTypeId = long.Parse(page.PAGE_TYPE_ID.ToString());
+            ViewBag.Title = Resources.Resource.Page;
             var controller = DependencyResolver.Current.GetService<SharedController>();
             controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
-            string userId= controller.GetUserId();
-            string packId = controller.GetPackId();
+            var userId = controller.GetUserId();
+            var packId = controller.GetPackId();
             ViewBag.UserId = userId;
             ViewBag.PackId = packId;
             ViewBag.LessonId = pageId;
@@ -27,72 +27,65 @@ namespace FastBookCreator.Controllers
             {
                 items = connection.Query<Item>($"SELECT * FROM ITEM WHERE PAGE_ID={pageId}");
             }
-            foreach (var item in items)
-            {
-                MatchCollection regexrResource = Regex.Matches(Shared.Utility.RegexrResource, item.CONTENT);
-                foreach (Match resource in regexrResource)
-                {
-                    MatchCollection number = Regex.Matches(Shared.Utility.RegexrNumber, resource.ToString());
-                    foreach (var num in number)
-                    {
-                        item.CONTENT = item.CONTENT.Replace(resource.ToString(), num.ToString().ToImageFromDb(userId, packId));
-                    }
-                }
-            }
             switch (pageTypeId)
             {
-                case 1: return View("IndexDescription", (List<Item>)items);  
-                case 2: return View("IndexQuestion", (List<Item>)items); 
+                case 1: return View("IndexDescription", (List<Item>)items);
+                case 2: return View("IndexQuestion", (List<Item>)items);
                 case 3: return View("IndexFlashCards", (List<Item>)items);
                 default: return View("IndexDescription", (List<Item>)items);
             }
 
         }
-        public ActionResult InsertHTML(Item item)
+        public ActionResult Insert(Item item)
         {
             var controller = DependencyResolver.Current.GetService<SharedController>();
             controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
             ViewBag.IsEdit = 0;
-            ViewBag.UserId = controller.GetUserId();
-            ViewBag.PackId = controller.GetPackId();
-            return View(new Item());
-        }
-
-        public ActionResult InsertImage()
-        {
-            var controller = DependencyResolver.Current.GetService<SharedController>();
-            controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
-            ViewBag.IsEdit = 0;
-            ViewBag.UserId = controller.GetUserId();
-            ViewBag.PackId = controller.GetPackId();
-            return View(new Item());
-        }
-
-        public ActionResult EditText(Pack pack)
-        {
-            var controller = DependencyResolver.Current.GetService<SharedController>();
-            controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
-            Page result;
+            var userId = controller.GetUserId();
+            var packId = controller.GetPackId();
+            ViewBag.UserId = userId;
+            ViewBag.PackId = packId;
+            var pageTypeId = long.Parse(item.ITEM_TYPE_ID.ToString());
             using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))
             {
-                  result= connection.Query<Page>($"SELECT * FROM PAGE WHERE _id={pack._id}").Single();
+                item = connection.Query<Item>($"SELECT * FROM ITEM WHERE _id={item._id}").SingleOrDefault();
             }
-            ViewBag.UserId = controller.GetUserId();
-            ViewBag.PackId = controller.GetPackId();
-            ViewBag.IsEdit = 1;
-            return View("Insert", result);
+
+            var regexrResource = new Regex(Shared.Utility.RegexrResource);
+            if (item != null)
+            {
+                var content = regexrResource.Matches(item.CONTENT);
+                var regexrNumber = new Regex(Shared.Utility.RegexrNumber);
+                foreach (Match resource in content)
+                {
+                    var imgTag = regexrNumber.Matches(resource.ToString());  
+                    foreach (var num in imgTag)
+                    {
+                        item.CONTENT = item.CONTENT.Replace(resource.ToString(), num.ToString().ToImageFromDb(userId, packId));
+                    }
+                }
+            }
+            else
+            {
+                item =new Item();
+            }
+            switch (pageTypeId)
+            {
+                case 1: return View("InsertHTML", item);
+                default: return View("InsertHTML", item);
+            }
         }
-        public ActionResult Delete(Pack pack)
+
+     
+        public ActionResult Delete(Item item)
         {
             var controller = DependencyResolver.Current.GetService<SharedController>();
             controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
             using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))
             {
-                 connection.Execute($"DELETE FROM PAGE WHERE _id={pack._id}");
+                connection.Execute($"DELETE FROM PAGE WHERE _id={item._id}");
             }
-            return View("Index");
+            return RedirectToAction("Index", "Item",item);
         }
-
-  
     }
 }

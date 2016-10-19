@@ -426,4 +426,13 @@
   <data name="TextAlign" xml:space="preserve">
     <value>right</value>
   </data>
+  <data name="ItemNumber" xml:space="preserve">
+    <value>شماره آیتم</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>صفحه قبلی</value>
+  </data>
+  <data name="ErrorlessonId" xml:space="preserve">
+    <value>شماره درس نمی تواند خالی باشد</value>
+  </data>
 </root>

@@ -429,4 +429,13 @@
   <data name="TextAlign" xml:space="preserve">
     <value>left</value>
   </data>
+  <data name="ItemNumber" xml:space="preserve">
+    <value>Item Number</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Previous Page</value>
+  </data>
+  <data name="ErrorlessonId" xml:space="preserve">
+    <value>Lesson number can not be empty</value>
+  </data>
 </root>

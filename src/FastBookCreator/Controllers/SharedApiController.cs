@@ -85,7 +85,7 @@ namespace FastBookCreator.Controllers
             {
                 var insertQuery = @"INSERT INTO [PACKS](PACK_NAME,METHOD_ID,SUBJECT_ID,COLOR,DESCRIPTION) VALUES (@PACK_NAME,@METHOD_ID,@SUBJECT_ID,@COLOR,@DESCRIPTION);
                                     select last_insert_rowid();";
-                result = SqliteConn.GetCommonDb().Query<int>(insertQuery, pack).Single();
+                result = SqliteConn.GetCommonDb().Query<int>(insertQuery, pack).SingleOrDefault();
             }
             else
             {
@@ -117,7 +117,7 @@ namespace FastBookCreator.Controllers
             {
                 var insertQuery = @"INSERT INTO [Lesson](LESSON_TITLE,COLOR,RESOURCE_ID) VALUES (@LESSON_TITLE,@COLOR,@RESOURCE_ID);
                                     select last_insert_rowid();";
-                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, lesson).Single();
+                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, lesson).SingleOrDefault();
             }
             else
             {
@@ -150,7 +150,7 @@ namespace FastBookCreator.Controllers
             {
                 var insertQuery = @"INSERT INTO [PAGE](LESSON_ID,PAGE_TYPE_ID) VALUES (@LESSON_ID,@PAGE_TYPE_ID);
                                     select last_insert_rowid();";
-                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, page).Single();
+                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, page).SingleOrDefault();
             }
             else
             {
@@ -175,7 +175,7 @@ namespace FastBookCreator.Controllers
             string itemTypeId = json.itemTypeId.ToString();
           
 
-            var doc = new HtmlAgilityPack.HtmlDocument();
+          /*  var doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(new MvcHtmlString(json.content.ToString()).ToString());
             var codeTags = doc.DocumentNode.Descendants("code");
             foreach (var tag in codeTags)
@@ -187,7 +187,8 @@ namespace FastBookCreator.Controllers
             foreach (var tag in imgTags)
             {
                 tag.Attributes["src"].Value = $"getResource({tag.Attributes["alt"].Value})";
-            }
+            }*/
+
 
             var item = new Item()
             {
@@ -195,7 +196,8 @@ namespace FastBookCreator.Controllers
                 ITEM_TYPE_ID = long.Parse(itemTypeId),
                 PAGE_ID = long.Parse(pageId),
                 ITEM_TITLE = json.ITEM_TITLE,
-                CONTENT = doc.DocumentNode.OuterHtml.Replace("&lt;", "<").Replace("&gt;", ">") 
+                CONTENT = json.content.ToString(),
+                _id= json._id
             };
 
             int result;
@@ -203,11 +205,11 @@ namespace FastBookCreator.Controllers
             {
                 var insertQuery = @"INSERT INTO [ITEM](ITEM_TYPE_ID,PAGE_ID,LESSON_ID,ITEM_TITLE,CONTENT) VALUES (@ITEM_TYPE_ID,@PAGE_ID,@LESSON_ID,@ITEM_TITLE,@CONTENT);
                                     select last_insert_rowid();";
-                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, item).Single();
+                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, item).SingleOrDefault();
             }
             else
             {
-                var updateQuery = $"UPDATE [PAGE] SET ITEM_TYPE_ID=@ITEM_TYPE_ID,PAGE_ID=@PAGE_ID,LESSON_ID=LESSON_ID,ITEM_TITLE=@ITEM_TITLE,CONTENT=@CONTENT  WHERE _id={json._id} ";
+                var updateQuery = $"UPDATE [ITEM] SET ITEM_TYPE_ID=@ITEM_TYPE_ID,PAGE_ID=@PAGE_ID,LESSON_ID=LESSON_ID,ITEM_TITLE=@ITEM_TITLE,CONTENT=@CONTENT  WHERE _id=@_id ";
                 SqliteConn.GetPackDb(userId, packId).Execute(updateQuery, item);
                 result = json._id.ToObject<int>();
             }

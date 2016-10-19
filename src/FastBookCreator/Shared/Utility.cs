@@ -12,7 +12,7 @@ namespace FastBookCreator.Shared
         {
             return Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName.ToLower();
         }
-        public static string RegexrResource = "getResource[(](\\d+)[)]";
-        public static string RegexrNumber = "\\d+";
+        public static string RegexrResource = @"getResource[(](\d+)[)]";
+        public static string RegexrNumber = @"\d+";
     }
 }

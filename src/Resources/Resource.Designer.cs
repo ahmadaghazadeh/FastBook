@@ -331,6 +331,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lesson number can not be empty.
+        /// </summary>
+        public static string ErrorlessonId {
+            get {
+                return ResourceManager.GetString("ErrorlessonId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Course.
         /// </summary>
         public static string ErrorLessonTitle {
@@ -561,6 +570,15 @@ namespace Resources {
         public static string ItemMultipleChoice {
             get {
                 return ResourceManager.GetString("ItemMultipleChoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Number.
+        /// </summary>
+        public static string ItemNumber {
+            get {
+                return ResourceManager.GetString("ItemNumber", resourceCulture);
             }
         }
         
@@ -831,6 +849,15 @@ namespace Resources {
         public static string Phone_Number {
             get {
                 return ResourceManager.GetString("Phone_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous Page.
+        /// </summary>
+        public static string PreviousPage {
+            get {
+                return ResourceManager.GetString("PreviousPage", resourceCulture);
             }
         }
         

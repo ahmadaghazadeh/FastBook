@@ -5,12 +5,12 @@
         var ajaxOptions = new AjaxOptions
         {
             HttpMethod = "post",
-            OnSuccess = $"OnSuccess();",
-            OnBegin = $"OnBegin();"
+            OnSuccess = "OnSuccess();",
+            OnBegin ="OnBegin();",
         };
     }
 
-    @using (Ajax.BeginForm("SaveItemHtml", "Item", ajaxOptions, new { enctype = "multipart/form-data" }))
+    @using (Ajax.BeginForm("SaveItemHtml", "Item", ajaxOptions, new { enctype = "multipart/form-data" ,id="SaveItemHtml"}))
     {
         <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId" />
         <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
@@ -25,7 +25,7 @@
 
             <div class="col-md-6 group">
                 <div>
-                    @Resources.Resource.Item
+                    @Resources.Resource.ItemNumber
                     @Html.TextBoxFor(model => model._id, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model._id)
                 </div>
@@ -55,6 +55,10 @@
             <button id="submit-all" type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
             </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-default" onclick="location.href='@Request.UrlReferrer'" >
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp; @Resources.Resource.PreviousPage
+            </button>
         </div>
     }
 
@@ -69,23 +73,25 @@
         var editor1 = CKEDITOR.replace('editor1', {
             extraPlugins: 'codesnippet'
         });
-        editor1.addCommand("mySimpleCommand", { // create named command
-            exec: function (edt) {
+        editor1.addCommand("searchImage", {
+// create named command
+            exec: function(edt) {
 
                 $('#searchModal').modal('toggle');
             }
         });
-        editor1.ui.addButton('SuperButton', { // add new button and bind our command
+        editor1.ui.addButton('SuperButton', {
+// add new button and bind our command
             label: "Click me",
-            command: 'mySimpleCommand',
+            command: 'searchImage',
             toolbar: 'others',
             icon: '../../Content/images/multiple_image.png'
         });
 
-        $(document).ready(function () {
-            $.post("../Shared/ResPacks", { where: " ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+        $(document).ready(function() {
+            $.post("../Shared/ResPacks", { where: " ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function(data) {
                 var imeges = "";
-                $.each(data, function (key, value) {
+                $.each(data, function(key, value) {
                     imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
                         value.NAME + value.DATA +
                         "</div>";
@@ -106,10 +112,10 @@
 
         $("#txtSearch")
             .on("keyup",
-                function (ev) {
-                    $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+                function(ev) {
+                    $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function(data) {
                         var imeges = "";
-                        $.each(data, function (key, value) {
+                        $.each(data, function(key, value) {
                             imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
                                 value.NAME + value.DATA +
                                 "</div>";
@@ -121,28 +127,39 @@
                 });
 
 
-
-        var imgClick = function () {
+        var imgClick = function() {
             // Do stuff, get id of image perhaps?
-            editor1.insertHtml('<img id="' + this.id + '"  src="' + this.src + '" class="img-responsive" alt="' + this.alt + '">');
+            editor1.insertHtml('<img id="editor-' + this.alt + '"  src="' + this.src + '" class="img-responsive" alt="' + this.alt + '">');
             $('#searchModal').modal('toggle');
         }
 
         function OnSuccess() {
             $("#_id").attr("0");
             toastr.info("@Resources.Resource.Save");
-            $("#LESSON_TITLE").val("");
-            $("#COLOR").val("3433410");
-            $("#imgLesson").attr("src", "../Content/images/ibook.png");
+            $("#LESSON_ID").val("");
+            $("#ITEM_TITLE").val("");
+            $("#_id").val("");
+            editor1.HTML = "";
         }
 
         function OnBegin() {
-
         }
-        CKEDITOR.instances.editor1.on('change', function () {
-            CKEDITOR.instances.editor1.updateElement();
-            var editor_data = CKEDITOR.instances.editor1.getData();
-            $("#ckEditorHtml").val(editor_data);
+
+        $('#SaveItemHtml').submit(function () {
+            var text = CKEDITOR.instances.editor1.getData();
+            $(text).find("img").each(function (index, element) {
+                text = text.replace(element.src, "getResource(" + element.alt + ")");
+            }).promise().done(function () {
+                $("#ckEditorHtml").val(text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
+                var form = $(this);
+                var url = form.attr('action');
+                var formData = form.serialize();
+                $.post(url, formData, function (result) {
+                    // Do something with result
+                    OnSuccess();
+                });
+            });
+            return false;
         });
 
     </script>
