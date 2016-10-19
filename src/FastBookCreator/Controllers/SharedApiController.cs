@@ -177,18 +177,24 @@ namespace FastBookCreator.Controllers
 
             var doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(new MvcHtmlString(json.content.ToString()).ToString());
-            var pTags = doc.DocumentNode.Descendants("code");
-            foreach (var tag in pTags)
+            var codeTags = doc.DocumentNode.Descendants("code");
+            foreach (var tag in codeTags)
             {
                 tag.InnerHtml = tag.InnerHtml.ToHighLightAndroidFormat(tag.Attributes["lang"].Value);
             }
-          
+
+            var imgTags = doc.DocumentNode.Descendants("img");
+            foreach (var tag in imgTags)
+            {
+                tag.Attributes["src"].Value = $"getResource({tag.Attributes["alt"].Value})";
+            }
+
             var item = new Item()
             {
                 LESSON_ID = long.Parse(lessonId),
                 ITEM_TYPE_ID = long.Parse(itemTypeId),
                 PAGE_ID = long.Parse(pageId),
-                ITEM_TITLE = json.itemTitle,
+                ITEM_TITLE = json.ITEM_TITLE,
                 CONTENT = doc.DocumentNode.OuterHtml
             };
 

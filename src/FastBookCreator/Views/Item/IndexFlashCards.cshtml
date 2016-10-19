@@ -84,10 +84,10 @@
                 <h3>@Resources.Resource.CreateItem</h3>
 
                 <ul class="list-group">
-                    @foreach (var icon in HelperExtensions.ItemIcons().Take(5))
+                    @foreach (var icon in HelperExtensions.ItemIcons().Skip(5).Take(5))
                     {
                         <li class="list-group-item ">
-                            <button value="@icon.PageName" onclick="location.href='@Url.Action(icon.PageName, "Item")';"   style="text-align:  @Resources.Resource.TextAlign; width: 100%;" dir="@Resources.Resource.dir" type="button" class="btn btn-default itemType">
+                            <button value="@icon.PageName" onclick="location.href='@Url.Action(icon.PageName, "Item",Model)';"   style="text-align:  @Resources.Resource.TextAlign; width: 100%;" dir="@Resources.Resource.dir" type="button" class="btn btn-default itemType">
                                  @MvcHtmlString.Create(@icon.Icon) &nbsp;&nbsp;  
                                  @icon.Name 
                             </button>
@@ -112,9 +112,7 @@
         $("#btnDelete").click(function () {
             toastr.success("@Resources.Resource.DeleteSuccess");
         });
-        $(".itemType").click(function () {
-            
-        });
+      
         
     </script>
 }

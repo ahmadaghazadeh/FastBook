@@ -56,7 +56,7 @@
 			editor.ui.addButton && editor.ui.addButton( 'CodeSnippet', {
 				label: editor.lang.codesnippet.button,
 				command: 'codeSnippet',
-				toolbar: 'insert,10'
+				toolbar: 'others'
 			} );
 		},
 

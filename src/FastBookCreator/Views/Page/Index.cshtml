@@ -31,7 +31,7 @@
    .Sanitized(false)
    .Titled(@Resources.Resource.Item)
    .RenderValueAs(
-       f => $"<button  type=\"button\" onclick=\"location.href='/Item/Index?pageId={f._id}&userId="+@ViewBag.userId+"&packId="+@ViewBag.PackId+"'\" class=\"btn btn-default\">" +
+       f => $"<button  type=\"button\" onclick=\"location.href='/Item/Index?_id={f._id}&userId="+@ViewBag.userId+"&packId="+@ViewBag.PackId+ "&PAGE_TYPE_ID=" + f.PAGE_TYPE_ID + "'\" class=\"btn btn-default\">" +
             $"<i class=\"material-icons\">library_books</i> {@Resources.Resource.Item}</button>");
 
     column.Add(o => @Resources.Resource.Edit).Encoded(false)

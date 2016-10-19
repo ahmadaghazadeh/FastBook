@@ -1,0 +1,118 @@
+﻿@model List<FastBookCreator.Models.Item>
+@using FastBookCreator.Core
+@using GridMvc.Html
+
+
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+    <div class="btn-group" role="group">
+        <button type="button"  data-toggle="modal" data-target="#selectItemModal" class="btn btn-default">@Resources.Resource.CreateItem</button>
+    </div>
+
+</div>
+
+<div style="padding: 100px;">
+    @Html.Grid(Model).Named("dataGrid").Columns(column =>
+{
+    column.Add(o => @Resources.Resource.Logo)
+        .Titled(Resources.Resource.Name)
+        .Encoded(false)
+        .Sanitized(false)
+        .SetWidth(100)
+        .RenderValueAs(o => "");
+
+    column.Add(o => o._id)
+    .Titled(Resources.Resource.Id)
+    .Sortable(true);
+
+
+    column.Add(o => @Resources.Resource.Page).Encoded(false)
+   .Sanitized(false)
+   .Titled(@Resources.Resource.Edit)
+   .RenderValueAs(
+       f => $"<button  type=\"button\" onclick=\"location.href='/Page/Index?LessonId={f._id}'\" class=\"btn btn-default\">" +
+                        $"<span class=\"glyphicon glyphicon-file\" aria-hidden=\"true\"></span> {@Resources.Resource.Page}</button>");
+
+    column.Add(o => @Resources.Resource.Edit).Encoded(false)
+    .Sanitized(false)
+    .Titled(@Resources.Resource.Edit)
+    .RenderValueAs(
+        f => $"<button  type=\"button\" onclick=\"location.href='/Lesson/Edit?_id={f._id}'\" class=\"btn btn-default\">" +
+                         $"<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> {@Resources.Resource.Edit}</button>");
+
+    column.Add(o => @Resources.Resource.Delete).Encoded(false)
+    .Titled(@Resources.Resource.Delete)
+     .Encoded(false)
+    .Sanitized(false)
+    .RenderValueAs(f => $"<button  type=\"button\" class=\"btn btn-default deleteId\" data-toggle=\"modal\" data-id=\"{f._id}\" data-target=\"#deleteModal\">" +
+                         $"<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span> {@Resources.Resource.Delete}</button>");
+
+
+}
+)
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal" style="margin: 10%">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">@Resources.Resource.Attention</h4>
+            </div>
+            <div class="modal-body">
+                <span class="label label-default">@Resources.Resource.Id</span> : <input class="form-control" type="text" id="deleteId" value="" readonly />
+                <h3>@Resources.Resource.DeletePrompt</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resource.Close</button>
+                <button type="button" id="btnDelete" onclick="" class="btn btn-primary">@Resources.Resource.Delete</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+ 
+ 
+<div class="modal fade" tabindex="-1" role="dialog" id="selectItemModal" style="margin: 10%">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">@Resources.Resource.Item</h4>
+            </div>
+            <div class="modal-body">
+
+                <h3>@Resources.Resource.CreateItem</h3>
+
+                <ul class="list-group">
+                    @foreach (var icon in HelperExtensions.ItemIcons().Skip(5).Take(5))
+                    {
+                        <li class="list-group-item ">
+                            <button value="@icon.PageName" onclick="location.href='@Url.Action(icon.PageName, "Item",Model)';"   style="text-align:  @Resources.Resource.TextAlign; width: 100%;" dir="@Resources.Resource.dir" type="button" class="btn btn-default itemType">
+                                 @MvcHtmlString.Create(@icon.Icon) &nbsp;&nbsp;  
+                                 @icon.Name 
+                            </button>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section scripts
+{
+    <script>
+        $(".deleteId").click(function () {
+            var deleteId = $(this).data('id');
+            $(".modal-body #deleteId").val(deleteId);
+            $("#btnDelete").attr("onclick", "location.href='/Lesson/Delete?_id=" + deleteId + "'");
+        });
+
+        $("#btnDelete").click(function () {
+            toastr.success("@Resources.Resource.DeleteSuccess");
+        });
+      
+        
+    </script>
+}

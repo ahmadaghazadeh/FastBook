@@ -67,7 +67,7 @@ function notEqualValidator(x, msg) {
 							commit: function( widget ) {
 								widget.setData( 'lang', this.getValue() );
 							}
-						    , validate: CKEDITOR.dialog.validate.notEmpty(lang.language)
+						    , validate: CKEDITOR.dialog.validate.notEmpty(lang.emptyLangError)
 						},
 						{
 							id: 'code',

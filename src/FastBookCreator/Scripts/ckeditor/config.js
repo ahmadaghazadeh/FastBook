@@ -6,11 +6,11 @@
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
     config.language = 'fa';
-
+    
     config.toolbarGroups = [
 		{ name: 'document', groups: ['mode', 'document', 'doctools'] },
 		{ name: 'clipboard', groups: ['clipboard', 'undo'] },
-		{ name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing'] },
+		{ name: 'editing', groups: ['find', 'selection',  'editing'] },
 		//{ name: 'forms', groups: ['forms'] },
 		
 		{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
@@ -22,11 +22,12 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'styles', groups: ['styles'] },
 		{ name: 'colors', groups: ['colors'] },
 		{ name: 'tools', groups: ['tools'] },
-		{ name: 'others', groups: ['others'] },
-		{ name: 'about', groups: ['about'] }
+		{ name: 'others', groups: ['others'] }
     ];
 
     config.removeButtons = 'NewPage,Print,Templates,Radio,Image,Flash';
+     
+    
     
 };
 

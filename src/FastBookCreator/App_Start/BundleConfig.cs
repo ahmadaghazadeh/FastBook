@@ -27,8 +27,8 @@ namespace FastBookCreator
                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
                        "~/Scripts/tipso.min.js",
                        "~/Scripts/tooltipster/tooltipster.bundle.js"));
- 
- 
+
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-theme.min.css",
@@ -39,11 +39,11 @@ namespace FastBookCreator
                      "~/Content/bootstrap-dialog.min.css",
                      "~/Content/bootstrap-dialog.min.css",
                      "~/Content/font-awesome.min.css",
-                       "~/Content/site.css",
-                       "~/Content/tooltipster/tooltipster.bundle.css"
+                     "~/Content/tooltipster/tooltipster.bundle.css",
+                     "~/Content/site.css"
                       ));
 
- 
+
             bundles.Add(new StyleBundle("~/Content/Gridmvc").Include(
                      "~/Content/Gridmvc.css",
                      "~/Content/gridmvc.datepicker.min.css"));

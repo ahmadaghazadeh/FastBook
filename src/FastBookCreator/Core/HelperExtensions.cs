@@ -14,6 +14,7 @@ using System.Resources;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using Resources;
+using FastBookCreator.Controllers;
 
 namespace FastBookCreator.Core
 {
@@ -130,6 +131,15 @@ namespace FastBookCreator.Core
         {
 
             return MvcHtmlString.Create(Image(id, image, attributes));
+        }
+
+        public static string ToImageFromDb(this string num,string userId,string packId)
+        {
+          
+            using (var connection = SqliteConn.GetPackDb(userId, packId))
+            {
+                return Convert.ToBase64String(connection.Query($"SELECT DATA from RESOURCE WHERE _id={num}").Single());
+            }
         }
 
         public static string Image(string id,

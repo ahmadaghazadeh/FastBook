@@ -6,7 +6,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 body
 {
 	/* Font */
-	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+	font-family: 'Iranian Sans';
 	font-size: 12px;
 
 	/* Text color */
@@ -30,7 +30,7 @@ body
 blockquote
 {
 	font-style: italic;
-	font-family: Georgia, Times, "Times New Roman", serif;
+	font-family:'Iranian Sans';
 	padding: 2px 0;
 	border-style: solid;
 	border-color: #ccc;

@@ -307,6 +307,7 @@
     <Content Include="Content\gridmvc.datepicker.css" />
     <Content Include="Content\gridmvc.datepicker.min.css" />
     <Content Include="Content\images\error.jpg" />
+    <Content Include="Content\images\multiple_image.png" />
     <Content Include="Content\images\ibook.png" />
     <Content Include="Content\images\pageType1.svg" />
     <Content Include="Content\images\pageType2.svg" />
@@ -1068,10 +1069,13 @@
     <Content Include="Views\Shared\_SearchImageDialog.cshtml" />
     <Content Include="Views\Lesson\Index.cshtml" />
     <Content Include="Views\Lesson\Insert.cshtml" />
-    <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Views\Page\Insert.cshtml" />
-    <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\Item\IndexQuestion.cshtml" />
     <Content Include="Views\Item\InsertHTML.cshtml" />
+    <Content Include="Views\Item\InsertImage.cshtml" />
+    <Content Include="Views\Page\Index.cshtml" />
+    <Content Include="Views\Item\IndexDescription.cshtml" />
+    <Content Include="Views\Item\IndexFlashCards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">
