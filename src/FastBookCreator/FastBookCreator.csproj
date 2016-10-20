@@ -1072,10 +1072,10 @@
     <Content Include="Views\Page\Insert.cshtml" />
     <Content Include="Views\Item\IndexQuestion.cshtml" />
     <Content Include="Views\Item\InsertHTML.cshtml" />
-    <Content Include="Views\Item\InsertImage.cshtml" />
     <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Views\Item\IndexDescription.cshtml" />
     <Content Include="Views\Item\IndexFlashCards.cshtml" />
+    <Content Include="Views\Item\InsertImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">

@@ -52,6 +52,8 @@ namespace FastBookCreator.Models
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Description", SortEnabled = true)]
         public string DESCRIPTION { get; set; }
 
+        public byte[] DATA { get; set; }
 
+        public long RESOURCE_ID { get; set; }
     }
 }

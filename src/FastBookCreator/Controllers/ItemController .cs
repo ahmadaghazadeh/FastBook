@@ -27,6 +27,8 @@ namespace FastBookCreator.Controllers
             {
                 items = connection.Query<Item>($"SELECT * FROM ITEM WHERE PAGE_ID={pageId}");
             }
+            ViewBag.LESSON_ID = page.LESSON_ID;
+            ViewBag.PAGE_ID = pageId;
             switch (pageTypeId)
             {
                 case 1: return View("IndexDescription", (List<Item>)items);
@@ -45,34 +47,38 @@ namespace FastBookCreator.Controllers
             var packId = controller.GetPackId();
             ViewBag.UserId = userId;
             ViewBag.PackId = packId;
+            ViewBag.PAGE_ID = item.PAGE_ID;
             var pageTypeId = long.Parse(item.ITEM_TYPE_ID.ToString());
+            Item tItem =null;
             using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))
             {
-                item = connection.Query<Item>($"SELECT * FROM ITEM WHERE _id={item._id}").SingleOrDefault();
+                tItem = connection.Query<Item>($"SELECT * FROM ITEM_VIEW WHERE _id={item._id}").SingleOrDefault();
             }
 
             var regexrResource = new Regex(Shared.Utility.RegexrResource);
-            if (item != null)
+            if (tItem != null)
             {
-                var content = regexrResource.Matches(item.CONTENT);
-                var regexrNumber = new Regex(Shared.Utility.RegexrNumber);
-                foreach (Match resource in content)
+                item = tItem;
+                if (tItem.CONTENT!=null)
                 {
-                    var imgTag = regexrNumber.Matches(resource.ToString());  
-                    foreach (var num in imgTag)
+                    var content = regexrResource.Matches(tItem.CONTENT);
+                    var regexrNumber = new Regex(Shared.Utility.RegexrNumber);
+                    foreach (Match resource in content)
                     {
-                        item.CONTENT = item.CONTENT.Replace(resource.ToString(), num.ToString().ToImageFromDb(userId, packId));
+                        var imgTag = regexrNumber.Matches(resource.ToString());
+                        foreach (var num in imgTag)
+                        {
+                            item.CONTENT = item.CONTENT.Replace(resource.ToString(), num.ToString().ToImageFromDb(userId, packId));
+                        }
                     }
                 }
             }
-            else
-            {
-                item =new Item();
-            }
+            
             switch (pageTypeId)
             {
                 case 1: return View("InsertHTML", item);
-                default: return View("InsertHTML", item);
+                case 2: return View("InsertImage", item);
+                default: return View("InsertImage", item);
             }
         }
 

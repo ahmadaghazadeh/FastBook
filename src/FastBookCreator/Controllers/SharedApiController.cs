@@ -138,7 +138,7 @@ namespace FastBookCreator.Controllers
             string userId = json.userId.ToString();
             string packId = json.packId.ToString();
             string lessonId = json.lessonId.ToString();
-            string pageTypeId = json.pageTypeId.ToString();
+            string pageTypeId = json.PAGE_TYPE_ID.ToString();
             var page = new Page()
             {
                 LESSON_ID = long.Parse(lessonId),
@@ -160,60 +160,45 @@ namespace FastBookCreator.Controllers
             }
             return Ok(result);
         }
-
-
         [System.Web.Http.HttpPost]
         [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("Item/SaveItemHTML")]
+        [System.Web.Http.Route("Item/SaveItem")]
         public IHttpActionResult SaveItemHtml(JObject jObject)
         {
             dynamic json = jObject;
             string userId = json.userId.ToString();
             string packId = json.packId.ToString();
-            string lessonId = json.lessonId.ToString();
-            string pageId = json.pageId.ToString();
-            string itemTypeId = json.itemTypeId.ToString();
-          
-
-          /*  var doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(new MvcHtmlString(json.content.ToString()).ToString());
-            var codeTags = doc.DocumentNode.Descendants("code");
-            foreach (var tag in codeTags)
-            {
-                tag.InnerHtml = tag.InnerHtml.ToHighLightAndroidFormat(tag.Attributes["lang"].Value);
-            }
-
-            var imgTags = doc.DocumentNode.Descendants("img");
-            foreach (var tag in imgTags)
-            {
-                tag.Attributes["src"].Value = $"getResource({tag.Attributes["alt"].Value})";
-            }*/
-
-
+            string lessonId = json.LESSON_ID.ToString();
+            string pageId = json.PAGE_ID.ToString();
+            string itemTypeId = json.ITEM_TYPE_ID.ToString();
+            long id = json._id.ToObject<int>();
             var item = new Item()
             {
                 LESSON_ID = long.Parse(lessonId),
                 ITEM_TYPE_ID = long.Parse(itemTypeId),
                 PAGE_ID = long.Parse(pageId),
                 ITEM_TITLE = json.ITEM_TITLE,
-                CONTENT = json.content.ToString(),
-                _id= json._id
+                CONTENT = json.content,
+                RESOURCE_ID = json.RESOURCE_ID,
+                _id = id
             };
 
-            int result;
-            if (json._id.ToObject<int>() == 0)
+            long result;
+            if (id == 0)
             {
-                var insertQuery = @"INSERT INTO [ITEM](ITEM_TYPE_ID,PAGE_ID,LESSON_ID,ITEM_TITLE,CONTENT) VALUES (@ITEM_TYPE_ID,@PAGE_ID,@LESSON_ID,@ITEM_TITLE,@CONTENT);
+                var insertQuery = @"INSERT INTO [ITEM](ITEM_TYPE_ID,PAGE_ID,LESSON_ID,ITEM_TITLE,CONTENT,RESOURCE_ID) VALUES (@ITEM_TYPE_ID,@PAGE_ID,@LESSON_ID,@ITEM_TITLE,@CONTENT,@RESOURCE_ID);
                                     select last_insert_rowid();";
                 result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, item).SingleOrDefault();
             }
             else
             {
-                var updateQuery = $"UPDATE [ITEM] SET ITEM_TYPE_ID=@ITEM_TYPE_ID,PAGE_ID=@PAGE_ID,LESSON_ID=LESSON_ID,ITEM_TITLE=@ITEM_TITLE,CONTENT=@CONTENT  WHERE _id=@_id ";
+                var updateQuery = $"UPDATE [ITEM] SET ITEM_TYPE_ID=@ITEM_TYPE_ID,PAGE_ID=@PAGE_ID,LESSON_ID=LESSON_ID,ITEM_TITLE=@ITEM_TITLE,CONTENT=@CONTENT ,RESOURCE_ID=@RESOURCE_ID WHERE _id=@_id ";
                 SqliteConn.GetPackDb(userId, packId).Execute(updateQuery, item);
-                result = json._id.ToObject<int>();
+                result = id;
             }
             return Ok(result);
         }
+
+     
     }
 }

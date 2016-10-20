@@ -66,6 +66,13 @@
     .RenderValueAs(f => $"<button  type=\"button\" class=\"btn btn-default deleteId\" data-toggle=\"modal\" data-id=\"{f._id}\" data-target=\"#deleteModal\">" +
                          $"<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span> {@Resources.Resource.Delete}</button>");
 
+    column.Add(o => @Resources.Resource.Image).Encoded(false)
+   .Sanitized(false)
+   .Titled(@Resources.Resource.Image)
+   .RenderValueAs(
+       f => $"<button  type=\"button\" onclick=\"location.href='/Shared/UploadImages?packId={f._id}'\" class=\"btn btn-default\">" +
+                        $"<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span> {@Resources.Resource.Lesson}</button>");
+
 
 }
 )

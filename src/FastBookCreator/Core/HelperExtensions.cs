@@ -165,52 +165,62 @@ namespace FastBookCreator.Core
             {
                 new IconHtml()
                 {
+                    ItemTypeId=1,
                     Name = Resource.ItemHTML,
                     Icon = "<i class=\"fa fa-html5\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                    ItemTypeId=2,
                     Name = Resource.ItemPicture,
                     Icon = "<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                    ItemTypeId=3,
                     Name = Resource.ItemSound,
                     Icon = "<i class=\"fa fa-file-audio-o\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                    ItemTypeId=4,
                     Name = Resource.ItemVideo,
                     Icon = "<i class=\"fa fa-file-video-o\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                    ItemTypeId=5,
                     Name = Resource.ItemTTS,
                     Icon = "<span class=\"glyphicon glyphicon-bullhorn\" aria-hidden=\"true\"></span>"
                 },
                 new IconHtml()
                 {
+                    ItemTypeId=6,
                     Name = Resource.ItemMultipleChoice,
                     Icon = "<i class=\"fa fa-check-square\" aria-hidden=\"true\"></i>"
                 },
                 new IconHtml()
                 {
+                    ItemTypeId=7,
                     Name = Resource.ItemPlacement,
                     Icon = "<i class=\"material-icons\">space_bar</i>"
                 },
 
                 new IconHtml()
                 {
+                    ItemTypeId=8,
                     Name = Resource.ItemOrdering,
                     Icon = "<span class=\"glyphicon glyphicon-sort\" aria-hidden=\"true\"></span>"
                 },
                 new IconHtml()
                 {
+                    ItemTypeId=9,
                     Name = Resource.ItemFill,
                     Icon = "<i class=\"material-icons\">mode_edit</i>"
                 },
                 new IconHtml()
                 {
+                    ItemTypeId=10,
                     Name = Resource.ItemOnechoice,
                     Icon = "<i class=\"fa fa-dot-circle-o\" aria-hidden=\"true\"></i>"
                 },

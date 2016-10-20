@@ -1,43 +1,38 @@
 ﻿@model  FastBookCreator.Models.Item
-
+@using FastBookCreator.Core
 <div>
     @{
         var ajaxOptions = new AjaxOptions
         {
             HttpMethod = "post",
-            OnSuccess = $"OnSuccess();",
-            OnBegin = $"OnBegin();"
+            OnSuccess = "OnSuccess();",
+            OnBegin = "OnBegin();",
         };
     }
 
-    @using (Ajax.BeginForm("SaveItemImage", "Item", ajaxOptions, new { enctype = "multipart/form-data" }))
+    @using (Ajax.BeginForm("SaveItem", "Item", ajaxOptions, new { enctype = "multipart/form-data", id = "SaveItemHtml" }))
     {
         <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId" />
         <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
-        <input id="resourceId" name="resourceId" type="hidden" value="0" />
-        <input id="lessonId" name="lessonId" type="hidden" value="1" />
-        <input id="pageId" name="pageId" type="hidden" value="1" />
-        <input id="itemTypeId" name="itemTypeId" type="hidden" value="2" />
-        <input id="ckEditorHtml" class="form-control" name="content" value="" type="hidden" />
+        <input id="RESOURCE_ID" name="RESOURCE_ID" type="hidden" value="0" />
+        <input id="itemTypeId" name="ITEM_TYPE_ID" type="hidden" value="2" />
         <input id="lang" class="form-control" name="lang" value="" type="hidden" />
         <div class="row">
 
-
+            <div class="col-md-12 group">
+                @Html.MVCImage("imgItem", @Model.DATA, $"alt=\"\" data-toggle=\"modal\" data-target=\"#searchModal\" width=\"200\" height=\"150\"")
+            </div>
             <div class="col-md-6 group">
                 <div>
-                    @Resources.Resource.Item
+                    @Resources.Resource.ItemNumber
                     @Html.TextBoxFor(model => model._id, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model._id)
-
                 </div>
-
                 <div>
                     @Resources.Resource.Name
                     @Html.TextBoxFor(model => model.ITEM_TITLE, new { @class = "form-control", placeholder = Resources.Resource.Name })
                     @Html.ValidationMessageFor(model => model.ITEM_TITLE)
-
                 </div>
-
             </div>
 
             <div class="col-md-6 group">
@@ -46,22 +41,24 @@
                     @Html.TextBoxFor(model => model.LESSON_ID, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.LESSON_ID)
                 </div>
-            </div>
 
-            <div class="col-md-12 group">
-                <textarea class="code" cols="80" id="editor1" name="editor1" rows="10" style="direction: ltr; ">
-                    @MvcHtmlString.Create(@Model.CONTENT)
-                </textarea>
+                <div>
+                    @Resources.Resource.Page
+                    @Html.TextBoxFor(model => model.PAGE_ID, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.PAGE_ID)
+                </div>
             </div>
         </div>
-
         <div class="row center-block">
             <button id="submit-all" type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
             </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-default" onclick="location.href='@Request.UrlReferrer'">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp; @Resources.Resource.PreviousPage
+            </button>
         </div>
     }
-
 </div>
 
 @Html.Partial("_SearchImageDialog")
@@ -70,23 +67,6 @@
 {
     <script type="text/javascript">
 
-        var editor1 = CKEDITOR.replace('editor1', {
-            extraPlugins: 'codesnippet'
-        });
-
-        editor1.addCommand("mySimpleCommand", { // create named command
-            exec: function (edt) {
-
-                $('#searchModal').modal('toggle');
-            }
-        });
-
-        editor1.ui.addButton('SuperButton', { // add new button and bind our command
-            label: "Click me",
-            command: 'mySimpleCommand',
-            toolbar: 'others',
-            icon: '../../Content/images/multiple_image.png'
-        });
 
 
         $(document).ready(function () {
@@ -103,11 +83,9 @@
             });
 
             $("img[id^=img-]").click(imgClick);
-
-            if ($("#imgLesson").attr("src") === "") {
-                $("#imgLesson").attr("src", "../Content/images/ibook.png");
+            if ($("#imgItem").attr("src") === "") {
+                $("#imgItem").attr("src", "../Content/images/ibook.png");
             }
-
 
         });
 
@@ -128,28 +106,40 @@
                 });
 
 
-
         var imgClick = function () {
             // Do stuff, get id of image perhaps?
-            editor1.insertHtml('<img id="' + this.id + '"  width="200px"  height="150px"  src="' + this.src + '" class="img-responsive" alt="' + this.alt + '">');
+            $("#imgItem").attr("src", this.src);
+            $("#RESOURCE_ID").val(this.alt);
             $('#searchModal').modal('toggle');
         }
 
         function OnSuccess() {
             $("#_id").attr("0");
             toastr.info("@Resources.Resource.Save");
-            $("#LESSON_TITLE").val("");
-            $("#COLOR").val("3433410");
-            $("#imgLesson").attr("src", "../Content/images/ibook.png");
+            $("#LESSON_ID").val("");
+            $("#PAGE_ID").val("");
+            $("#ITEM_TITLE").val("");
+            $("#_id").val("");
         }
 
         function OnBegin() {
-
         }
-        CKEDITOR.instances.editor1.on('change', function () {
-            CKEDITOR.instances.editor1.updateElement();
-            var editor_data = CKEDITOR.instances.editor1.getData();
-            $("#ckEditorHtml").val(editor_data);
+
+        $('#SaveItemHtml').submit(function () {
+
+            $("#SaveItemHtml").validate({
+                submitHandler: function (form) {
+                    var form = $("#SaveItemHtml");
+                    var url = form.attr('action');
+                    var formData = form.serialize();
+                    $.post(url, formData, function (result) {
+                        if (result > 0)
+                            OnSuccess();
+                        else
+                            toastr.info("@Resources.Resource.UnSuccess");
+                    });
+                }
+            });
         });
 
     </script>

@@ -37,7 +37,7 @@
    .Sanitized(false)
    .Titled(@Resources.Resource.Edit)
    .RenderValueAs(
-       f => $"<button  type=\"button\" onclick=\"location.href='/Page/Index?LessonId={f._id}'\" class=\"btn btn-default\">" +
+       f => $"<button  type=\"button\" onclick=\"location.href='/Page/Index?_id={f._id}'\" class=\"btn btn-default\">" +
                         $"<span class=\"glyphicon glyphicon-file\" aria-hidden=\"true\"></span> {@Resources.Resource.Page}</button>");
 
     column.Add(o => @Resources.Resource.Edit).Encoded(false)
