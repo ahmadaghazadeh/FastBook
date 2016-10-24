@@ -179,7 +179,7 @@ namespace FastBookCreator.Controllers
                 PAGE_ID = long.Parse(pageId),
                 ITEM_TITLE = json.ITEM_TITLE,
                 CONTENT = json.content,
-                RESOURCE_ID = json.RESOURCE_ID,
+                RESOURCE_ID = json.RESOURCE_ID ?? 0,
                 _id = id
             };
 

@@ -12,6 +12,6 @@ namespace FastBookCreator.Models
 
     public enum ResTypeID
     {
-        Common=0,Pack=1
+        Common=0, PACK_IMAGE = 1,PACK_SOUND=2
     }
 }

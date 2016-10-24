@@ -16,6 +16,7 @@
         <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
         <input id="RESOURCE_ID" name="RESOURCE_ID" type="hidden" value="0" />
         <input id="itemTypeId" name="ITEM_TYPE_ID" type="hidden" value="2" />
+        <input id="ckEditorHtml" class="form-control" name="content" value="" type="hidden" />
         <input id="lang" class="form-control" name="lang" value="" type="hidden" />
         <div class="row">
 
@@ -48,6 +49,7 @@
                     @Html.ValidationMessageFor(model => model.PAGE_ID)
                 </div>
             </div>
+
         </div>
         <div class="row center-block">
             <button id="submit-all" type="submit" class="btn btn-default">
@@ -125,22 +127,21 @@
         function OnBegin() {
         }
 
-        $('#SaveItemHtml').submit(function () {
 
-            $("#SaveItemHtml").validate({
-                submitHandler: function (form) {
-                    var form = $("#SaveItemHtml");
-                    var url = form.attr('action');
-                    var formData = form.serialize();
-                    $.post(url, formData, function (result) {
-                        if (result > 0)
-                            OnSuccess();
-                        else
-                            toastr.info("@Resources.Resource.UnSuccess");
-                    });
-                }
-            });
+        $("#SaveItemHtml").validate({
+            submitHandler: function (form) {
+                var form = $("#SaveItemHtml");
+                var url = form.attr('action');
+                var formData = form.serialize();
+                $.post(url, formData, function (result) {
+                    if (result > 0)
+                        OnSuccess();
+                    else
+                        toastr.info("@Resources.Resource.UnSuccess");
+                });
+            }
         });
+
 
     </script>
 }

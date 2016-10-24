@@ -231,8 +231,8 @@
   <data name="SubjectName" xml:space="preserve">
     <value>عنوان موضوع</value>
   </data>
-  <data name="UploadImages" xml:space="preserve">
-    <value>بارگذاری تصاویر</value>
+  <data name="UploadFiles" xml:space="preserve">
+    <value>بارگذاری فایل</value>
   </data>
   <data name="UploadImagesDescription" xml:space="preserve">
     <value>می توانید چندین تصویر را به صورت دسته جمعی بارگذاری کنید و بعدا در درس ها از آن ها استفاده کنید .</value>
@@ -267,7 +267,7 @@
   <data name="dictResponseError" xml:space="preserve">
     <value>سرور با {{statusCode}}  کد پاسخ دادند.</value>
   </data>
-  <data name="dictDefaultMessage" xml:space="preserve">
+  <data name="dictDefaultMessageImage" xml:space="preserve">
     <value>رها کردن فایل در اینجا برای آپلود (عرض : 400 - ارتفای : 300)</value>
   </data>
   <data name="ErrorSaveImage" xml:space="preserve">
@@ -282,8 +282,8 @@
   <data name="ResourceID" xml:space="preserve">
     <value>شماره منبع</value>
   </data>
-  <data name="ShowImage" xml:space="preserve">
-    <value>تصاویر ذخیره شده</value>
+  <data name="ShowFiles" xml:space="preserve">
+    <value>فایل های ذخیره شده</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>بستن</value>
@@ -434,5 +434,26 @@
   </data>
   <data name="ErrorlessonId" xml:space="preserve">
     <value>شماره درس نمی تواند خالی باشد</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>منابع</value>
+  </data>
+  <data name="UploadSoundDescription" xml:space="preserve">
+    <value>می توانید چندین صدا را به صورت دسته جمعی بارگذاری کنید و بعدا در درس ها از آن ها استفاده کنید .</value>
+  </data>
+  <data name="UploadSound" xml:space="preserve">
+    <value>بازگذاری صوت</value>
+  </data>
+  <data name="UploadImages" xml:space="preserve">
+    <value>بازگذاری تصاویر</value>
+  </data>
+  <data name="RESOURCE_TYPE_ID" xml:space="preserve">
+    <value>نوع منبع</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>آدرس اینترنتی</value>
+  </data>
+  <data name="dictDefaultMessageSound" xml:space="preserve">
+    <value>رها کردن فایل در اینجا برای آپلود (mp3/wav)</value>
   </data>
 </root>

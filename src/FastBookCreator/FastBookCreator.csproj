@@ -260,6 +260,7 @@
     <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Controllers\PackController.cs" />
     <Compile Include="Controllers\SharedApiController.cs" />
+    <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Core\GridColumnDisplayAttribute.cs" />
     <Compile Include="Core\HelperExtensions.cs" />
@@ -309,6 +310,7 @@
     <Content Include="Content\images\error.jpg" />
     <Content Include="Content\images\multiple_image.png" />
     <Content Include="Content\images\ibook.png" />
+    <Content Include="Content\images\music-box-outline.svg" />
     <Content Include="Content\images\pageType1.svg" />
     <Content Include="Content\images\pageType2.svg" />
     <Content Include="Content\images\pageType3.svg" />
@@ -1063,8 +1065,6 @@
     <Content Include="Views\Pack\Insert.cshtml" />
     <Content Include="Views\Errors\Index.cshtml" />
     <Content Include="Views\Errors\NotFound.cshtml" />
-    <Content Include="Views\Shared\UploadImages.cshtml" />
-    <Content Include="Views\Shared\ShowImages.cshtml" />
     <Content Include="Views\Shared\_DeleteDialog.cshtml" />
     <Content Include="Views\Shared\_SearchImageDialog.cshtml" />
     <Content Include="Views\Lesson\Index.cshtml" />
@@ -1076,6 +1076,11 @@
     <Content Include="Views\Item\IndexDescription.cshtml" />
     <Content Include="Views\Item\IndexFlashCards.cshtml" />
     <Content Include="Views\Item\InsertImage.cshtml" />
+    <Content Include="Views\Resources\UploadImages.cshtml" />
+    <Content Include="Views\Resources\ShowImages.cshtml" />
+    <Content Include="Views\Resources\Index.cshtml" />
+    <Content Include="Views\Resources\ShowSound.cshtml" />
+    <Content Include="Views\Resources\UploadSound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">
@@ -1093,7 +1098,6 @@
   <ItemGroup>
     <Folder Include="images\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Resource\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

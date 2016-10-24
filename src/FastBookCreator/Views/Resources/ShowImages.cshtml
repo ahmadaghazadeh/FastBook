@@ -5,7 +5,7 @@
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group" role="group">
-        <a class="btn btn- btn-lg" href="@Url.Action("UploadImages", "Shared")" role="button">@Resources.Resource.UploadImages</a>
+        <a class="btn btn- btn-lg" href="@Url.Action("SaveUploadedFile", "Resources")" role="button">@Resources.Resource.UploadImages</a>
     </div>
 </div>
 
@@ -43,14 +43,11 @@
                        imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
                            value.NAME + value.DATA +
                                          "</div>";
-
                    });
                    $("#images").html(imeges);
                });
            });
         $("img[id^=img-]").on("click", function () {
-            // Do stuff, get id of image perhaps?
-
             $("#imgPack").attr("src", this.src);
             $('#searchModal').modal('toggle');
         });

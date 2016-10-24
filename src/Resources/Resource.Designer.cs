@@ -198,9 +198,18 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Drop files here to upload (width: 400 - Height: 300).
         /// </summary>
-        public static string dictDefaultMessage {
+        public static string dictDefaultMessageImage {
             get {
-                return ResourceManager.GetString("dictDefaultMessage", resourceCulture);
+                return ResourceManager.GetString("dictDefaultMessageImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drop files here to upload (mp3 / wav).
+        /// </summary>
+        public static string dictDefaultMessageSound {
+            get {
+                return ResourceManager.GetString("dictDefaultMessageSound", resourceCulture);
             }
         }
         
@@ -880,11 +889,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resource Type.
+        /// </summary>
+        public static string RESOURCE_TYPE_ID {
+            get {
+                return ResourceManager.GetString("RESOURCE_TYPE_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resource Number.
         /// </summary>
         public static string ResourceID {
             get {
                 return ResourceManager.GetString("ResourceID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resources.
+        /// </summary>
+        public static string Resources {
+            get {
+                return ResourceManager.GetString("Resources", resourceCulture);
             }
         }
         
@@ -943,11 +970,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image saved.
+        ///   Looks up a localized string similar to Files saved.
         /// </summary>
-        public static string ShowImage {
+        public static string ShowFiles {
             get {
-                return ResourceManager.GetString("ShowImage", resourceCulture);
+                return ResourceManager.GetString("ShowFiles", resourceCulture);
             }
         }
         
@@ -1006,6 +1033,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upload Files.
+        /// </summary>
+        public static string UploadFiles {
+            get {
+                return ResourceManager.GetString("UploadFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload Images.
         /// </summary>
         public static string UploadImages {
@@ -1020,6 +1056,33 @@ namespace Resources {
         public static string UploadImagesDescription {
             get {
                 return ResourceManager.GetString("UploadImagesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Sound.
+        /// </summary>
+        public static string UploadSound {
+            get {
+                return ResourceManager.GetString("UploadSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can upload multiple Sound for mass and then use it in lessons..
+        /// </summary>
+        public static string UploadSoundDescription {
+            get {
+                return ResourceManager.GetString("UploadSoundDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string URL {
+            get {
+                return ResourceManager.GetString("URL", resourceCulture);
             }
         }
     }

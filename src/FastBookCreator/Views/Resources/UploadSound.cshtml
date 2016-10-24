@@ -1,15 +1,15 @@
 ﻿@using FastBookCreator.Models
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = Resources.Resource.UploadFiles;
 }
 <div class="jumbotron">
-    @using (Html.BeginForm("SaveUploadedFile", "Shared", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
+    @using (Html.BeginForm("SaveUploadedFile", "Resources", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
     {
         <div class="fallback">
             <input name="file" type="file" multiple/>
         </div>
         <input id="_id" class="form-control" name="_id" type="hidden" value="0" />
-        <input id="typeId" class="form-control" name="typeId" type="hidden" value="@ResTypeID.Pack" />
+        <input id="typeId" class="form-control" name="typeId" type="hidden" value="@ResTypeID.PACK_SOUND" />
     }
 </div>
 
@@ -35,18 +35,22 @@
             autoProcessQueue: false,
             maxFiles: 1000,
             maxFilesize: 0.1,
-            dictDefaultMessage :"@Resources.Resource.dictDefaultMessage" ,
-            dictFallbackText:"@Resources.Resource.dictFallbackText",
-            dictFileTooBig:"@Resources.Resource.dictFileTooBig",
-            dictInvalidFileType:"@Resources.Resource.dictInvalidFileType",
-            dictResponseError:"@Resources.Resource.dictResponseError",
-            dictCancelUpload:"@Resources.Resource.dictCancelUpload",
-            dictCancelUploadConfirmation:"@Resources.Resource.dictCancelUploadConfirmation",
-            dictRemoveFile:"@Resources.Resource.dictRemoveFile",
+            acceptedFiles: 'audio/mp3, audio/wav',
+            dictDefaultMessage: "@Resources.Resource.dictDefaultMessageSound",
+            dictFallbackText: "@Resources.Resource.dictFallbackText",
+            dictFileTooBig: "@Resources.Resource.dictFileTooBig",
+            dictInvalidFileType: "@Resources.Resource.dictInvalidFileType",
+            dictResponseError: "@Resources.Resource.dictResponseError",
+            dictCancelUpload: "@Resources.Resource.dictCancelUpload",
+            dictCancelUploadConfirmation: "@Resources.Resource.dictCancelUploadConfirmation",
+            dictRemoveFile: "@Resources.Resource.dictRemoveFile",
             dictMaxFilesExceeded: "@Resources.Resource.dictMaxFilesExceeded",
 
             init: function () {
+
+
                 dropzoneForm = this;
+
                 this.on("maxfilesexceeded", function (data) {
                     var res = eval('(' + data.xhr.responseText + ')');
 
@@ -65,7 +69,7 @@
                     var removeButton = Dropzone.createElement("<button class=\"btn btn-default\"><span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>&nbsp;&nbsp; @Resources.Resource.Delete </button>");
                     // Capture the Dropzone instance as closure.
                     var _this = this;
-
+                    file.previewElement.querySelector("img").src = "/Content/images/music-box-outline.svg";
                     // Listen to the click event
                     removeButton.addEventListener("click", function (e) {
                         // Make sure the button click doesn't submit the form:
@@ -76,24 +80,22 @@
                         // If you want to the delete the file on the server as well,
                         // you can do the AJAX request here.
                     });
-
                     // Add the button to the file preview element.
                     file.previewElement.appendChild(removeButton);
                 });
 
                 this.on("complete", function (file) {
                     uploadedCount++;
-                    $("#upLoadCount").html(uploadedCount +"("+dropzoneForm.getQueuedFiles().length+")");
+                    $("#upLoadCount").html(dropzoneForm.getQueuedFiles().length + "(" + uploadedCount + ")");
                 });
             }
         };
-        $("#submit-all").click(function() {
+        $("#submit-all").click(function () {
             dropzoneForm.processQueue();
         });
         $("#clear").click(function () {
             dropzoneForm.removeAllFiles(true);
         });
-
 
     </script>
 }

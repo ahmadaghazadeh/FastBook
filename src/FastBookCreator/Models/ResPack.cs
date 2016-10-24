@@ -21,6 +21,11 @@ namespace FastBookCreator.Models
      
         [GridColumnDisplay(ResourceType = typeof(Resource), Name = "Name", SortEnabled = true,FilterEnabled = true)]
         public string NAME { get; set; }
- 
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "RESOURCE_TYPE_ID", SortEnabled = true, FilterEnabled = true)]
+        public long RESOURCE_TYPE_ID { get; set; }
+
+        [GridColumnDisplay(ResourceType = typeof(Resource), Name = "URL", SortEnabled = true, FilterEnabled = true)]
+        public string URL { get; set; }
+
     }
 }

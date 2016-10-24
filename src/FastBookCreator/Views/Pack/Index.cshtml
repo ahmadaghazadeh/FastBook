@@ -45,6 +45,8 @@
     .SetWidth(100)
     .RenderValueAs(o => $"<div  style=\" min-height: 100%; background-color:#{o.COLOR.ToString("X")}\"<div> . </div>");
 
+   
+
     column.Add(o => @Resources.Resource.Lesson).Encoded(false)
    .Sanitized(false)
    .Titled(@Resources.Resource.Lesson)
@@ -66,12 +68,12 @@
     .RenderValueAs(f => $"<button  type=\"button\" class=\"btn btn-default deleteId\" data-toggle=\"modal\" data-id=\"{f._id}\" data-target=\"#deleteModal\">" +
                          $"<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span> {@Resources.Resource.Delete}</button>");
 
-    column.Add(o => @Resources.Resource.Image).Encoded(false)
-   .Sanitized(false)
-   .Titled(@Resources.Resource.Image)
-   .RenderValueAs(
-       f => $"<button  type=\"button\" onclick=\"location.href='/Shared/UploadImages?packId={f._id}'\" class=\"btn btn-default\">" +
-                        $"<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span> {@Resources.Resource.Lesson}</button>");
+    column.Add(o => @Resources.Resource.Resources).Encoded(false)
+    .Sanitized(false)
+    .Titled(@Resources.Resource.Resources)
+    .RenderValueAs(
+        f => $"<button  type=\"button\" onclick=\"location.href='/Resources/Index?_id={f._id}'\" class=\"btn btn-default\">" +
+                          $"<i class=\"fa fa-files-o\" aria-hidden=\"true\"></i></span> {@Resources.Resource.Resources}</button>");
 
 
 }

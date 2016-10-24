@@ -1,0 +1,30 @@
+﻿@{
+
+}
+
+<h2>@ViewBag.Title</h2>
+<div>
+    <div class="jumbotron col-md-5 group">
+        <h3>@Resources.Resource.UploadImages</h3>
+        <h5>@Resources.Resource.UploadImagesDescription</h5>
+        <p>
+            <a class="btn btn-primary btn-lg" href="@Url.Action("UploadImages", "Resources")" role="button">@Resources.Resource.UploadFiles</a>
+            <a class="btn btn-primary btn-lg" href="@Url.Action("ShowImages", "Resources")" role="button">@Resources.Resource.ShowFiles</a>
+        </p>
+    </div>
+
+
+    <div class="jumbotron col-md-5 group">
+        <h3>@Resources.Resource.UploadSound</h3>
+        <h5>@Resources.Resource.UploadSoundDescription</h5>
+        <p>
+            <a class="btn btn-primary btn-lg" href="@Url.Action("UploadSound", "Resources")" role="button">@Resources.Resource.UploadFiles</a>
+            <a class="btn btn-primary btn-lg" href="@Url.Action("ShowSound", "Resources")" role="button">@Resources.Resource.ShowFiles</a>
+        </p>
+    </div>
+
+</div>
+
+@section scripts{
+
+}

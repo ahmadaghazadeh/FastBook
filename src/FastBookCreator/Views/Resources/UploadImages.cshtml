@@ -1,0 +1,99 @@
+﻿@using FastBookCreator.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="jumbotron">
+    @using (Html.BeginForm("SaveUploadedFile", "Resources", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", id = "dropzoneForm" }))
+    {
+        <div class="fallback">
+            <input name="file" type="file" multiple/>
+        </div>
+        <input id="_id" class="form-control" name="_id" type="hidden" value="0"/>
+        <input id="typeId" class="form-control" name="typeId" type="hidden" value="@ResTypeID.PACK_IMAGE" />
+    }
+</div>
+
+<div class="row center-block">
+    <button id="submit-all" type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
+        <span id="upLoadCount" class="badge">0</span>
+    </button>
+
+    <button id="clear" type="submit" class="btn btn-default">
+        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Clear
+    </button>
+
+
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var uploadedCount = 0;
+        var ImageWidth = 400, ImageHeight = 300;
+        //File Upload response from the server
+        Dropzone.options.dropzoneForm = {
+            autoProcessQueue: false,
+            maxFiles: 1000,
+            maxFilesize: 0.1,
+            dictDefaultMessage :"@Resources.Resource.dictDefaultMessageImage" ,
+            dictFallbackText:"@Resources.Resource.dictFallbackText",
+            dictFileTooBig:"@Resources.Resource.dictFileTooBig",
+            dictInvalidFileType:"@Resources.Resource.dictInvalidFileType",
+            dictResponseError:"@Resources.Resource.dictResponseError",
+            dictCancelUpload:"@Resources.Resource.dictCancelUpload",
+            dictCancelUploadConfirmation:"@Resources.Resource.dictCancelUploadConfirmation",
+            dictRemoveFile:"@Resources.Resource.dictRemoveFile",
+            dictMaxFilesExceeded: "@Resources.Resource.dictMaxFilesExceeded",
+
+            init: function () {
+                dropzoneForm = this;
+                this.on("maxfilesexceeded", function (data) {
+                    var res = eval('(' + data.xhr.responseText + ')');
+
+                });
+
+                this.on("queuecomplete", function () {
+                    this.options.autoProcessQueue = false;
+                });
+
+                this.on("processing", function () {
+                    this.options.autoProcessQueue = true;
+                });
+
+                this.on("addedfile", function (file) {
+                    // Create the remove button
+                    var removeButton = Dropzone.createElement("<button class=\"btn btn-default\"><span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>&nbsp;&nbsp; @Resources.Resource.Delete </button>");
+                    // Capture the Dropzone instance as closure.
+                    var _this = this;
+
+                    // Listen to the click event
+                    removeButton.addEventListener("click", function (e) {
+                        // Make sure the button click doesn't submit the form:
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Remove the file preview.
+                        _this.removeFile(file);
+                        // If you want to the delete the file on the server as well,
+                        // you can do the AJAX request here.
+                    });
+
+                    // Add the button to the file preview element.
+                    file.previewElement.appendChild(removeButton);
+                });
+
+                this.on("complete", function (file) {
+                    uploadedCount++;
+                    $("#upLoadCount").html(dropzoneForm.getQueuedFiles().length + "(" + uploadedCount + ")");
+                });
+            }
+        };
+        $("#submit-all").click(function() {
+            dropzoneForm.processQueue();
+        });
+        $("#clear").click(function () {
+            dropzoneForm.removeAllFiles(true);
+        });
+
+
+    </script>
+}

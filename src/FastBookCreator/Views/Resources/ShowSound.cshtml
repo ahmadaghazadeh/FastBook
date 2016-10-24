@@ -1,0 +1,59 @@
+﻿@using FastBookCreator.Core
+
+<h2>@ViewBag.Title</h2>
+
+
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+        <a class="btn btn- btn-lg" href="@Url.Action("SaveUploadedFile", "Resources")" role="button">@Resources.Resource.UploadImages</a>
+    </div>
+</div>
+
+<img id="imgPack" src="../../Content/images/ibook.png" alt="" data-toggle="modal" data-target="#searchModal" width="200" height="150" />
+@*
+<div id="other">
+    Trigger the handler
+</div>
+*@
+
+@Html.Partial("_SearchImageDialog")
+
+@section scripts
+{
+    <script>
+      
+        $(document).ready(function () {
+            $.post("../Shared/ResPacks", { where: " " }, function (data) {
+                var imeges = "";
+                $.each(data, function (key, value) {
+                    imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                        value.NAME + value.DATA +
+                                      "</div>";
+
+                });
+                $("#images").html(imeges);
+            });
+        });
+        $("#txtSearch")
+       .on("keyup",
+           function (ev) {
+               $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" }, function (data) {
+                   var imeges = "";
+                   $.each(data, function (key, value) {
+                       imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                           value.NAME + value.DATA +
+                                         "</div>";
+
+                   });
+                   $("#images").html(imeges);
+               });
+           });
+        $("img[id^=img-]").on("click", function () {
+            // Do stuff, get id of image perhaps?
+
+            $("#imgPack").attr("src", this.src);
+            $('#searchModal').modal('toggle');
+        });
+
+    </script>
+}
