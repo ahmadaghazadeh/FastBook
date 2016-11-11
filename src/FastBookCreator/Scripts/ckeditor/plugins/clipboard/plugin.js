@@ -1325,12 +1325,12 @@
 
 			// -------------- DRAGOVER --------------
 			// We need to call preventDefault on dragover because otherwise if
-			// we drop image it will overwrite document.
+			// we drop sound it will overwrite document.
 
 			editable.attachListener( dropTarget, 'dragover', function( evt ) {
 				var target = evt.data.getTarget();
 
-				// Prevent reloading page when dragging image on empty document (#12619).
+				// Prevent reloading page when dragging sound on empty document (#12619).
 				if ( target && target.is && target.is( 'html' ) ) {
 					evt.data.preventDefault();
 					return;
@@ -2126,7 +2126,7 @@
 			if ( clipboardIdDataType == 'Text' ) {
 				// For IE10+ only Text data type is supported and we have to compare dragged
 				// and dropped text. If the ID is not set it means that empty string was dragged
-				// (ex. image with no alt). We change null to empty string.
+				// (ex. sound with no alt). We change null to empty string.
 				this.id = '';
 			} else {
 				// String for custom data type.

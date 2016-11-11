@@ -291,7 +291,7 @@
   <data name="SelectImage" xml:space="preserve">
     <value>Select image</value>
   </data>
-  <data name="SeachImage" xml:space="preserve">
+  <data name="SearchImage" xml:space="preserve">
     <value>Search Image</value>
   </data>
   <data name="SaveSuccess" xml:space="preserve">
@@ -458,5 +458,56 @@
   </data>
   <data name="dictDefaultMessageSound" xml:space="preserve">
     <value>Drop files here to upload (mp3 / wav)</value>
+  </data>
+  <data name="ErrorSound" xml:space="preserve">
+    <value>Please select the desired sound.</value>
+  </data>
+  <data name="EnterUrl" xml:space="preserve">
+    <value> like : http://youtube.com </value>
+  </data>
+  <data name="ErrorVideo" xml:space="preserve">
+    <value>Please enter the video track.</value>
+  </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Text to Speech</value>
+  </data>
+  <data name="NotSupportTTS" xml:space="preserve">
+    <value>Dot Support text to Speech - Please use Chrome https://www.google.com/chrome/browser/desktop/index.html </value>
+  </data>
+  <data name="ReDir" xml:space="preserve">
+    <value>rtl</value>
+  </data>
+  <data name="Answer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
+  <data name="AnswerContent" xml:space="preserve">
+    <value>Text answer</value>
+  </data>
+  <data name="AddAnswer" xml:space="preserve">
+    <value>Added as option</value>
+  </data>
+  <data name="IsAnswer" xml:space="preserve">
+    <value>Answer options</value>
+  </data>
+  <data name="Row" xml:space="preserve">
+    <value>Row</value>
+  </data>
+  <data name="OptionsNotEmpty" xml:space="preserve">
+    <value>Options can not be empty</value>
+  </data>
+  <data name="OptionsCountError" xml:space="preserve">
+    <value>The number of Options to be more than one</value>
+  </data>
+  <data name="AnswerOptionError" xml:space="preserve">
+    <value>At least one option must be selected as a question.</value>
+  </data>
+  <data name="EnterEmptyInputs" xml:space="preserve">
+    <value>Enter information.</value>
+  </data>
+  <data name="MultipleCountError" xml:space="preserve">
+    <value>At least one option must be selected as the answer</value>
+  </data>
+  <data name="OneCountError" xml:space="preserve">
+    <value>One option must be selected as the answer</value>
   </data>
 </root>

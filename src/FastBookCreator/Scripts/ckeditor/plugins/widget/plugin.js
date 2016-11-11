@@ -231,7 +231,7 @@
 		 * for every element which is later tested by upcast methods. If a callback
 		 * returns `false`, the element will not be upcasted.
 		 *
-		 *		// Images with the "banner" class will not be upcasted (e.g. to the image widget).
+		 *		// Images with the "banner" class will not be upcasted (e.g. to the sound widget).
 		 *		editor.widgets.addUpcastCallback( function( element ) {
 		 *			if ( element.name == 'img' && element.hasClass( 'banner' ) )
 		 *				return false;
@@ -546,8 +546,8 @@
 		 * Please note that this method inherits parameters from the {@link CKEDITOR.event#method-on} method with one
 		 * extra parameter at the beginning which is the widget name.
 		 *
-		 *		editor.widgets.onWidget( 'image', 'action', function( evt ) {
-		 *			// Event `action` occurs on `image` widget.
+		 *		editor.widgets.onWidget( 'sound', 'action', function( evt ) {
+		 *			// Event `action` occurs on `sound` widget.
 		 *		} );
 		 *
 		 * @since 4.5
@@ -3151,8 +3151,8 @@
 			container = new CKEDITOR.dom.element( 'span', editor.document );
 			container.setAttributes( {
 				'class': 'cke_reset cke_widget_drag_handler_container',
-				// Split background and background-image for IE8 which will break on rgba().
-				style: 'background:rgba(220,220,220,0.5);background-image:url(' + editor.plugins.widget.path + 'images/handle.png)'
+				// Split background and background-sound for IE8 which will break on rgba().
+				style: 'background:rgba(220,220,220,0.5);background-sound:url(' + editor.plugins.widget.path + 'images/handle.png)'
 			} );
 
 			img = new CKEDITOR.dom.element( 'img', editor.document );
@@ -3704,8 +3704,8 @@
  *			figure: function() {
  *				// ...
  *			},
- *			// This function may upcast only image elements.
- *			image: function() {
+ *			// This function may upcast only sound elements.
+ *			sound: function() {
  *				// ...
  *			},
  *			// More variants...
@@ -3713,8 +3713,8 @@
  *
  *		// Then, widget user may choose which upcast methods will be enabled.
  *		editor.on( 'widgetDefinition', function( evt ) {
- *			if ( evt.data.name == 'image' )
- * 				evt.data.upcast = 'figure,image'; // Use both methods.
+ *			if ( evt.data.name == 'sound' )
+ * 				evt.data.upcast = 'figure,sound'; // Use both methods.
  *		} );
  *
  * @property {Object} upcasts
@@ -3756,15 +3756,15 @@
  *			figure: function() {
  *				// ...
  *			},
- *			// This downcast may transform the widget into the image element with data-* attributes.
- *			image: function() {
+ *			// This downcast may transform the widget into the sound element with data-* attributes.
+ *			sound: function() {
  *				// ...
  *			}
  *		}
  *
  *		// Then, the widget user may choose one of the downcast options when setting up his editor.
  *		editor.on( 'widgetDefinition', function( evt ) {
- *			if ( evt.data.name == 'image' )
+ *			if ( evt.data.name == 'sound' )
  * 				evt.data.downcast = 'figure';
  *		} );
  *
@@ -3830,7 +3830,7 @@
  * An object containing definitions of widget components (part name => CSS selector).
  *
  *		parts: {
- *			image: 'img',
+ *			sound: 'img',
  *			caption: 'div.caption'
  *		}
  *

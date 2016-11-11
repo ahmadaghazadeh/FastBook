@@ -50,7 +50,7 @@
 
             <div class="col-md-12 group">
                 <div id="divEditor"  >
-                    <textarea class="code" cols="80" id="editor1" name="editor1" rows="10" style="direction: ltr; ">
+                    <textarea class="code" cols="80" id="editor1" name="editor1" rows="10" style="direction: @Resources.Resource.ReDir; ">
                         @MvcHtmlString.Create(@Model.CONTENT)
                     </textarea>
                 </div>
@@ -64,13 +64,13 @@
         </div>
 
         <div class="row center-block">
-            <button id="submit-all" type="submit" class="btn btn-default">
+            <div id="submit-all" type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
-            </button>
+            </div>
             &nbsp;&nbsp;
-            <button class="btn btn-default" onclick="location.href='@Request.UrlReferrer'" >
+            <div class="btn btn-default" onclick="location.href='@Request.UrlReferrer'" >
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp; @Resources.Resource.PreviousPage
-            </button>
+            </div>
         </div>
     }
 
@@ -86,12 +86,12 @@
             extraPlugins: 'codesnippet'
 
         });
-        
-        editor1.on('unloaded', function (evt) {
+
+        editor1.on('unloaded', function(evt) {
             $("#progressEditor").hide();
             $("#progressEditor").show();
         });
-        editor1.on('instanceReady', function (evt) {
+        editor1.on('instanceReady', function(evt) {
             $("#progressEditor").show();
             $("#progressEditor").hide();
         });
@@ -110,7 +110,7 @@
         });
 
         $(document).ready(function() {
-            $.post("../Shared/ResPacks", { where: " ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function(data) {
+            $.post("../Shared/ResPacks", { where: " WHERE RESOURCE_TYPE_ID = 1 ", typeId: 1, userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function(data) {
                 var imeges = "";
                 $.each(data, function(key, value) {
                     imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
@@ -125,16 +125,14 @@
             $("img[id^=img-]").click(imgClick);
 
             if ($("#imgLesson").attr("src") === "") {
-                $("#imgLesson").attr("src", "../Content/images/ibook.png");
+                $("#imgLesson").attr("src", "../Content/sounds/ibook.png");
             }
-
-
         });
 
         $("#txtSearch")
             .on("keyup",
                 function(ev) {
-                    $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function(data) {
+                    $.post("../Shared/ResPacks", { where: "WHERE RESOURCE_TYPE_ID = 1 AND NAME like '%" + this.value + "%'", typeId: 1, userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function(data) {
                         var imeges = "";
                         $.each(data, function(key, value) {
                             imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
@@ -149,11 +147,31 @@
 
 
         var imgClick = function() {
-            // Do stuff, get id of image perhaps?
+            // Do stuff, get id of sound perhaps?
             editor1.insertHtml('<img id="editor-' + this.alt + '"  src="' + this.src + '" class="img-responsive" alt="' + this.alt + '">');
             $('#searchModal').modal('toggle');
         }
 
+        $("#submit-all").click(function(parameters) {
+            var text = CKEDITOR.instances.editor1.getData();
+            $(text).find("img").each(function(index, element) {
+                text = text.replace(element.src, "getResource(" + element.alt + ")");
+            }).promise().done(function () {
+                if ($("#SaveItemHtml").valid()) {
+                    $("#ckEditorHtml").val(text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
+                    var form = $("#SaveItemHtml");
+                    var url = form.attr('action');
+                    var formData = form.serialize();
+                    $.post(url, formData, function (result) {
+                        if (result > 0)
+                            OnSuccess();
+                        else
+                            toastr.info("@Resources.Resource.UnSuccess");
+                    });
+                }
+            });
+        });
+       
         function OnSuccess() {
             $("#_id").attr("0");
             toastr.info("@Resources.Resource.Save");
@@ -167,27 +185,6 @@
         function OnBegin() {
         }
 
-        $('#SaveItemHtml').submit(function () {
-            var text = CKEDITOR.instances.editor1.getData();
-            $(text).find("img").each(function (index, element) {
-                text = text.replace(element.src, "getResource(" + element.alt + ")");
-            }).promise().done(function () {
-                $("#SaveItemHtml").validate({
-                    submitHandler: function (form) {
-                        $("#ckEditorHtml").val(text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
-                        var form = $("#SaveItemHtml");
-                        var url = form.attr('action');
-                        var formData = form.serialize();
-                        $.post(url, formData, function (result) {
-                            if (result > 0)
-                                OnSuccess();
-                            else
-                                toastr.info("@Resources.Resource.UnSuccess");
-                        });
-                    }
-                });
-            });
-        });
 
     </script>
 }

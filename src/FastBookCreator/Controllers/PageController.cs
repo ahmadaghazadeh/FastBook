@@ -22,6 +22,7 @@ namespace FastBookCreator.Controllers
             ViewBag.userId = controller.GetUserId();
             ViewBag.packId = controller.GetPackId();
             ViewBag.LESSON_ID = lessonId;
+            ViewBag.PAGE_ID = lessonId;
             IEnumerable<Page> page;
             using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))
             {
@@ -56,15 +57,15 @@ namespace FastBookCreator.Controllers
             return View("Insert", result);
         }
 
-        public ActionResult Delete(Pack pack)
+        public ActionResult Delete(Page page)
         {
             var controller = DependencyResolver.Current.GetService<SharedController>();
             controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
             using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))
             {
-                 connection.Execute($"DELETE FROM PAGE WHERE _id={pack._id}");
+                 connection.Execute($"DELETE FROM PAGE WHERE _id={page._id}");
             }
-            return View("Index");
+            return Redirect(HttpContext.Request.UrlReferrer?.AbsoluteUri);
         }
 
   

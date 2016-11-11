@@ -26,7 +26,9 @@ CKEDITOR.editorConfig = function( config ) {
     ];
 
     config.removeButtons = 'NewPage,Print,Templates,Radio,Image,Flash';
-     
+    config.extraPlugins = 'fontawesome,codesnippet';
+    config.contentsCss = '../Scripts/ckeditor/plugins/fontawesome/font-awesome/css/font-awesome.min.css';
+    config.allowedContent = true; 
     
     
 };

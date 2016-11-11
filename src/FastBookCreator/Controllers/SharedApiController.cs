@@ -1,9 +1,13 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Dapper;
 
 using FastBookCreator.Core;
@@ -55,12 +59,43 @@ namespace FastBookCreator.Controllers
             dynamic json = jsonData;
             var userId = json.userId.ToString();
             var packId = json.packId.ToString();
+            string typeId = json.typeId.ToObject<string>();
             var where = json.where.ToString();
             using (SQLiteConnection connection = SqliteConn.GetPackDb(userId, packId))
             {
                 var items = connection.Query<ResPack>($"SELECT * FROM RESOURCE {where}");
-                var query = from i in items
-                            select new { NAME = i.NAME, DATA = HelperExtensions.Image("img-" + i._id.ToString(), i.DATA, $"class='img-responsive' alt='{i._id.ToString()}'"), _id = i._id.ToString() };
+                IEnumerable<dynamic> query = null;
+                switch (typeId)
+                {
+                    case "2":
+                        query = from i in items
+                                select new { NAME = i.NAME, DATA = HelperExtensions.Sound("sound-" + i._id.ToString(), i.DATA, $"class='img-responsive' alt='{i._id.ToString()}'"), _id = i._id.ToString() };
+                        break;
+                    default:
+                        query = from i in items
+                                select new { NAME = i.NAME, DATA = HelperExtensions.Image("img-" + i._id.ToString(), i.DATA, $"class='img-responsive' alt='{i._id.ToString()}'"), _id = i._id.ToString() };
+                        break;
+                }
+                return Ok(query);
+            }
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("Shared/GetItemDetails")]
+        public IHttpActionResult GetItemDetails(JObject jsonData)
+        {
+            dynamic json = jsonData;
+            string userId = json.userId.ToString();
+            string packId = json.packId.ToString();
+            var where = json.where.ToString();
+            using (var connection = SqliteConn.GetPackDb(userId, packId))
+            {
+                var items = connection.Query<ItemDetail>($"SELECT * FROM ITEM_DETAIL {where}");
+                IEnumerable<dynamic> query = null;
+                query = from i in items
+                        select new {i._id, i.ITEM_ID, ANSWER= i.ANSWER.ToResourceString(userId,packId),  i.IS_ANSWER , i.ORDER_NUMBER};
+
                 return Ok(query);
             }
         }
@@ -96,6 +131,19 @@ namespace FastBookCreator.Controllers
             return Ok(result);
         }
 
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("Pack/SavePack")]
+        public IHttpActionResult DeletePack(JObject jObject)
+        {
+            dynamic json = jObject;
+            int result;
+            using (var connection = SqliteConn.GetCommonDb())
+            {
+                result = connection.Execute($"DELETE FROM PACKS WHERE _id={json._id}");
+            }
+            return Ok(result == 0);
+        }
         [System.Web.Http.HttpPost]
         [System.Web.Http.Route("Lesson/SaveLesson")]
         public IHttpActionResult SaveLesson(JObject jObject)
@@ -165,40 +213,71 @@ namespace FastBookCreator.Controllers
         [System.Web.Http.Route("Item/SaveItem")]
         public IHttpActionResult SaveItemHtml(JObject jObject)
         {
-            dynamic json = jObject;
-            string userId = json.userId.ToString();
-            string packId = json.packId.ToString();
-            string lessonId = json.LESSON_ID.ToString();
-            string pageId = json.PAGE_ID.ToString();
-            string itemTypeId = json.ITEM_TYPE_ID.ToString();
-            long id = json._id.ToObject<int>();
-            var item = new Item()
-            {
-                LESSON_ID = long.Parse(lessonId),
-                ITEM_TYPE_ID = long.Parse(itemTypeId),
-                PAGE_ID = long.Parse(pageId),
-                ITEM_TITLE = json.ITEM_TITLE,
-                CONTENT = json.content,
-                RESOURCE_ID = json.RESOURCE_ID ?? 0,
-                _id = id
-            };
-
             long result;
-            if (id == 0)
+            try
             {
-                var insertQuery = @"INSERT INTO [ITEM](ITEM_TYPE_ID,PAGE_ID,LESSON_ID,ITEM_TITLE,CONTENT,RESOURCE_ID) VALUES (@ITEM_TYPE_ID,@PAGE_ID,@LESSON_ID,@ITEM_TITLE,@CONTENT,@RESOURCE_ID);
+                dynamic json = jObject;
+                string userId = json.userId.ToString();
+                string packId = json.packId.ToString();
+                string lessonId = json.LESSON_ID.ToString();
+                string pageId = json.PAGE_ID.ToString();
+                string itemTypeId = json.ITEM_TYPE_ID.ToString();
+                string url = json.url;
+                var js = new JavaScriptSerializer();
+                var itemsDetails = js.Deserialize<ItemDetail[]>((string)json.itemDetails);
+                long id = json._id.ToObject<int>();
+                var item = new Item()
+                {
+                    LESSON_ID = long.Parse(lessonId),
+                    ITEM_TYPE_ID = long.Parse(itemTypeId),
+                    PAGE_ID = long.Parse(pageId),
+                    ITEM_TITLE = json.ITEM_TITLE,
+                    CONTENT = json.content,
+                    RESOURCE_ID = json.RESOURCE_ID ?? 0,
+                    _id = id
+                };
+                if (url != null)
+                {
+                    item.RESOURCE_ID = HelperExtensions.InsertResourceUrl(userId, packId, url);
+                }
+
+                if (id == 0)
+                {
+                    const string insertQuery = @"INSERT INTO [ITEM](ITEM_TYPE_ID,PAGE_ID,LESSON_ID,ITEM_TITLE,CONTENT,RESOURCE_ID) VALUES (@ITEM_TYPE_ID,@PAGE_ID,@LESSON_ID,@ITEM_TITLE,@CONTENT,@RESOURCE_ID);
                                     select last_insert_rowid();";
-                result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, item).SingleOrDefault();
+                    result = SqliteConn.GetPackDb(userId, packId).Query<int>(insertQuery, item).SingleOrDefault();
+                    foreach (var itemD in itemsDetails)
+                    {
+                        itemD.ITEM_ID = result;
+                        HelperExtensions.InserItemDetail(userId, packId, itemD);
+                    }
+                }
+                else
+                {
+                    var updateQuery = $"UPDATE [ITEM] SET ITEM_TYPE_ID=@ITEM_TYPE_ID,PAGE_ID=@PAGE_ID,LESSON_ID=LESSON_ID,ITEM_TITLE=@ITEM_TITLE,CONTENT=@CONTENT ,RESOURCE_ID=@RESOURCE_ID WHERE _id=@_id ";
+                    SqliteConn.GetPackDb(userId, packId).Execute(updateQuery, item);
+                    result = id;
+
+                    const string deleteQuery = "DELETE FROM ITEM_DETAIL WHERE ITEM_ID=@ITEM_ID ";
+                    SqliteConn.GetPackDb(userId, packId).Execute(deleteQuery, new { ITEM_ID = result });
+
+                    foreach (var itemD in itemsDetails)
+                    {
+                        itemD.ITEM_ID = result;
+                        HelperExtensions.InserItemDetail(userId, packId, itemD);
+                    }
+                }
             }
-            else
+            catch (Exception e)
             {
-                var updateQuery = $"UPDATE [ITEM] SET ITEM_TYPE_ID=@ITEM_TYPE_ID,PAGE_ID=@PAGE_ID,LESSON_ID=LESSON_ID,ITEM_TITLE=@ITEM_TITLE,CONTENT=@CONTENT ,RESOURCE_ID=@RESOURCE_ID WHERE _id=@_id ";
-                SqliteConn.GetPackDb(userId, packId).Execute(updateQuery, item);
-                result = id;
+
+                throw new Exception(e.Message);
             }
+
             return Ok(result);
         }
 
-     
+
+
     }
 }

@@ -126,6 +126,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -274,6 +275,7 @@
     <Compile Include="Models\AttachmentsModel.cs" />
     <Compile Include="Models\IconHtml.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemDetail.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\ResType.cs" />
@@ -311,6 +313,7 @@
     <Content Include="Content\images\multiple_image.png" />
     <Content Include="Content\images\ibook.png" />
     <Content Include="Content\images\music-box-outline.svg" />
+    <Content Include="Content\images\music-note-off.svg" />
     <Content Include="Content\images\pageType1.svg" />
     <Content Include="Content\images\pageType2.svg" />
     <Content Include="Content\images\pageType3.svg" />
@@ -672,6 +675,17 @@
     <Content Include="Scripts\ckeditor\plugins\find\dialogs\find.js" />
     <Content Include="Scripts\ckeditor\plugins\flash\dialogs\flash.js" />
     <Content Include="Scripts\ckeditor\plugins\flash\images\placeholder.png" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\dialogs\fontawesome.js" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\dialogs\index.html" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\css\index.html" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\fonts\index.html" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\index.html" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\icons\fontawesome.png" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\icons\index.html" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\index.html" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\plugin.js" />
     <Content Include="Scripts\ckeditor\plugins\forms\dialogs\button.js" />
     <Content Include="Scripts\ckeditor\plugins\forms\dialogs\checkbox.js" />
     <Content Include="Scripts\ckeditor\plugins\forms\dialogs\form.js" />
@@ -996,6 +1010,11 @@
     <Content Include="Scripts\ckeditor\plugins\codesnippet\lib\highlight\LICENSE" />
     <Content Include="Scripts\ckeditor\plugins\codesnippet\lib\highlight\README.md" />
     <Content Include="Scripts\ckeditor\plugins\codesnippet\lib\highlight\README.ru.md" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\ckeditor\plugins\fontawesome\font-awesome\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
@@ -1081,6 +1100,12 @@
     <Content Include="Views\Resources\Index.cshtml" />
     <Content Include="Views\Resources\ShowSound.cshtml" />
     <Content Include="Views\Resources\UploadSound.cshtml" />
+    <Content Include="Views\Item\InsertSound.cshtml" />
+    <Content Include="Views\Item\InsertVideo.cshtml" />
+    <Content Include="Views\Item\InsertTTS.cshtml" />
+    <Content Include="Views\Item\InsertMultipleChoice.cshtml" />
+    <Content Include="Views\Item\_ItemView.cshtml" />
+    <Content Include="Views\Item\InsertOneChoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">

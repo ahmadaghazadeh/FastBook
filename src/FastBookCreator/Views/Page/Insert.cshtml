@@ -94,12 +94,12 @@
         $(document).ready(function () {
             $("img[id^=img-]").click(imgClick);
             if ($("#imgLesson").attr("src")==="") {
-                $("#imgLesson").attr("src", "../Content/images/ibook.png");
+                $("#imgLesson").attr("src", "../Content/sounds/ibook.png");
             }
         });
 
         var imgClick=function () {
-            // Do stuff, get id of image perhaps?
+            // Do stuff, get id of sound perhaps?
             $("#imgLesson").attr("src", this.src);
             $("#resourceId").val(this.alt);
             $('#searchModal').modal('toggle');
@@ -110,7 +110,7 @@
             toastr.info("@Resources.Resource.Save");
             $("#LESSON_TITLE").val("");
             $("#COLOR").val("3433410");
-            $("#imgLesson").attr("src", "../Content/images/ibook.png");
+            $("#imgLesson").attr("src", "../Content/sounds/ibook.png");
         }
     </script>
 }

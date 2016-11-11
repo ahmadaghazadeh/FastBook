@@ -5,52 +5,86 @@
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group" role="group">
-        <a class="btn btn- btn-lg" href="@Url.Action("SaveUploadedFile", "Resources")" role="button">@Resources.Resource.UploadImages</a>
+        <a class="btn btn- btn-lg" href="@Url.Action("UploadImages", "Resources")" role="button">@Resources.Resource.UploadImages</a>
     </div>
 </div>
 
-<img id="imgPack" src="../../Content/images/ibook.png" alt="" data-toggle="modal" data-target="#searchModal" width="200" height="150" />
-@*
-<div id="other">
-    Trigger the handler
+<div class="col-sm-12">
+    <input id="txtSearch" type="text" class="form-control" placeholder="@Resources.Resource.SeachImage">
+    <span class="input-group-btn">
+    </span>
 </div>
-*@
 
-@Html.Partial("_SearchImageDialog")
+<div class="container">
+    <div class="row">
+        <div id="images">
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal" style="margin: 10%">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">@Resources.Resource.Attention</h4>
+            </div>
+            <div class="modal-body">
+                <span class="label label-default">@Resources.Resource.Name</span> : <input class="form-control" type="text" id="deleteId" value="" readonly />
+                <h3>@Resources.Resource.DeletePrompt</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resource.Close</button>
+                <button type="button" id="btnDelete" onclick="" class="btn btn-primary">@Resources.Resource.Delete</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @section scripts
 {
     <script>
-      
-        $(document).ready(function () {
-            $.post("../Shared/ResPacks", { where: " " }, function (data) {
-                var imeges = "";
-                $.each(data, function (key, value) {
-                    imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
-                        value.NAME + value.DATA +
-                                      "</div>";
 
+        $(document).ready(function () {
+            $.post("../Shared/ResPacks", { where: "WHERE RESOURCE_TYPE_ID = 1 ", userId: @ViewBag.userId,packId:@ViewBag.packId }, function (data) {
+                var imeges = "";
+                $("#images").append("");
+                $.each(data, function (key, value) {
+                    imeges = "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                           value.DATA + " <figcaption data-toggle=\"modal\"  data-target=\"#deleteModal\" class=\"figure-caption\">"+ value.NAME+"<span id='img-"+value._id+"' data-id=\""+value.NAME+"\" class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></figcaption> " +
+                        "</div>";
+                    $("#images").append(imeges);
                 });
-                $("#images").html(imeges);
+                spanFuc();
             });
         });
         $("#txtSearch")
        .on("keyup",
            function (ev) {
-               $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" }, function (data) {
+               $.post("../Shared/ResPacks", { where: "WHERE RESOURCE_TYPE_ID = 1 AND NAME like '%" + this.value + "%'", userId: @ViewBag.userId,packId:@ViewBag.packId }, function (data) {
                    var imeges = "";
+                   $("#images").html("");
                    $.each(data, function (key, value) {
-                       imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
-                           value.NAME + value.DATA +
-                                         "</div>";
+                       imeges =  "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                              value.DATA + " <figcaption data-toggle=\"modal\"  data-target=\"#deleteModal\" class=\"figure-caption\">"+ value.NAME+"<span id='img-"+value._id+"' data-id=\""+value.NAME+"\" class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></figcaption> " +
+                           "</div>";
+                       $("#images").append(imeges);
                    });
-                   $("#images").html(imeges);
+                  
+                   spanFuc();
                });
            });
-        $("img[id^=img-]").on("click", function () {
-            $("#imgPack").attr("src", this.src);
-            $('#searchModal').modal('toggle');
-        });
+
+        var spanFuc= function() {
+            $("span[id^=img-]").on("click", function () {
+                var id =this.id.replace("img-", "");
+                var deleteId = $(this).data('id');
+                $(".modal-body #deleteId").val(deleteId);
+                $("#btnDelete").attr("onclick", "location.href='/Resources/Delete?_id=" + id + "&Page=ShowImages'");
+            });
+        }
 
     </script>
 }

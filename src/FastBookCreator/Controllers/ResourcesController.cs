@@ -89,7 +89,13 @@ namespace FastBookCreator.Controllers
 
         public ActionResult ShowImages()
         {
+            var controller = DependencyResolver.Current.GetService<SharedController>();
+            controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
+            var userId = controller.GetUserId();
+            var packId = controller.GetPackId();
             ViewBag.Title = Resource.ShowFiles;
+            ViewBag.userId = userId;
+            ViewBag.packId = packId;
             return View();
         }
 
@@ -100,8 +106,27 @@ namespace FastBookCreator.Controllers
 
         public ActionResult ShowSound()
         {
+            var controller = DependencyResolver.Current.GetService<SharedController>();
+            controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
+            var userId = controller.GetUserId();
+            var packId = controller.GetPackId();
             ViewBag.Title = Resource.ShowFiles;
+            ViewBag.userId = userId;
+            ViewBag.packId = packId;
             return View();
+        }
+
+
+        public ActionResult Delete(ResType resType)
+        {
+            var controller = DependencyResolver.Current.GetService<SharedController>();
+            controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
+            using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))
+            {
+                connection.Execute($"DELETE FROM RESOURCE WHERE _id={resType._id}");
+            }
+
+            return Redirect(Request.UrlReferrer?.ToString());
         }
 
 

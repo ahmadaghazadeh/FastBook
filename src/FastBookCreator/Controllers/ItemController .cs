@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Web.Mvc;
 using Dapper;
 using FastBookCreator.Core;
@@ -48,36 +50,45 @@ namespace FastBookCreator.Controllers
             ViewBag.UserId = userId;
             ViewBag.PackId = packId;
             ViewBag.PAGE_ID = item.PAGE_ID;
-            var pageTypeId = long.Parse(item.ITEM_TYPE_ID.ToString());
+           
             Item tItem =null;
             using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))
             {
                 tItem = connection.Query<Item>($"SELECT * FROM ITEM_VIEW WHERE _id={item._id}").SingleOrDefault();
             }
 
-            var regexrResource = new Regex(Shared.Utility.RegexrResource);
+            
             if (tItem != null)
             {
                 item = tItem;
-                if (tItem.CONTENT!=null)
-                {
-                    var content = regexrResource.Matches(tItem.CONTENT);
-                    var regexrNumber = new Regex(Shared.Utility.RegexrNumber);
-                    foreach (Match resource in content)
-                    {
-                        var imgTag = regexrNumber.Matches(resource.ToString());
-                        foreach (var num in imgTag)
-                        {
-                            item.CONTENT = item.CONTENT.Replace(resource.ToString(), num.ToString().ToImageFromDb(userId, packId));
-                        }
-                    }
-                }
+                item.CONTENT = item.CONTENT.ToResourceString(userId, packId);
             }
             
-            switch (pageTypeId)
+            switch (item.ITEM_TYPE_ID)
             {
-                case 1: return View("InsertHTML", item);
-                case 2: return View("InsertImage", item);
+                case 1:
+                    ViewBag.Title = Resources.Resource.ItemHTML;
+                    return View("InsertHTML", item);
+                case 2:
+                    ViewBag.Title = Resources.Resource.ItemPicture;
+                    return View("InsertImage", item);
+                case 3:
+                    ViewBag.Title = Resources.Resource.ItemSound;
+                    return View("InsertSound", item);
+                case 4:
+                    ViewBag.Title = Resources.Resource.ItemVideo;
+                    return View("InsertVideo", item);
+                case 5:
+                    ViewBag.Title = Resources.Resource.ItemTTS;
+                    return View("InsertTTS", item);
+                case 6:
+                    ViewBag.Title = Resources.Resource.ItemMultipleChoice;
+                    return View("InsertMultipleChoice", item);
+
+                case 10:
+                    ViewBag.Title = Resources.Resource.ItemMultipleChoice;
+                    return View("InsertOneChoice", item);
+
                 default: return View("InsertImage", item);
             }
         }
@@ -89,9 +100,26 @@ namespace FastBookCreator.Controllers
             controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
             using (var connection = SqliteConn.GetPackDb(controller.GetUserId(), controller.GetPackId()))
             {
-                connection.Execute($"DELETE FROM PAGE WHERE _id={item._id}");
+                connection.Execute($"DELETE FROM ITEM WHERE _id={item._id}");
             }
-            return RedirectToAction("Index", "Item",item);
+           
+            return Redirect(HttpContext.Request.UrlReferrer?.AbsoluteUri);
         }
+
+        public ActionResult Speak(string text)
+        {
+            var speech = new SpeechSynthesizer();
+            speech.Speak(text);
+
+            byte[] bytes;
+            using (var stream = new MemoryStream())
+            {
+                speech.SetOutputToWaveStream(stream);
+                bytes = stream.ToArray();
+            }
+            return File(bytes, "audio/x-wav");
+        }
+
+ 
     }
 }

@@ -682,7 +682,7 @@ $.Tooltipster.prototype = {
 			originIsArea = self._$origin.is('area');
 		
 		// if this._$origin is a map area, the target we'll need
-		// the dimensions of is actually the image using the map,
+		// the dimensions of is actually the sound using the map,
 		// not the area itself
 		if (originIsArea) {
 			
@@ -757,7 +757,7 @@ $.Tooltipster.prototype = {
 				});
 			}
 			
-			// if the image itself is the area, nothing more to do
+			// if the sound itself is the area, nothing more to do
 			if (shape != 'default') {
 				
 				switch(shape) {

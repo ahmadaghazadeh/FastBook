@@ -193,12 +193,12 @@
                         name: "pack.png",
                         size: 12345,
                         accepted: true,
-                        kind: 'image'
+                        kind: 'sound'
                     }
-                    var image = "data:image/jpg;base64,@Convert.ToBase64String(Model.LOGO)";
+                    var sound = "data:sound/jpg;base64,@Convert.ToBase64String(Model.LOGO)";
                     dropzoneForm.emit("addedfile", mockFile);
                     dropzoneForm.files.push(mockFile);
-                    dropzoneForm.createThumbnailFromUrl(mockFile, image, function () {
+                    dropzoneForm.createThumbnailFromUrl(mockFile, sound, function () {
                         dropzoneForm.emit("complete", mockFile);
                     });
                 </text>

@@ -14,7 +14,7 @@
     {
         <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId" />
         <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
-        <input id="RESOURCE_ID" name="RESOURCE_ID" type="hidden" value="0" />
+        <input id="RESOURCE_ID" name="RESOURCE_ID" type="hidden" value="@Model.RESOURCE_ID" />
         <input id="itemTypeId" name="ITEM_TYPE_ID" type="hidden" value="2" />
         <input id="ckEditorHtml" class="form-control" name="content" value="" type="hidden" />
         <input id="lang" class="form-control" name="lang" value="" type="hidden" />
@@ -72,7 +72,7 @@
 
 
         $(document).ready(function () {
-            $.post("../Shared/ResPacks", { where: " ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+            $.post("../Shared/ResPacks", { where: " WHERE RESOURCE_TYPE_ID = 1",typeId:1, userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
                 var imeges = "";
                 $.each(data, function (key, value) {
                     imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
@@ -94,7 +94,7 @@
         $("#txtSearch")
             .on("keyup",
                 function (ev) {
-                    $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+                    $.post("../Shared/ResPacks", { where: "WHERE RESOURCE_TYPE_ID = 1 AND  NAME like '%" + this.value + "%'",typeId:1, userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
                         var imeges = "";
                         $.each(data, function (key, value) {
                             imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
@@ -109,7 +109,7 @@
 
 
         var imgClick = function () {
-            // Do stuff, get id of image perhaps?
+            // Do stuff, get id of sound perhaps?
             $("#imgItem").attr("src", this.src);
             $("#RESOURCE_ID").val(this.alt);
             $('#searchModal').modal('toggle');
@@ -121,6 +121,7 @@
             $("#LESSON_ID").val("");
             $("#PAGE_ID").val("");
             $("#ITEM_TITLE").val("");
+            $("#imgItem").attr("src", "../Content/images/ibook.png");
             $("#_id").val("");
         }
 
@@ -129,7 +130,7 @@
 
 
         $("#SaveItemHtml").validate({
-            submitHandler: function (form) {
+            submitHandler: function (f) {
                 var form = $("#SaveItemHtml");
                 var url = form.attr('action');
                 var formData = form.serialize();

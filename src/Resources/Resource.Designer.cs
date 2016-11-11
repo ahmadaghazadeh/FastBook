@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Added as option.
+        /// </summary>
+        public static string AddAnswer {
+            get {
+                return ResourceManager.GetString("AddAnswer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to After the page Go to the Item.
         /// </summary>
         public static string AfterCreatePage {
@@ -75,6 +84,33 @@ namespace Resources {
         public static string AllowEdit {
             get {
                 return ResourceManager.GetString("AllowEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Answer.
+        /// </summary>
+        public static string Answer {
+            get {
+                return ResourceManager.GetString("Answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text answer.
+        /// </summary>
+        public static string AnswerContent {
+            get {
+                return ResourceManager.GetString("AnswerContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one option must be selected as a question..
+        /// </summary>
+        public static string AnswerOptionError {
+            get {
+                return ResourceManager.GetString("AnswerOptionError", resourceCulture);
             }
         }
         
@@ -295,6 +331,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter information..
+        /// </summary>
+        public static string EnterEmptyInputs {
+            get {
+                return ResourceManager.GetString("EnterEmptyInputs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  like : http://youtube.com .
+        /// </summary>
+        public static string EnterUrl {
+            get {
+                return ResourceManager.GetString("EnterUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color package can not be empty.
         /// </summary>
         public static string ErrorColor {
@@ -430,6 +484,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select the desired sound..
+        /// </summary>
+        public static string ErrorSound {
+            get {
+                return ResourceManager.GetString("ErrorSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Store Type.
         /// </summary>
         public static string ErrorStoreType {
@@ -453,6 +516,15 @@ namespace Resources {
         public static string ErrorSubjectName {
             get {
                 return ResourceManager.GetString("ErrorSubjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter the video track..
+        /// </summary>
+        public static string ErrorVideo {
+            get {
+                return ResourceManager.GetString("ErrorVideo", resourceCulture);
             }
         }
         
@@ -543,6 +615,15 @@ namespace Resources {
         public static string ImagesSizeError {
             get {
                 return ResourceManager.GetString("ImagesSizeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Answer options.
+        /// </summary>
+        public static string IsAnswer {
+            get {
+                return ResourceManager.GetString("IsAnswer", resourceCulture);
             }
         }
         
@@ -763,11 +844,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At least one option must be selected as the answer.
+        /// </summary>
+        public static string MultipleCountError {
+            get {
+                return ResourceManager.GetString("MultipleCountError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dot Support text to Speech - Please use Chrome https://www.google.com/chrome/browser/desktop/index.html .
+        /// </summary>
+        public static string NotSupportTTS {
+            get {
+                return ResourceManager.GetString("NotSupportTTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One option must be selected as the answer.
+        /// </summary>
+        public static string OneCountError {
+            get {
+                return ResourceManager.GetString("OneCountError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of Options to be more than one.
+        /// </summary>
+        public static string OptionsCountError {
+            get {
+                return ResourceManager.GetString("OptionsCountError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options can not be empty.
+        /// </summary>
+        public static string OptionsNotEmpty {
+            get {
+                return ResourceManager.GetString("OptionsNotEmpty", resourceCulture);
             }
         }
         
@@ -880,6 +1006,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to rtl.
+        /// </summary>
+        public static string ReDir {
+            get {
+                return ResourceManager.GetString("ReDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register.
         /// </summary>
         public static string Register {
@@ -925,6 +1060,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Row.
+        /// </summary>
+        public static string Row {
+            get {
+                return ResourceManager.GetString("Row", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -945,9 +1089,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Search Image.
         /// </summary>
-        public static string SeachImage {
+        public static string SearchImage {
             get {
-                return ResourceManager.GetString("SeachImage", resourceCulture);
+                return ResourceManager.GetString("SearchImage", resourceCulture);
             }
         }
         
@@ -1020,6 +1164,15 @@ namespace Resources {
         public static string TextAlign {
             get {
                 return ResourceManager.GetString("TextAlign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text to Speech.
+        /// </summary>
+        public static string TextToSpeech {
+            get {
+                return ResourceManager.GetString("TextToSpeech", resourceCulture);
             }
         }
         

@@ -1,0 +1,336 @@
+﻿@model  FastBookCreator.Models.Item
+
+<div>
+    @{
+        var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "post",
+            OnSuccess = "OnSuccess();",
+            OnBegin = "OnBegin();",
+        };
+    }
+
+    @using (Ajax.BeginForm("SaveItem", "Item", ajaxOptions, new { enctype = "multipart/form-data", id = "SaveItemHtml" }))
+    {
+        <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId" />
+        <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
+        <input id="resourceId" name="resourceId" type="hidden" value="0" />
+        <input id="itemTypeId" name="ITEM_TYPE_ID" type="hidden" value="10" />
+        <input id="ckEditorHtml" class="form-control" name="content" value="" type="hidden" />
+        <input id="ckAnswer" class="form-control" name="itemDetails" value="" type="hidden" />
+        <input id="lang" class="form-control" name="lang" value="" type="hidden" />
+        <div class="row">
+
+            <div class="col-md-6 group">
+                <div>
+                    @Resources.Resource.ItemNumber
+                    @Html.TextBoxFor(model => model._id, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model._id)
+                </div>
+                <div>
+                    @Resources.Resource.Name
+                    @Html.TextBoxFor(model => model.ITEM_TITLE, new { @class = "form-control", placeholder = Resources.Resource.Name })
+                    @Html.ValidationMessageFor(model => model.ITEM_TITLE)
+                </div>
+            </div>
+
+            <div class="col-md-6 group">
+                <div>
+                    @Resources.Resource.Lesson
+                    @Html.TextBoxFor(model => model.LESSON_ID, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.LESSON_ID)
+                </div>
+
+                <div>
+                    @Resources.Resource.Page
+                    @Html.TextBoxFor(model => model.PAGE_ID, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.PAGE_ID)
+                </div>
+            </div>
+
+            <div class="col-md-12 group">
+                @Resources.Resource.Question
+                <div id="divEditor">
+                    <textarea class="code" cols="80" id="editor1" name="editor1" rows="10" style="direction: @Resources.Resource.ReDir;">
+                        @MvcHtmlString.Create(@Model.CONTENT)
+                    </textarea>
+                </div>
+                <div id="progressEditor" class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        <span class="sr-only">100% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 group">
+                <div id="divEditor">
+                    <textarea class="code" cols="80" id="editorQuestion" name="editorQuestion" rows="10" style="direction: @Resources.Resource.ReDir;">
+                        @MvcHtmlString.Create(@Model.CONTENT)
+                    </textarea>
+                </div>
+                <div style="display: table-cell;">
+                    <div class="input-group" style="padding-top: 5px; padding-bottom: 5px; direction: ltr;">
+                        <span class="input-group-addon">
+                            <input id="cbAnswer" type="checkbox" aria-label="...">
+                        </span>
+                        <input type="text" class="form-control" aria-label="..." readonly="" value="@Resources.Resource.IsAnswer">
+                    </div>
+                </div>
+
+                <div id="addAnswer" class="btn btn-default">
+                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;&nbsp; @Resources.Resource.AddAnswer
+                </div>
+
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">@Resources.Resource.Answer</div>
+                <table class="table">
+                    <tr>
+                        <td>@Resources.Resource.Row</td>
+                        <td>@Resources.Resource.AnswerContent</td>
+                        <td>@Resources.Resource.IsAnswer</td>
+                        <td>@Resources.Resource.Delete</td>
+                    </tr>
+                    <tbody id="tbodyAnswer"></tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="row center-block">
+            <div id="submit-all" type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
+            </div>
+            &nbsp;&nbsp;
+            <div class="btn btn-default" onclick="location.href='@Request.UrlReferrer'">
+                <i class="fa fa-arrow-left " aria-hidden="true"></i>&nbsp;&nbsp; @Resources.Resource.PreviousPage
+            </div>
+        </div>
+    }
+
+</div>
+
+@Html.Partial("_SearchImageDialog")
+
+@section scripts
+{
+    <script type="text/javascript">
+        var selectedEditor;
+
+        var trAnswers = [];
+        $("#addAnswer").click(function () {
+            var text = CKEDITOR.instances.editorQuestion.getData();
+            var index = trAnswers.length;
+            if (text.length <= 0) {
+                toastr.info("@Resources.Resource.OptionsNotEmpty");
+            } else {
+                var checked = $('#cbAnswer').is(":checked");
+                if (checked) {
+                    $.each(trAnswers, function (i, it) {
+                        trAnswers[i].IS_ANSWER = false;
+                    });
+                }
+                var item = new ItemDetail(0, 0, text, checked, 0);
+                trAnswers[index] = item;
+                appendToTable(index, item);
+                editorQuestion.setData('');
+            }
+        });
+
+        var appendToTable = function (index, item) {
+            var ischecked = "";
+            if (item.IS_ANSWER) {
+
+                ischecked = "checked";
+            }
+
+            var tr = "<tr >  </td> <td>"
+                + (index + 1) + "</td> <td>" + item.ANSWER + "</td><td><input onClick=clickIsAnswer(this); item-id=\"" + index + "\"" + ischecked + " type=\"radio\"   name=\"answerRadio\" aria-label=\"...\"></td><td item-id=\""
+                + index + "\" onClick=deleteItem(this);><i class=\"fa fa-trash-o FontAwesome\" aria-hidden=\"true\"></tr>";
+            $("#tbodyAnswer").append(tr);
+        }
+
+        var deleteItem = function (event) {
+            $("#tbodyAnswer").html("");
+            var oldIndex = parseInt($(event).attr("item-id"));
+            trAnswers.splice(oldIndex, 1);
+            $.each(trAnswers, function (index, item) {
+                appendToTable(index, item);
+            });
+        }
+
+
+        var clickIsAnswer = function (event) {
+            $("#tbodyAnswer").html("");
+            var oldIndex = parseInt($(event).attr("item-id"));
+            $.each(trAnswers, function (index, item) {
+                trAnswers[index].IS_ANSWER = false;
+            });
+            trAnswers[oldIndex].IS_ANSWER = true;
+            $.each(trAnswers, function (index, item) {
+                appendToTable(index, item);
+            });
+        }
+
+        var editor1 = CKEDITOR.replace('editor1', {
+        });
+
+        editor1.on('unloaded', function (evt) {
+            $("#progressEditor").hide();
+            $("#progressEditor").show();
+        });
+        editor1.on('instanceReady', function (evt) {
+            $("#progressEditor").show();
+            $("#progressEditor").hide();
+        });
+
+        editor1.addCommand("searchImage", {
+            exec: function (edt) {
+
+                $('#searchModal').modal('toggle');
+                selectedEditor = editor1;
+            }
+        });
+        editor1.ui.addButton('SuperButton', {
+            label: "@Resources.Resource.SearchImage",
+            command: 'searchImage',
+            toolbar: 'others',
+            icon: '../../Content/images/multiple_image.png'
+        });
+
+
+        var editorQuestion = CKEDITOR.replace('editorQuestion', {
+        });
+
+        editorQuestion.on('unloaded', function (evt) {
+            $("#progressEditor").hide();
+            $("#progressEditor").show();
+        });
+        editorQuestion.on('instanceReady', function (evt) {
+            $("#progressEditor").show();
+            $("#progressEditor").hide();
+        });
+
+        editorQuestion.addCommand("searchImage", {
+            exec: function (edt) {
+                $('#searchModal').modal('toggle');
+                selectedEditor = editorQuestion;
+            }
+        });
+        editorQuestion.ui.addButton('SuperButton', {
+            label: "@Resources.Resource.SearchImage",
+            command: 'searchImage',
+            toolbar: 'others',
+            icon: '../../Content/images/multiple_image.png'
+        });
+
+        $(document).ready(function () {
+            $.post("../Shared/ResPacks", { where: " WHERE RESOURCE_TYPE_ID = 1 ", typeId: 1, userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+                var imeges = "";
+                $.each(data, function (key, value) {
+                    imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                        value.NAME + value.DATA +
+                        "</div>";
+
+                });
+                $("#images").html(imeges);
+                $("img[id^=img-]").click(imgClick);
+            });
+            $("img[id^=img-]").click(imgClick);
+
+            $.post("../Shared/GetItemDetails", { where: "WHERE ITEM_ID = " + @Html.Raw(Json.Encode(Model._id)), userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+                trAnswers = [];
+                $.each(data, function (key, value) {
+                    trAnswers[key] = value;
+                    appendToTable(key, value);
+                    editorQuestion.setData('');
+                });
+            });
+        });
+        $("#txtSearch")
+            .on("keyup",
+                function (ev) {
+                    $.post("../Shared/ResPacks", { where: "WHERE RESOURCE_TYPE_ID = 1 AND NAME like '%" + this.value + "%'", typeId: 1, userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+                        var imeges = "";
+                        $.each(data, function (key, value) {
+                            imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
+                                value.NAME + value.DATA +
+                                "</div>";
+
+                        });
+                        $("#images").html(imeges);
+                        $("img[id^=img-]").click(imgClick);
+                    });
+                });
+
+
+        var imgClick = function () {
+            // Do stuff, get id of sound perhaps?
+            selectedEditor.insertHtml('<img id="editor-' + this.alt + '"  src="' + this.src + '" class="img-responsive" alt="' + this.alt + '">');
+            $('#searchModal').modal('toggle');
+        }
+
+        $("#submit-all").click(function () {
+            if (trAnswers.length < 2) {
+                toastr.info("@Resources.Resource.OptionsCountError");
+                return;
+            }
+            var countOfAnswer = 0;
+            $.each(trAnswers, function (index, item) {
+                $(trAnswers[index].ANSWER).find("img").each(function (i, element) {
+                    trAnswers[index].ANSWER = trAnswers[index].ANSWER.replace(element.src, "getResource(" + element.alt + ")");
+                });
+                trAnswers[index].ANSWER = trAnswers[index].ANSWER.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+                if (trAnswers[index].IS_ANSWER) {
+                    countOfAnswer++;
+                }
+            });
+            if (countOfAnswer < 1) {
+                toastr.info("@Resources.Resource.OneCountError");
+                return;
+            }
+            $("#ckAnswer").val(JSON.stringify(trAnswers));
+
+            var text = CKEDITOR.instances.editor1.getData();
+            $(text).find("img").each(function (index, element) {
+                text = text.replace(element.src, "getResource(" + element.alt + ")");
+            }).promise().done(function () {
+                if ($("#SaveItemHtml").valid()) {
+                    $("#ckEditorHtml").val(text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
+                    var form = $("#SaveItemHtml");
+                    var url = form.attr('action');
+                    var formData = form.serialize();
+                    $.post(url, formData, function (result) {
+                        if (result > 0)
+                            OnSuccess();
+                        else
+                            toastr.info("@Resources.Resource.UnSuccess");
+                    });
+                } else {
+                    toastr.info("@Resources.Resource.EnterEmptyInputs");
+                }
+            });
+
+        });
+
+        function OnSuccess() {
+            $("#_id").attr("0");
+            toastr.info("@Resources.Resource.Save");
+            $("#LESSON_ID").val("");
+            $("#ITEM_TITLE").val("");
+            $("#PAGE_ID").val("");
+            $("#_id").val("");
+            editor1.setData('');
+            editorQuestion.setData('');
+            $("#tbodyAnswer").html("");
+            trAnswers = [];
+        }
+
+        function OnBegin() {
+        }
+
+
+    </script>
+}

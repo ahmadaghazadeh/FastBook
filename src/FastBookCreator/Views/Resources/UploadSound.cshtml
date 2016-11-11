@@ -94,6 +94,7 @@
             dropzoneForm.processQueue();
         });
         $("#clear").click(function () {
+            uploadedCount = 0;
             dropzoneForm.removeAllFiles(true);
         });
 

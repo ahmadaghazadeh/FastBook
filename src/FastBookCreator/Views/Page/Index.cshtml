@@ -31,7 +31,7 @@
    .Sanitized(false)
    .Titled(@Resources.Resource.Item)
    .RenderValueAs(
-       f => $"<button  type=\"button\" onclick=\"location.href='/Item/Index?_id={f._id}&userId="+@ViewBag.userId+"&packId="+@ViewBag.PackId+ "&PAGE_TYPE_ID=" + f.PAGE_TYPE_ID + "&LESSON_ID=" + f.LESSON_ID + "'\" class=\"btn btn-default\">" +
+       f => $"<button  type=\"button\" onclick=\"location.href='/Item/Index?_id={f._id}&userId=" + @ViewBag.userId + "&packId=" + @ViewBag.PackId + "&PAGE_TYPE_ID=" + f.PAGE_TYPE_ID + "&LESSON_ID=" + f.LESSON_ID + "'\" class=\"btn btn-default\">" +
             $"<i class=\"material-icons\">library_books</i> {@Resources.Resource.Item}</button>");
 
     column.Add(o => @Resources.Resource.Edit).Encoded(false)
@@ -132,12 +132,12 @@
             $.ajax({
                 method: "POST",
                 url: "../Page/SavePage",
-                data: { lessonId: @ViewBag.LESSON_ID, userId:@ViewBag.userId ,packId : @ViewBag.PackId ,PAGE_TYPE_ID:pageTypeId ,PAGE_ID:@ViewBag.PAGE_ID,_id:0}
+                data: { lessonId: @ViewBag.LESSON_ID, userId:@ViewBag.userId ,packId : @ViewBag.packId ,PAGE_TYPE_ID:pageTypeId ,_id:0}
             })
               .done(function (pageId) {
                   var flag =  $("#afterCreatePage").prop('checked');
                   if (flag) {
-                      var url = '@Url.Action("Index", "Item")'+"?pageId="+pageId+"&userId="+@ViewBag.userId+"&packId="+ @ViewBag.PackId;
+                      var url = '@Url.Action("Index", "Item")'+"?_id="+pageId+"&userId="+@ViewBag.userId+"&packId="+ @ViewBag.PackId+"&PAGE_TYPE_ID="+pageTypeId;
                       window.location.href = url;
                   } else {
                       $('#searchModal').modal('toggle');

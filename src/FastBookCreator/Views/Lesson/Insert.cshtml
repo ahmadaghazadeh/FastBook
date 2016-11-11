@@ -1,4 +1,5 @@
 ﻿@model  FastBookCreator.Models.Lesson
+@using System.Drawing
 @using FastBookCreator.Core
 <div>
     @{
@@ -46,6 +47,10 @@
             <button id="submit-all" type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
             </button>
+
+            <button class="btn btn-default" onclick="location.href='@Request.UrlReferrer'">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp; @Resources.Resource.PreviousPage
+            </button>
         </div>
     }
 
@@ -58,7 +63,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $.post("../Shared/ResPacks", { where: " ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
+            $.post("../Shared/ResPacks", { where: " WHERE RESOURCE_TYPE_ID = 1 ", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
                 var imeges = "";
                 $.each(data, function (key, value) {
                     imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
@@ -74,7 +79,7 @@
         $("#txtSearch")
        .on("keyup",
            function (ev) {
-               $.post("../Shared/ResPacks", { where: "WHERE NAME like '%" + this.value + "%'" ,userId: "@ViewBag.UserId", packId: "@ViewBag.PackId"}, function (data) {
+               $.post("../Shared/ResPacks", { where: "WHERE RESOURCE_TYPE_ID = 1 AND NAME like '%" + this.value + "%'", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId" }, function (data) {
                    var imeges = "";
                    $.each(data, function (key, value) {
                        imeges = imeges + "<div class=\"img-grid col-lg-2 col-md-2 col-sm-3 col-xs-6\" >" +
@@ -90,12 +95,12 @@
         $(document).ready(function () {
             $("img[id^=img-]").click(imgClick);
             if ($("#imgLesson").attr("src")==="") {
-                $("#imgLesson").attr("src", "../Content/images/ibook.png");
+                $("#imgLesson").attr("src", "../Content/sounds/ibook.png");
             }
         });
 
         var imgClick=function () {
-            // Do stuff, get id of image perhaps?
+            // Do stuff, get id of sound perhaps?
             $("#imgLesson").attr("src", this.src);
             $("#resourceId").val(this.alt);
             $('#searchModal').modal('toggle');
@@ -106,7 +111,7 @@
             toastr.info("@Resources.Resource.Save");
             $("#LESSON_TITLE").val("");
             $("#COLOR").val("3433410");
-            $("#imgLesson").attr("src", "../Content/images/ibook.png");
+            $("#imgLesson").attr("src", "../Content/sounds/ibook.png");
         }
     </script>
 }

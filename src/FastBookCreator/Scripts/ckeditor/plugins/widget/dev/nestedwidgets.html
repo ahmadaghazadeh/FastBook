@@ -27,7 +27,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			<div class="simplebox-content">
 				<p><strong>Apollo 11</strong> was the spaceflight that landed the first humans, Americans <a href="http://en.wikipedia.org/wiki/Neil_Armstrong" title="Neil Armstrong">Neil Armstrong</a> and <a href="http://en.wikipedia.org/wiki/Buzz_Aldrin" title="Buzz Aldrin">Buzz Aldrin</a>, on the Moon on [[July 20, 1969, at 20:18 UTC]]. Armstrong became the first to step onto the lunar surface 6 hours later on [[July 21 at 02:56 UTC]].</p>
 
-				<figure class="image" style="float: right">
+				<figure class="sound" style="float: right">
 					<img alt="The Eagle" src="assets/sample.jpg" width="150" />
 					<figcaption>The Eagle in lunar orbit</figcaption>
 				</figure>
@@ -113,14 +113,14 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 		CKEDITOR.plugins.addExternal( 'simplebox', 'plugins/widget/dev/assets/simplebox/' );
 
 		CKEDITOR.replace( 'editor1', {
-			extraPlugins: 'simplebox,placeholder,image2',
+			extraPlugins: 'simplebox,placeholder,sound2',
 			removePlugins: 'forms,bidi',
 			contentsCss: [ '../../../contents.css', 'assets/simplebox/contents.css' ],
 			height: 500
 		} );
 
 		CKEDITOR.inline( 'editor2', {
-			extraPlugins: 'simplebox,placeholder,image2',
+			extraPlugins: 'simplebox,placeholder,sound2',
 			removePlugins: 'forms,bidi'
 		} );
 

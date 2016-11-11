@@ -1,0 +1,176 @@
+﻿@model  FastBookCreator.Models.Item
+@using FastBookCreator.Core
+@using Resources
+<div>
+    @{
+        var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "post",
+            OnSuccess = "OnSuccess();",
+            OnBegin = "OnBegin();",
+        };
+    }
+
+    @using (Ajax.BeginForm("SaveItem", "Item", ajaxOptions, new { enctype = "multipart/form-data", id = "SaveItemHtml" }))
+    {
+        <input id="userId" class="form-control" name="userId" type="hidden" value="@ViewBag.UserId" />
+        <input id="packId" class="form-control" name="packId" type="hidden" value="@ViewBag.PackId" />
+        <input id="RESOURCE_ID" name="RESOURCE_ID" type="hidden" value="@Model.RESOURCE_ID" />
+        <input id="itemTypeId" name="ITEM_TYPE_ID" type="hidden" value="4" />
+        <input id="ckEditorHtml" class="form-control" name="content" value="" type="hidden" />
+        <input id="lang" class="form-control" name="lang" value="" type="hidden" />
+        <div class="row">
+            <div class="col-md-12 group">
+                URL
+                <input id="url" name="url" value="@Model.URL" type="text" class="form-control" aria-describedby="basic-addon3" placeholder=@Resources.Resource.EnterUrl>
+                <br />
+                <div height="240" width="320" controls>
+                    <video id="video">
+                        <source src="http://as1.tabriz.asset.aparat.com/aparat-video/5dc9db1de5cda37e935b112b255035b54460043-360p__17193.apt" type='video/mp4' />
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-6 group">
+                <div>
+                    @Resources.Resource.ItemNumber
+                    @Html.TextBoxFor(model => model._id, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model._id)
+                </div>
+                <div>
+                    @Resources.Resource.Name
+                    @Html.TextBoxFor(model => model.ITEM_TITLE, new { @class = "form-control", placeholder = Resources.Resource.Name })
+                    @Html.ValidationMessageFor(model => model.ITEM_TITLE)
+                </div>
+            </div>
+
+            <div class="col-md-6 group">
+                <div>
+                    @Resources.Resource.Lesson
+                    @Html.TextBoxFor(model => model.LESSON_ID, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.LESSON_ID)
+                </div>
+
+                <div>
+                    @Resources.Resource.Page
+                    @Html.TextBoxFor(model => model.PAGE_ID, new { @class = "form-control", placeholder = Resources.Resource.Id, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.PAGE_ID)
+                </div>
+            </div>
+
+        </div>
+        <div class="row center-block">
+            <div id="submit-all" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;&nbsp; @Resources.Resource.Save
+            </div>
+            &nbsp;&nbsp;
+            <div class="btn btn-default" onclick="location.href='@Request.UrlReferrer'">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp; @Resources.Resource.PreviousPage
+            </div>
+        </div>
+    }
+</div>
+
+@Html.Partial("_SearchImageDialog")
+
+@section scripts
+{
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $.post("../Shared/ResPacks", { where: " WHERE RESOURCE_TYPE_ID = 2", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId", typeId: 2 }, function (data) {
+                var sound = "";
+                $.each(data, function (key, value) {
+                    sound = sound + "<div class=\"img-grid col-lg-3 col-md-3 col-sm-4 col-xs-6\" >" +
+                        value.NAME + value.DATA +
+                        "</div>";
+
+                });
+                $("#images").html(sound);
+                $("audio[id^=sound-]").click(imgClick);
+            });
+            $("#url").keyup(function () {
+                var value = $(this).val();
+                $("#video").attr("src", value);
+            }).keyup();
+        });
+
+        $("#submit-all").click(function () {
+            if (!$('#url').val()) {
+                toastr.info("@Resources.Resource.ErrorVideo");
+            } else if ($("#SaveItemHtml").valid()) {
+                var form = $("#SaveItemHtml");
+                var url = form.attr('action');
+                var formData = form.serialize();
+                $.post(url, formData, function (result) {
+                    if (result > 0)
+                        OnSuccess();
+                    else
+                        toastr.info("@Resources.Resource.UnSuccess");
+                });
+            }
+        });
+
+        $("#txtSearch")
+            .on("keyup",
+                function (ev) {
+                    $.post("../Shared/ResPacks", { where: "WHERE RESOURCE_TYPE_ID = 2 AND  NAME like '%" + this.value + "%'", userId: "@ViewBag.UserId", packId: "@ViewBag.PackId", typeId: 2 }, function (data) {
+                        var sound = "";
+                        $.each(data, function (key, value) {
+                            sound = sound + "<div class=\"img-grid col-lg-3 col-md-3 col-sm-4 col-xs-6\" >" +
+                                value.NAME + value.DATA +
+                                "</div>";
+
+                        });
+                        $("#images").html(sound);
+                        $("audio[id^=sound-]").click(imgClick);
+                    });
+                });
+
+
+        var imgClick = function () {
+            // Do stuff, get id of sound perhaps?
+            $("#itemSound").attr("src", this.src);
+            $("#RESOURCE_ID").val(this.id.replace("sound-", ""));
+            $('#searchModal').modal('toggle');
+        }
+
+        function OnSuccess() {
+            $("#_id").attr("0");
+            toastr.info("@Resources.Resource.Save");
+            $("#LESSON_ID").val("");
+            $("#PAGE_ID").val("");
+            $("#ITEM_TITLE").val("");
+            $("#itemSound").attr("src", "");
+            $("#_id").val("");
+        }
+
+        function OnBegin() {
+        }
+
+
+        $('#SaveItemHtml').submit(function () {
+            if (!$('#urlVideo').attr("src")) {
+                toastr.info("@Resources.Resource.ErrorVideo");
+            } else {
+                $("#SaveItemHtml").validate({
+                    submitHandler: function (f) {
+                        var form = $("#SaveItemHtml");
+                        var url = form.attr('action');
+                        var formData = form.serialize();
+                        $.post(url, formData, function (result) {
+                            if (result > 0)
+                                OnSuccess();
+                            else
+                                toastr.info("@Resources.Resource.UnSuccess");
+                        });
+                    }
+                });
+            }
+
+        });
+
+
+
+    </script>
+}

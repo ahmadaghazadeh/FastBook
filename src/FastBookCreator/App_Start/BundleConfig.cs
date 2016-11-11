@@ -26,9 +26,10 @@ namespace FastBookCreator
                        "~/Scripts/ckeditor/ckeditor.js",
                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
                        "~/Scripts/tipso.min.js",
+                       "~/Scripts/jscolor.min.js",
                        "~/Scripts/tooltipster/tooltipster.bundle.js"));
 
-
+ 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-theme.min.css",

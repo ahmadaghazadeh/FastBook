@@ -280,4 +280,10 @@ code  {
     background: #477F4A;
 }
 
- 
+.FontAwesome {
+    font: normal normal normal 48px/1 FontAwesome;
+}
+
+ .field-validation-error {
+     color: #ff0000;
+ }

@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
         });
 
         /*Dropzone.options.dropzoneForm = {
-            acceptedFiles: "image/*",
+            acceptedFiles: "sound/*",
             init: function () {
                 var thisDropzone = this;
 
@@ -67,7 +67,14 @@ jQuery(document).ready(function () {
         };*/
 });
 
-
+function ItemDetail(_id, ITEM_ID, ANSWER, IS_ANSWER, ORDER_NUMBER) {
+    this._id = _id;
+    this.ITEM_ID = ITEM_ID;
+    this.ANSWER = ANSWER;
+    this.ORDER_NUMBER = ORDER_NUMBER;
+    this.IS_ANSWER = IS_ANSWER;
+}
+       
  
 (function (document, window, index) {
     // feature detection for drag&drop upload

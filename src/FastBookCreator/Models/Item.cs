@@ -55,5 +55,6 @@ namespace FastBookCreator.Models
         public byte[] DATA { get; set; }
 
         public long RESOURCE_ID { get; set; }
+        public string URL { get; set; }
     }
 }

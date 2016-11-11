@@ -6,7 +6,7 @@
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
 
     <div class="btn-group" role="group">
-        <button type="button"  data-toggle="modal" data-target="#selectItemModal" class="btn btn-default">@Resources.Resource.CreateItem</button>
+        <button type="button" data-toggle="modal" data-target="#selectItemModal" class="btn btn-default">@Resources.Resource.CreateItem</button>
     </div>
 
 </div>
@@ -19,37 +19,33 @@
         .Encoded(false)
         .Sanitized(false)
         .SetWidth(100)
-        .RenderValueAs(o => "");
+        .RenderValueAs(o => HelperExtensions.ItemIcons().ToList()[(int)o.ITEM_TYPE_ID].Icon);
 
     column.Add(o => o._id)
-    .Titled(Resources.Resource.Id)
-    .Sortable(true);
-
-
-    column.Add(o => @Resources.Resource.Page).Encoded(false)
-   .Sanitized(false)
-   .Titled(@Resources.Resource.Edit)
-   .RenderValueAs(
-       f => $"<button  type=\"button\" onclick=\"location.href='/Page/Index?LessonId={f._id}'\" class=\"btn btn-default\">" +
-                        $"<span class=\"glyphicon glyphicon-file\" aria-hidden=\"true\"></span> {@Resources.Resource.Page}</button>");
+        .Titled(Resources.Resource.Id)
+        .Sortable(true);
 
     column.Add(o => @Resources.Resource.Edit).Encoded(false)
-    .Sanitized(false)
-    .Titled(@Resources.Resource.Edit)
-    .RenderValueAs(
-        f => $"<button  type=\"button\" onclick=\"location.href='/Lesson/Edit?_id={f._id}'\" class=\"btn btn-default\">" +
-                         $"<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> {@Resources.Resource.Edit}</button>");
+        .Sanitized(false)
+        .Titled(@Resources.Resource.Edit)
+        .RenderValueAs(
+            f => $"<button  type=\"button\" onclick=\"location.href='/Item/Insert?_id={f._id}&ITEM_TYPE_ID=" + f.ITEM_TYPE_ID + "'\" class=\"btn btn-default\">" +
+                 $"<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> {@Resources.Resource.Edit}</button>");
 
     column.Add(o => @Resources.Resource.Delete).Encoded(false)
-    .Titled(@Resources.Resource.Delete)
-     .Encoded(false)
-    .Sanitized(false)
-    .RenderValueAs(f => $"<button  type=\"button\" class=\"btn btn-default deleteId\" data-toggle=\"modal\" data-id=\"{f._id}\" data-target=\"#deleteModal\">" +
-                         $"<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span> {@Resources.Resource.Delete}</button>");
+        .Titled(@Resources.Resource.Delete)
+        .Encoded(false)
+        .Sanitized(false)
+        .RenderValueAs(f => $"<button  type=\"button\" class=\"btn btn-default deleteId\" data-toggle=\"modal\" data-id=\"{f._id}\" data-target=\"#deleteModal\">" +
+                            $"<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span> {@Resources.Resource.Delete}</button>");
 
 
 }
-)
+        )
+</div>
+
+<div class="btn btn-default" onclick="location.href='@Request.UrlReferrer'">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp; @Resources.Resource.PreviousPage
 </div>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal" style="margin: 10%">
@@ -70,9 +66,9 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
- 
- 
-<div class="modal fade" tabindex="-1" role="dialog" id="selectItemModal" style="margin: 10%">
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="selectItemModal" style="margin-left: 10%;margin-right: 10%">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -84,12 +80,12 @@
                 <h3>@Resources.Resource.CreateItem</h3>
 
                 <ul class="list-group">
-                    @foreach (var icon in HelperExtensions.ItemIcons().Skip(5).Take(5))
+                    @foreach (var icon in HelperExtensions.ItemIcons().Skip(6).Take(5))
                     {
                         <li class="list-group-item ">
-                            <button value="@icon.PageName" onclick="location.href='@Url.Action(icon.PageName, "Item",Model)';"   style="text-align:  @Resources.Resource.TextAlign; width: 100%;" dir="@Resources.Resource.dir" type="button" class="btn btn-default itemType">
-                                 @MvcHtmlString.Create(@icon.Icon) &nbsp;&nbsp;  
-                                 @icon.Name 
+                            <button onclick="location.href='@Url.Action("Insert", "Item",new {packId=@ViewBag.packId,userId=ViewBag.userId, _id=0,ITEM_TYPE_ID=icon.ItemTypeId, LESSON_ID = @ViewBag.LESSON_ID, PAGE_ID = @ViewBag.PAGE_ID })';" style="text-align:  @Resources.Resource.TextAlign; width: 100%;" dir="@Resources.Resource.dir" type="button" class="btn btn-default itemType">
+                                @MvcHtmlString.Create(@icon.Icon) &nbsp;&nbsp;
+                                @icon.Name
                             </button>
                         </li>
                     }
@@ -104,15 +100,15 @@
 {
     <script>
         $(".deleteId").click(function () {
-            var deleteId = $(this).data('id');
-            $(".modal-body #deleteId").val(deleteId);
-            $("#btnDelete").attr("onclick", "location.href='/Lesson/Delete?_id=" + deleteId + "'");
+            var id = $(this).data('id');
+            $(".modal-body #deleteId").val(id);
+            $("#btnDelete").attr("onclick", "location.href='/Item/Delete?_id=" + id + "'");
         });
 
         $("#btnDelete").click(function () {
             toastr.success("@Resources.Resource.DeleteSuccess");
         });
-      
-        
+
+
     </script>
 }
